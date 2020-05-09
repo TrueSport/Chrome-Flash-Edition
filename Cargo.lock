@@ -85,4 +85,16 @@ checksum = "bc4662175ead9cd84451d5c35070517777949a2ed84551764129cedb88384841"
 [[package]]
 name = "atty"
 version = "0.2.10"
-source = "reg
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2fc4a1aa4c24c0718a250f0681885c1af91419d242f29eb8f2ab28502d80dbd1"
+dependencies = [
+ "libc",
+ "termion 1.5.1",
+ "winapi 0.3.5",
+]
+
+[[package]]
+name = "backtrace"
+version = "0.3.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dbdd17cd962b570302f5297aea8648d5923e22e555c2ed2d8b2e34eca6
