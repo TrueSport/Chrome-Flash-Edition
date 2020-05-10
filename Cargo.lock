@@ -119,4 +119,23 @@ dependencies = [
 [[package]]
 name = "base64"
 version = "0.8.0"
-source = "registry+https://github.com/rust-lang/crates.io-ind
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7c4a342b450b268e1be8036311e2c613d7f8a7ed31214dff1cc3b60852a3168d"
+dependencies = [
+ "byteorder",
+ "safemem",
+]
+
+[[package]]
+name = "bincode"
+version = "1.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9f2fb9e29e72fd6bc12071533d5dc7664cb01480c59406f656d7ac25c7bd8ff7"
+dependencies = [
+ "byteorder",
+ "serde",
+]
+
+[[package]]
+name = "bitflags"
+version = "1.1.
