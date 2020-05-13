@@ -151,4 +151,21 @@ checksum = "0d8c1fef690941d3e7788d328517591fecc684c084084702d6ff1641e993699a"
 [[package]]
 name = "bloodhound"
 version = "0.5.4"
-source = "registry+https://github.com/rust-lang/cr
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c3adde3a05c6955eb3bbf6134a06d863d0e1ac23b3f46de258839dc1d8f813cb"
+dependencies = [
+ "fragment",
+ "glob",
+ "walkdir",
+]
+
+[[package]]
+name = "byteorder"
+version = "1.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "74c0b906e9446b0a2e4f760cdb3fa4b2c48cdc6db8766a845c54b6ff063fd2e9"
+
+[[package]]
+name = "bytes"
+version = "0.4.8"
+source = "registry+https://git
