@@ -168,4 +168,20 @@ checksum = "74c0b906e9446b0a2e4f760cdb3fa4b2c48cdc6db8766a845c54b6ff063fd2e9"
 [[package]]
 name = "bytes"
 version = "0.4.8"
-source = "registry+https://git
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7dd32989a66957d3f0cba6588f15d4281a733f4e9ffc43fcd2385f57d3bf99ff"
+dependencies = [
+ "byteorder",
+ "iovec",
+]
+
+[[package]]
+name = "cast"
+version = "0.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "926013f2860c46252efceabb19f4a6b308197505082c609025aa6706c011d427"
+
+[[package]]
+name = "cc"
+version = "1.0.45"
+source = "registry+https://github.com/ru
