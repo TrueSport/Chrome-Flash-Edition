@@ -200,4 +200,20 @@ checksum = "405216fd8fe65f718daa7102ea808a946b6ce40c742998fbfd3463645552de18"
 [[package]]
 name = "chrono"
 version = "0.4.2"
-source = "registry+https://github.com/rust-lang/crates.i
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1cce36c92cb605414e9b824f866f5babe0a0368e39ea07393b9b63cf3844c0e6"
+dependencies = [
+ "num-integer",
+ "num-traits 0.2.4",
+ "time",
+]
+
+[[package]]
+name = "clap"
+version = "2.31.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f0f16b89cbb9ee36d87483dc939fe9f1e13c05898d56d7b230a0d4dff033a536"
+dependencies = [
+ "ansi_term",
+ "atty",
+ "bitflags",
