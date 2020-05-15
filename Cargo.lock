@@ -217,3 +217,25 @@ dependencies = [
  "ansi_term",
  "atty",
  "bitflags",
+ "strsim",
+ "textwrap",
+ "unicode-width",
+ "vec_map",
+]
+
+[[package]]
+name = "clipboard"
+version = "0.4.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b9b4623b47d8637fc9d47564583d4cc01eb8c8e34e26b2bf348bf4b036acb657"
+dependencies = [
+ "clipboard-win",
+ "objc",
+ "objc-foundation",
+ "objc_id",
+ "x11-clipboard",
+]
+
+[[package]]
+name = "clipboard-win"
+ver
