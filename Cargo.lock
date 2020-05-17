@@ -251,4 +251,29 @@ version = "0.1.31"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "95470235c31c726d72bf2e1f421adc1e65b9d561bf5529612cbe1a72da1467b3"
 dependencies = [
- "cc"
+ "cc",
+]
+
+[[package]]
+name = "criterion"
+version = "0.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4f11151e2961d0483e5eb7a2ede5ed8071a460d04d2b7c89e8257aa5502b0e0b"
+dependencies = [
+ "atty",
+ "clap",
+ "criterion-plot",
+ "criterion-stats",
+ "failure",
+ "failure_derive",
+ "handlebars",
+ "itertools",
+ "itertools-num",
+ "log",
+ "serde",
+ "serde_derive",
+ "serde_json",
+ "simplelog",
+]
+
+[[p
