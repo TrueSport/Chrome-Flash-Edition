@@ -238,4 +238,17 @@ dependencies = [
 
 [[package]]
 name = "clipboard-win"
-ver
+version = "2.1.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "289da2fc09ab964a4948a63287c94fcb4698fa823c46da84c3792928c9d36110"
+dependencies = [
+ "winapi 0.3.5",
+]
+
+[[package]]
+name = "cmake"
+version = "0.1.31"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "95470235c31c726d72bf2e1f421adc1e65b9d561bf5529612cbe1a72da1467b3"
+dependencies = [
+ "cc"
