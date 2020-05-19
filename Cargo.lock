@@ -276,4 +276,19 @@ dependencies = [
  "simplelog",
 ]
 
-[[p
+[[package]]
+name = "criterion-plot"
+version = "0.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9f7f7c88a8d341dd9fd9e31a72ca2ca24428db79afb491852873b2c784e037e6"
+dependencies = [
+ "byteorder",
+ "cast",
+ "itertools",
+]
+
+[[package]]
+name = "criterion-stats"
+version = "0.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dd48feb0253b2968ff3085e7f3fb
