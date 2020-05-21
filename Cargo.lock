@@ -291,4 +291,22 @@ dependencies = [
 name = "criterion-stats"
 version = "0.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dd48feb0253b2968ff3085e7f3fb
+checksum = "dd48feb0253b2968ff3085e7f3fba6738c9ff859f420a2fb81a48986eb66da36"
+dependencies = [
+ "cast",
+ "num-traits 0.2.4",
+ "num_cpus",
+ "rand",
+ "thread-scoped",
+]
+
+[[package]]
+name = "dtoa"
+version = "0.4.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "09c3753c3db574d215cba4ea76018483895d7bff25a31b49ba45db21c48e50ab"
+
+[[package]]
+name = "duct"
+version = "0.10.0"
+source = "registry+https://github.com/rust-lang/
