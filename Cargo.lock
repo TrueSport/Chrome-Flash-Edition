@@ -309,4 +309,22 @@ checksum = "09c3753c3db574d215cba4ea76018483895d7bff25a31b49ba45db21c48e50ab"
 [[package]]
 name = "duct"
 version = "0.10.0"
-source = "registry+https://github.com/rust-lang/
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "166298c17c5b4fe5997b962c2f22e887c7c5adc44308eb9103ce5b66af45a423"
+dependencies = [
+ "lazycell 0.6.0",
+ "libc",
+ "os_pipe",
+ "shared_child",
+]
+
+[[package]]
+name = "either"
+version = "1.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3be565ca5c557d7f59e7cfcf1844f9e3033650c929c6566f511e8005f205c1d0"
+
+[[package]]
+name = "error-chain"
+version = "0.10.0"
+s
