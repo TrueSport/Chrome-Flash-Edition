@@ -392,4 +392,19 @@ checksum = "2fad85553e09a6f881f739c29f0b00b0f01357c743266d478b68951ce23285f3"
 [[package]]
 name = "fragment"
 version = "0.3.1"
-source = "regist
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "90ed2593535a2bf81d7d008c153027c08fdfce2dcca920ba6f345a59d8754cb3"
+
+[[package]]
+name = "fuchsia-zircon"
+version = "0.3.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2e9763c69ebaae630ba35f74888db465e49e259ba1bc0eda7d06f4a067615d82"
+dependencies = [
+ "bitflags",
+ "fuchsia-zircon-sys",
+]
+
+[[package]]
+name = "fuchsia-zircon-sys"
+ve
