@@ -437,3 +437,20 @@ dependencies = [
  "bitflags",
  "libc",
  "libgit2-sys",
+ "log",
+ "url",
+]
+
+[[package]]
+name = "glob"
+version = "0.2.11"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8be18de09a56b60ed0edf84bc9df007e30040691af7acd1c41874faac5895bfb"
+
+[[package]]
+name = "handlebars"
+version = "0.31.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e7bdb08e879b8c78ee90f5022d121897c31ea022cb0cc6d13f2158c7a9fbabb1"
+dependencies = [
+ "lazy
