@@ -419,4 +419,21 @@ checksum = "5e33ec290da0d127825013597dbdfc28bee4964690c7ce1166cbc2a7bd08b1bb"
 
 [[package]]
 name = "getrandom"
-version = "0.
+version = "0.1.12"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "473a1265acc8ff1e808cd0a1af8cee3c2ee5200916058a2ca113c29f2d903571"
+dependencies = [
+ "cfg-if",
+ "libc",
+ "wasi",
+]
+
+[[package]]
+name = "git2"
+version = "0.10.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "39f27186fbb5ec67ece9a56990292bc5aed3c3fc51b9b07b0b52446b1dfb4a82"
+dependencies = [
+ "bitflags",
+ "libc",
+ "libgit2-sys",
