@@ -453,4 +453,27 @@ version = "0.31.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e7bdb08e879b8c78ee90f5022d121897c31ea022cb0cc6d13f2158c7a9fbabb1"
 dependencies = [
- "lazy
+ "lazy_static",
+ "log",
+ "pest",
+ "pest_derive",
+ "quick-error",
+ "regex 0.2.11",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "idna"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "02e2673c30ee86b5b96a9cb52ad15718aa1f966f5ab9ad54a8b95d5ca33120a9"
+dependencies = [
+ "matches",
+ "unicode-bidi",
+ "unicode-normalization",
+]
+
+[[package]]
+name = "iovec"
+version 
