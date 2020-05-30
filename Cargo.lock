@@ -476,4 +476,17 @@ dependencies = [
 
 [[package]]
 name = "iovec"
-version 
+version = "0.1.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dbe6e417e7d0975db6512b90796e8ce223145ac4e33c377e4a42882a0e88bb08"
+dependencies = [
+ "libc",
+ "winapi 0.2.8",
+]
+
+[[package]]
+name = "itertools"
+version = "0.7.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f58856976b776fedd95533137617a02fb25719f40e7d9b01c7043cd65474f450"
+dependencie
