@@ -489,4 +489,21 @@ name = "itertools"
 version = "0.7.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f58856976b776fedd95533137617a02fb25719f40e7d9b01c7043cd65474f450"
-dependencie
+dependencies = [
+ "either",
+]
+
+[[package]]
+name = "itertools-num"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4d78fa608383e6e608ba36f962ac991d5d6878d7203eb93b4711b14fa6717813"
+dependencies = [
+ "num-traits 0.1.43",
+]
+
+[[package]]
+name = "itoa"
+version = "0.4.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c069bbec61e1ca5a596166e55dfe4773ff745c3d16b
