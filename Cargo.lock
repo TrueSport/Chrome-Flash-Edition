@@ -673,3 +673,25 @@ name = "miow"
 version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8c1f2f3b1cf331de6896aabf6e9d55dca90356cc9960cca7eaaf408a355ae919"
+dependencies = [
+ "kernel32-sys",
+ "net2",
+ "winapi 0.2.8",
+ "ws2_32-sys",
+]
+
+[[package]]
+name = "net2"
+version = "0.2.33"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "42550d9fb7b6684a6d404d9fa7250c2eb2646df731d1c06afc06dcee9e1bcf88"
+dependencies = [
+ "cfg-if",
+ "libc",
+ "winapi 0.3.5",
+]
+
+[[package]]
+name = "nix"
+version = "0.10.0"
+source = "registry+https://github.com/rust-lang/c
