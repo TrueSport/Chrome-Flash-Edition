@@ -694,4 +694,21 @@ dependencies = [
 [[package]]
 name = "nix"
 version = "0.10.0"
-source = "registry+https://github.com/rust-lang/c
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b7fd5681d13fda646462cfbd4e5f2051279a89a544d50eb98c365b507246839f"
+dependencies = [
+ "bitflags",
+ "bytes",
+ "cfg-if",
+ "gcc",
+ "libc",
+ "void",
+]
+
+[[package]]
+name = "num-integer"
+version = "0.1.38"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6ac0ea58d64a89d9d6b7688031b3be9358d6c919badcf7fbb0527ccfd891ee45"
+dependencies = [
+ "num-trait
