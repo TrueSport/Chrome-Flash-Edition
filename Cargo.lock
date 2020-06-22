@@ -796,4 +796,20 @@ dependencies = [
 ]
 
 [[package]]
-n
+name = "onig_sys"
+version = "68.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5c6be7c4f985508684e54f18dd37f71e66f3e1ad9318336a520d7e42f0d3ea8e"
+dependencies = [
+ "cmake",
+ "duct",
+ "libc",
+ "pkg-config",
+]
+
+[[package]]
+name = "os_pipe"
+version = "0.6.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "934868c3f86ed7a39ef63d88edeac5bd49a0c843192651900e9ce1178cbbf157"
+d
