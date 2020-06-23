@@ -812,4 +812,19 @@ name = "os_pipe"
 version = "0.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "934868c3f86ed7a39ef63d88edeac5bd49a0c843192651900e9ce1178cbbf157"
-d
+dependencies = [
+ "nix",
+ "winapi 0.3.5",
+]
+
+[[package]]
+name = "percent-encoding"
+version = "2.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d4fd5641d01c8f18a23da7b6fe29298ff4b55afcccdf78973b24cf3175fee32e"
+
+[[package]]
+name = "pest"
+version = "1.0.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0fce5d8b5cc33983fc74f78ad552b5522ab4144
