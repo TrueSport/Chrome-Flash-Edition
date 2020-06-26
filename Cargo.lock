@@ -844,4 +844,23 @@ dependencies = [
 name = "pkg-config"
 version = "0.3.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "110d5ee3593dbb73f562943
+checksum = "110d5ee3593dbb73f56294327fe5668bcc997897097cbc76b51e7aed3f52452f"
+
+[[package]]
+name = "plist"
+version = "0.2.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c61ac2afed2856590ae79d6f358a24b85ece246d2aa134741a66d589519b7503"
+dependencies = [
+ "base64",
+ "byteorder",
+ "chrono",
+ "serde",
+ "xml-rs",
+]
+
+[[package]]
+name = "proc-macro2"
+version = "0.4.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+c
