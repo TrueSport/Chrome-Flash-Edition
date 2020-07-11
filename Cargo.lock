@@ -1084,4 +1084,19 @@ dependencies = [
 ]
 
 [[package]]
-name = "signal-hook-registry
+name = "signal-hook-registry"
+version = "1.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cded4ffa32146722ec54ab1f16320568465aa922aa9ab4708129599740da85d7"
+dependencies = [
+ "arc-swap",
+ "libc",
+]
+
+[[package]]
+name = "simplelog"
+version = "0.5.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9cc12b39fdf4c9a07f88bffac2d628f0118ed5ac077a4b0feece61fadf1429e5"
+dependencies = [
+ "chrono"
