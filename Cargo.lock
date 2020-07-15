@@ -1164,4 +1164,26 @@ dependencies = [
 ]
 
 [[package]]
-name = "synte
+name = "syntect"
+version = "2.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dc8a6f0db88d4afc340522c20d260411e746b2225b257c6b238a75de9d7cec78"
+dependencies = [
+ "bincode",
+ "bitflags",
+ "flate2",
+ "fnv",
+ "lazy_static",
+ "onig",
+ "plist",
+ "regex-syntax 0.4.2",
+ "serde",
+ "serde_derive",
+ "serde_json",
+ "walkdir",
+ "yaml-rust",
+]
+
+[[package]]
+name = "term"
+version = "0.5.
