@@ -1186,4 +1186,18 @@ dependencies = [
 
 [[package]]
 name = "term"
-version = "0.5.
+version = "0.5.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5e6b677dd1e8214ea1ef4297f85dbcbed8e8cdddb561040cc998ca2551c37561"
+dependencies = [
+ "byteorder",
+ "winapi 0.3.5",
+]
+
+[[package]]
+name = "termion"
+version = "1.5.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "689a3bdfaab439fd92bc87df5c4c78417d3cbe537487274e9b0b2dce76e92096"
+dependencies = [
+ "libc"
