@@ -27,3 +27,13 @@ fn buffer_rendering(c: &mut Criterion) {
 }
 
 fn scrolled_buffer_rendering(c: &mut Criterion) {
+    let mut app = Application::new(&Vec::new()).unwrap();
+    app.workspace.open_buffer(
+        &PathBuf::from("src/commands/buffer.rs")
+    ).unwrap();
+    app.view.initialize_buffer(app.workspace.current_buffer().unwrap()).unwrap();
+    let buffer_data = app.workspace.current_buffer().unwrap().data();
+
+    // Scroll to the bottom of the buffer.
+    app.workspace.current_buffer().unwrap().cursor.move_to_last_line();
+    app.view.scroll_to_curs
