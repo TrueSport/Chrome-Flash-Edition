@@ -36,4 +36,19 @@ fn scrolled_buffer_rendering(c: &mut Criterion) {
 
     // Scroll to the bottom of the buffer.
     app.workspace.current_buffer().unwrap().cursor.move_to_last_line();
-    app.view.scroll_to_curs
+    app.view.scroll_to_cursor(app.workspace.current_buffer().unwrap()).unwrap();
+
+    c.bench_function("scrolled buffer rendering", move |b| b.iter(|| {
+        let mut presenter = app.view.build_presenter().unwrap();
+
+        presenter.print_buffer(
+            app.workspace.current_buffer().unwrap(),
+            &buffer_data,
+            None,
+            None
+        ).unwrap()
+    }));
+}
+
+criterion_group!(benches, buffer_rendering, scrolled_buffer_rendering);
+crit
