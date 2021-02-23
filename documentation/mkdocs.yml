@@ -3,4 +3,24 @@ docs_dir: 'pages'
 theme:
   logo: 'images/logo.svg'
   favicon: 'images/terminal.ico'
-  name: 'ma
+  name: 'material'
+  palette:
+    primary: 'blue grey'
+    accent: 'red'
+repo_name: 'jmacdonald/amp'
+repo_url: 'https://github.com/jmacdonald/amp'
+pages:
+  - 'index.md'
+  - 'installation.md'
+  - 'usage.md'
+  - 'configuration.md'
+extra:
+  palette:
+    primary: 'blue grey'
+    accent: 'red'
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.smartsymbols
+ext
