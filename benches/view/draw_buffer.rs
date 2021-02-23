@@ -51,4 +51,4 @@ fn scrolled_buffer_rendering(c: &mut Criterion) {
 }
 
 criterion_group!(benches, buffer_rendering, scrolled_buffer_rendering);
-crit
+criterion_main!(benches);

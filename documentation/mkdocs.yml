@@ -1,0 +1,6 @@
+site_name: Amp
+docs_dir: 'pages'
+theme:
+  logo: 'images/logo.svg'
+  favicon: 'images/terminal.ico'
+  name: 'ma
