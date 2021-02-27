@@ -23,4 +23,6 @@ markdown_extensions:
   - pymdownx.highlight
   - pymdownx.superfences
   - pymdownx.smartsymbols
-ext
+extra_css:
+  - 'stylesheets/extra.css'
+copyright: 'Copyright &copy; 2015 - 2018 Jordan MacDonald'
