@@ -58,4 +58,17 @@
          rdf:about="">
         <dc:format>image/svg+xml</dc:format>
         <dc:type
-           r
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Border"
+     style="display:inline"
+     transform="translate(-111.4621,-88.444852)">
+    <path
+       transform="translate(0,-87.000001)"
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:2.188;stroke-linecap:round;str
