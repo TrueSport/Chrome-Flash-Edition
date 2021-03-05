@@ -74,4 +74,14 @@
        style="opacity:1;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:2.188;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4.5;stroke-dasharray:none;stroke-opacity:1"
        d="m 144.91263,208.9988 h -31.37572 c -0.82039,0 -1.48084,-0.66045 -1.48084,-1.48084 v -29.9983 c 0,-0.82039 0.66045,-1.48084 1.48084,-1.48084 h 64.77167 c 0.82039,0 1.48084,0.66045 1.48084,1.48084 v 29.9983 c 0,0.82039 -0.66045,1.48084 -1.48084,1.48084 h -7.50908"
        id="rect829"
-       inkscape:connect
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cssssssssc" />
+  </g>
+  <g
+     inkscape:label="Text"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-111.4621,-175.44485)">
+    <g
+       aria-label="|AMP|"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:6.61458302px;font-family:Quicksand;-inkscape-font-specif
