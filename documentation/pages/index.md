@@ -26,4 +26,15 @@ dependencies (e.g. plug-ins, ctags, external indexing binaries).
 
 ### Configuration
 
-Amp shouldn't require any init
+Amp shouldn't require any initial configuration. User preferences live in a
+single YAML file and have sensible defaults. There's also a built-in command to
+easily edit this file without having to leave the application.
+
+### Considerations
+
+Although still in its infancy, Amp is suitable for day-to-day use, with a few
+exceptions. There are features not yet in place; some are planned, others are not.
+
+##### Encoding
+
+Amp only supports UTF-8 (and by proxy,
