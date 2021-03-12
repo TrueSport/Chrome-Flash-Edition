@@ -14,4 +14,16 @@ differentiate it from other options.
 
 Like Vim, Amp is a modal editor: keystrokes perform different functions based
 on the current mode. Many familiar modes (insert, normal, select, etc.) are
-available, as well as several new ones providing add
+available, as well as several new ones providing additional functionality.
+
+### Essential Features
+
+Amp's primary audience is _developers_.
+
+Syntax highlighting, a fuzzy file finder, local symbol jump, and basic Git
+integration are available without additional configuration or external
+dependencies (e.g. plug-ins, ctags, external indexing binaries).
+
+### Configuration
+
+Amp shouldn't require any init
