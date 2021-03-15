@@ -55,4 +55,5 @@ on being "complete" from the start, an avenue for extended language, framework,
 and workflow support is necessary. Features like "go to definition" require
 non-trivial language support, and are great candidates for plug-ins.
 
-As a r
+As a result, _Amp will eventually include a runtime and plug-in API_, providing
+the ability to define new commands.
