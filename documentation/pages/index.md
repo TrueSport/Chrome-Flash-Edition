@@ -37,4 +37,22 @@ exceptions. There are features not yet in place; some are planned, others are no
 
 ##### Encoding
 
-Amp only supports UTF-8 (and by proxy,
+Amp only supports UTF-8 (and by proxy, ASCII). Supporting other encoding types
+is not planned. Windows line endings (CRLF) are also currently unsupported.
+
+##### Split Panes
+
+Unlike Vim, Amp doesn't provide split panes, and support isn't planned. It's
+recommended to use [tmux](https://github.com/tmux/tmux/wiki) instead, which
+provides this (and much more) for your shell, text editor, and any other
+terminal-based applications you may use.
+
+##### Plug-ins
+
+Many editors allow users to extend and change much of their behaviour through
+the use of plug-ins. This is not a goal for Amp. However, in spite of its focus
+on being "complete" from the start, an avenue for extended language, framework,
+and workflow support is necessary. Features like "go to definition" require
+non-trivial language support, and are great candidates for plug-ins.
+
+As a r
