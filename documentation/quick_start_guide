@@ -3,4 +3,19 @@ Quick Start Guide
 
 Welcome to Amp! Before we get started, it's worth noting that there's a lot to
 cover. This guide isn't meant to be comprehensive; visit https://amp.rs/docs for
-a much more in-depth guide
+a much more in-depth guide to using Amp.
+
+--
+
+Right, let's get started. You're currently looking at an open buffer, which can
+be scrolled up and down using "," and "m", respectively. Go ahead and try them
+now; you're going to use these a lot, and they're the only keys you need to read
+the rest of this guide.
+
+Moving the Cursor
+=================
+
+You can use the "hjkl" keys to move the cursor left, down, up, and right, just
+like in Vim.
+
+You can amplify these 
