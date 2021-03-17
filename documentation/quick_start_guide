@@ -29,3 +29,20 @@ Beyond that, you're going to want to use Amp's jump mode to navigate. This mode
 works by prefixing words with a jump token. Type the two letters in the jump
 token to move to the word.
 
+Type "f" to give it a shot.
+
+There's another version of jump mode that only uses single letter tokens. It's
+handy for moving around on the current line. Press the single quote key to use
+it.
+
+Editing
+=======
+
+Like Vim, you can use "i" to enter insert mode and add content, and press "esc"
+to switch back to normal mode. You can also use "d" to delete the current word,
+or "c" to change it, instead.
+
+Selecting Text
+==============
+
+Press
