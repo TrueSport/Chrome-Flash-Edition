@@ -18,4 +18,14 @@ Moving the Cursor
 You can use the "hjkl" keys to move the cursor left, down, up, and right, just
 like in Vim.
 
-You can amplify these 
+You can amplify these movements by holding shift. The "H" and "L" keys will go
+to the start and end of the current line, and the "J" and "K" keys will go to
+the last and first line, respectively.
+
+You can also use the "w" and "b" keys to move forwards and backwards one word at
+a time.
+
+Beyond that, you're going to want to use Amp's jump mode to navigate. This mode
+works by prefixing words with a jump token. Type the two letters in the jump
+token to move to the word.
+
