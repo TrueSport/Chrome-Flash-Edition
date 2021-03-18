@@ -45,4 +45,15 @@ or "c" to change it, instead.
 Selecting Text
 ==============
 
-Press
+Press the "v" key to enter select mode, and move the cursor to define a
+selection. You can use "d" and "c" to delete and change the selection,
+respectively.
+
+You can press "V" instead to use an alternative select mode, where entire lines
+are selected.
+
+Opening Files
+=============
+
+Hit the space key to switch to open mode. Amp will start recursively indexing
+the current directory, which you can search. It's recommended
