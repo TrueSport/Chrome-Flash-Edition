@@ -56,4 +56,13 @@ Opening Files
 =============
 
 Hit the space key to switch to open mode. Amp will start recursively indexing
-the current directory, which you can search. It's recommended
+the current directory, which you can search. It's recommended to use small,
+space-separated tokens. Tokens must exist in the file's path to trigger a match,
+and they can be in any order. Once you've found a match, hit "enter". If it's
+further down the list, you can use the up/down keys, or hit "esc" and use the
+"jk" keys, instead. You can leave open mode by hitting "esc" again.
+
+If you'd like to create a new file, start by opening a new, empty buffer by 
+pressing "B".
+
+M
