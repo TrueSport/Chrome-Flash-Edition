@@ -65,4 +65,15 @@ further down the list, you can use the up/down keys, or hit "esc" and use the
 If you'd like to create a new file, start by opening a new, empty buffer by 
 pressing "B".
 
-M
+Managing Files
+==============
+
+You can switch between open files using the "tab" key. Press "s" to save the 
+current buffer. If you're done with a buffer, you can close it by hitting "q". 
+Amp will warn you if there are unsaved changes before closing the buffer.
+
+Exiting
+=======
+
+When you're done with Amp, hit "Q" to quit. It's worth noting that Amp won't
+warn you about modified buffers when
