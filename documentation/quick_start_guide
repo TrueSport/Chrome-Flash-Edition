@@ -76,4 +76,6 @@ Exiting
 =======
 
 When you're done with Amp, hit "Q" to quit. It's worth noting that Amp won't
-warn you about modified buffers when
+warn you about modified buffers when quitting. That's intentional! You may find
+it easier to close open buffers beforehand, and only quit from the splash
+screen.
