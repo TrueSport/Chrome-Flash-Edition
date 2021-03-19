@@ -238,3 +238,139 @@ pub fn display_available_commands(app: &mut Application) -> Result {
         command_keys.sort();
         command_keys.reverse();
         for key in command_keys {
+            buffer.insert(format!("{}\n", key));
+        }
+    }
+
+    Ok(())
+}
+
+pub fn display_last_error(app: &mut Application) -> Result {
+    let error = app.error.take().ok_or("No error to display")?;
+    let scope_display_buffer = {
+        let mut error_buffer = Buffer::new();
+        // Add the proximate/contextual error.
+        error_buffer.insert(
+            format!("{}\n", error)
+        );
+
+        // Print the chain of other errors that led to the proximate error.
+        for err in error.iter().skip(1) {
+            error_buffer.insert(
+                format!("caused by: {}", err)
+            );
+        }
+
+        error_buffer
+    };
+    util::add_buffer(scope_display_buffer, app)
+}
+
+pub fn suspend(app: &mut Application) -> Result {
+    app.view.suspend();
+
+    Ok(())
+}
+
+pub fn exit(app: &mut Application) -> Result {
+    app.mode = Mode::Exit;
+
+    Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::models::Application;
+    use crate::models::application::Mode;
+    use scribe::Buffer;
+    use std::path::PathBuf;
+
+    #[test]
+    fn display_available_commands_creates_a_new_buffer() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        super::display_available_commands(&mut app).unwrap();
+
+        assert!(app.workspace.current_buffer().is_some());
+    }
+
+    #[test]
+    fn display_available_commands_populates_new_buffer_with_alphabetic_command_names() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        super::display_available_commands(&mut app).unwrap();
+
+        let buffer_data = app.workspace.current_buffer().unwrap().data();
+        let mut lines = buffer_data.lines();
+        assert_eq!(lines.nth(0), Some("application::display_available_commands"));
+        assert_eq!(lines.last(), Some("workspace::next_buffer"));
+    }
+
+    #[test]
+    fn switch_to_search_mode_sets_initial_search_query() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+
+        // A buffer needs to be open to switch to search mode.
+        let buffer = Buffer::new();
+        app.workspace.add_buffer(buffer);
+
+        app.search_query = Some(String::from("query"));
+        super::switch_to_search_mode(&mut app).unwrap();
+
+        let mode_query = match app.mode {
+            Mode::Search(ref mode) => mode.input.clone(),
+            _ => None,
+        };
+        assert_eq!(
+            mode_query,
+            Some(String::from("query"))
+        );
+    }
+
+    #[test]
+    fn switch_to_path_mode_inserts_workspace_directory_as_default() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+
+        let buffer = Buffer::new();
+        app.workspace.add_buffer(buffer);
+
+        super::switch_to_path_mode(&mut app).unwrap();
+        let mode_input = match app.mode {
+            Mode::Path(ref mode) => Some(mode.input.clone()),
+            _ => None,
+        };
+        assert_eq!(
+            mode_input,
+            Some(format!("{}/", app.workspace.path.to_string_lossy()))
+        );
+    }
+
+    #[test]
+    fn switch_to_path_mode_inserts_buffer_path_if_one_exists() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+
+        let mut buffer = Buffer::new();
+        let absolute_path = format!("{}/test", app.workspace.path.to_string_lossy());
+        buffer.path = Some(PathBuf::from(absolute_path.clone()));
+        app.workspace.add_buffer(buffer);
+
+        super::switch_to_path_mode(&mut app).unwrap();
+        let mode_input = match app.mode {
+            Mode::Path(ref mode) => Some(mode.input.clone()),
+            _ => None,
+        };
+        assert_eq!(
+            mode_input,
+            Some(absolute_path)
+        );
+    }
+
+    #[test]
+    fn switch_to_path_mode_raises_error_if_no_buffer_is_open() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+
+        // The application type picks up on test run
+        // arguments and will open empty buffers for each.
+        app.workspace.close_current_buffer();
+
+        assert!(super::switch_to_path_mode(&mut app).is_err());
+    }
+}
