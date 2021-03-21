@@ -5,4 +5,13 @@ use crate::input::Key;
 use crate::util;
 use crate::util::token::{Direction, adjacent_token_position};
 use crate::models::application::{Application, ClipboardContent, Mode};
-use crate::mo
+use crate::models::application::modes::ConfirmMode;
+use scribe::buffer::{Buffer, Position, Range};
+
+pub fn save(app: &mut Application) -> Result {
+    remove_trailing_whitespace(app)?;
+    ensure_trailing_newline(app)?;
+
+    // Slight duplication here, but we need to check for a buffer path without
+    // borrowing the buffer for the full scope of this save command. That will
+    // allow us to han
