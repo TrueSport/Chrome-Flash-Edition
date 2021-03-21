@@ -29,4 +29,20 @@ pub fn save(app: &mut Application) -> Result {
             .save()
             .chain_err(|| "Unable to save buffer")
     } else {
-        comma
+        commands::application::switch_to_path_mode(app)?;
+        if let Mode::Path(ref mut mode) = app.mode {
+            mode.save_on_accept = true;
+        }
+
+        Ok(())
+    }
+}
+
+pub fn reload(app: &mut Application) -> Result {
+    app.workspace.current_buffer().ok_or(BUFFER_MISSING)?.reload().chain_err(|| {
+        "Unable to reload buffer."
+    })
+}
+
+pub fn delete(app: &mut Application) -> Result {
+    app.wo
