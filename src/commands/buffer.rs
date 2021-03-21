@@ -14,4 +14,19 @@ pub fn save(app: &mut Application) -> Result {
 
     // Slight duplication here, but we need to check for a buffer path without
     // borrowing the buffer for the full scope of this save command. That will
-    // allow us to han
+    // allow us to hand the application object to the switch_to_path_mode
+    // command, if necessary.
+    let path_set = app
+        .workspace
+        .current_buffer()
+        .ok_or(BUFFER_MISSING)?
+        .path.is_some();
+
+    if path_set {
+        app.workspace
+            .current_buffer()
+            .ok_or(BUFFER_MISSING)?
+            .save()
+            .chain_err(|| "Unable to save buffer")
+    } else {
+        comma
