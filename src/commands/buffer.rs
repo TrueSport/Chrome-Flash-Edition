@@ -45,4 +45,15 @@ pub fn reload(app: &mut Application) -> Result {
 }
 
 pub fn delete(app: &mut Application) -> Result {
-    app.wo
+    app.workspace.current_buffer().ok_or(BUFFER_MISSING)?.delete();
+    commands::view::scroll_to_cursor(app)?;
+
+    Ok(())
+}
+
+pub fn delete_token(app: &mut Application) -> Result {
+    let mut subsequent_token_on_line = false;
+
+    if let Some(buffer) = app.workspace.current_buffer() {
+        if let Some(position) = adjacent_token_position(buffer, false, Direction::Forward) {
+            if position.line == buffer.cursor.line {
