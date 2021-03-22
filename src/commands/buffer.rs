@@ -57,3 +57,16 @@ pub fn delete_token(app: &mut Application) -> Result {
     if let Some(buffer) = app.workspace.current_buffer() {
         if let Some(position) = adjacent_token_position(buffer, false, Direction::Forward) {
             if position.line == buffer.cursor.line {
+                subsequent_token_on_line = true;
+            }
+        }
+    } else {
+        bail!(BUFFER_MISSING);
+    }
+
+    if subsequent_token_on_line {
+        commands::application::switch_to_select_mode(app)?;
+        commands::cursor::move_to_start_of_next_token(app)?;
+        commands::selection::copy_and_delete(app)?;
+        commands::application::switch_to_normal_mode(app)?;
+ 
