@@ -97,3 +97,15 @@ pub fn copy_current_line(app: &mut Application) -> Result {
 
 pub fn merge_next_line(app: &mut Application) -> Result {
     let buffer = app.workspace.current_buffer().ok_or(BUFFER_MISSING)?;
+    let current_line = buffer.cursor.line;
+    let data = buffer.data();
+
+    // Don't bother if there isn't a line below.
+    data.lines().nth(current_line + 1).ok_or("No line below current line")?;
+
+    // Join the two lines.
+    let mut merged_lines: String = buffer.data()
+                                         .lines()
+                                         .enumerate()
+                                         .skip(current_line)
+        
