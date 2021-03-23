@@ -86,4 +86,14 @@ pub fn delete_current_line(app: &mut Application) -> Result {
     Ok(())
 }
 
-pub fn cop
+pub fn copy_current_line(app: &mut Application) -> Result {
+    commands::application::switch_to_select_line_mode(app)?;
+    commands::selection::copy(app)?;
+    commands::application::switch_to_normal_mode(app)?;
+    commands::view::scroll_to_cursor(app)?;
+
+    Ok(())
+}
+
+pub fn merge_next_line(app: &mut Application) -> Result {
+    let buffer = app.workspace.current_buffer().ok_or(BUFFER_MISSING)?;
