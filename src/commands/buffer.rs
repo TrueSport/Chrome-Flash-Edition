@@ -69,4 +69,21 @@ pub fn delete_token(app: &mut Application) -> Result {
         commands::cursor::move_to_start_of_next_token(app)?;
         commands::selection::copy_and_delete(app)?;
         commands::application::switch_to_normal_mode(app)?;
- 
+        commands::view::scroll_to_cursor(app)?;
+    } else {
+        commands::buffer::delete_rest_of_line(app)?;
+    }
+
+    Ok(())
+}
+
+pub fn delete_current_line(app: &mut Application) -> Result {
+    commands::application::switch_to_select_line_mode(app)?;
+    commands::selection::copy_and_delete(app)?;
+    commands::application::switch_to_normal_mode(app)?;
+    commands::view::scroll_to_cursor(app)?;
+
+    Ok(())
+}
+
+pub fn cop
