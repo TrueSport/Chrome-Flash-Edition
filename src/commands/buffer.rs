@@ -115,4 +115,14 @@ pub fn merge_next_line(app: &mut Application) -> Result {
                                              } else {
                                                  line.trim_start().to_string()
                                              }
-               
+                                         })
+                                         .collect();
+
+    // Append a newline if there is a line below the next.
+    if buffer.data().lines().nth(current_line + 2).is_some() {
+        merged_lines.push('\n');
+    }
+
+    // Remove the two lines, move to the start of the line,
+    // insert the merged lines, and position the cursor,
+    // batched as a single ope
