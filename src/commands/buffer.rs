@@ -108,4 +108,11 @@ pub fn merge_next_line(app: &mut Application) -> Result {
                                          .lines()
                                          .enumerate()
                                          .skip(current_line)
-        
+                                         .take(2)
+                                         .map(|(index, line)| {
+                                             if index == current_line {
+                                                 format!("{} ", line)
+                                             } else {
+                                                 line.trim_start().to_string()
+                                             }
+               
