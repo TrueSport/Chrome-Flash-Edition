@@ -125,4 +125,13 @@ pub fn merge_next_line(app: &mut Application) -> Result {
 
     // Remove the two lines, move to the start of the line,
     // insert the merged lines, and position the cursor,
-    // batched as a single ope
+    // batched as a single operation.
+    buffer.start_operation_group();
+    let target_position = Position {
+        line: current_line,
+        offset: data.lines().nth(current_line).unwrap().len(),
+    };
+    buffer.delete_range(Range::new(Position {
+                                       line: current_line,
+                                       offset: 0,
+                                   },
