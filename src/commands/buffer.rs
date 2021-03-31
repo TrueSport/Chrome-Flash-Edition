@@ -166,4 +166,15 @@ pub fn close(app: &mut Application) -> Result {
         };
 
     if unmodified || empty || confirm_mode {
-        //
+        // Clean up view-related data for the buffer.
+        app.view.forget_buffer(
+            app.workspace.current_buffer().ok_or(BUFFER_MISSING)?
+        )?;
+        app.workspace.close_current_buffer();
+    } else {
+        // Display a confirmation prompt before closing a modified buffer.
+        let confirm_mode = ConfirmMode::new(close);
+        app.mode = Mode::Confirm(confirm_mode);
+    }
+
+    Ok(())
