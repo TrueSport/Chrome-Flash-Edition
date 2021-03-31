@@ -135,3 +135,19 @@ pub fn merge_next_line(app: &mut Application) -> Result {
                                        line: current_line,
                                        offset: 0,
                                    },
+                                   Position {
+                                       line: current_line + 2,
+                                       offset: 0,
+                                   }));
+    buffer.cursor.move_to(Position {
+        line: current_line,
+        offset: 0,
+    });
+    buffer.insert(merged_lines);
+    buffer.cursor.move_to(target_position);
+    buffer.end_operation_group();
+
+    Ok(())
+}
+
+pub fn close(app: &mut Applica
