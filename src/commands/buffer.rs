@@ -150,4 +150,20 @@ pub fn merge_next_line(app: &mut Application) -> Result {
     Ok(())
 }
 
-pub fn close(app: &mut Applica
+pub fn close(app: &mut Application) -> Result {
+    // Build confirmation check conditions.
+    let (unmodified, empty) =
+        if let Some(buf) = app.workspace.current_buffer() {
+            (!buf.modified(), buf.data().is_empty())
+        } else {
+            bail!(BUFFER_MISSING);
+        };
+    let confirm_mode =
+        if let Mode::Confirm(_) = app.mode {
+            true
+        } else {
+            false
+        };
+
+    if unmodified || empty || confirm_mode {
+        //
