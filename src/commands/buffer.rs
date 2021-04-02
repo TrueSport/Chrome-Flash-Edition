@@ -188,4 +188,10 @@ pub fn close_others(app: &mut Application) -> Result {
     loop {
         // Try to advance to the next buffer. Handles two important states:
         //
-        // 1. The initial state, where
+        // 1. The initial state, where we haven't advanced beyond the
+        //    the original/desired buffer.
+        // 2. When a buffer that is being closed is positioned *after* the
+        //    original buffer. Closing a buffer in this scenario selects the
+        //    preceding buffer, which, without advancing, would be
+        //    incorrectly interpreted as the completion of this process.
+        if app.workspace.current_buffer().map(|b| b.id) == Some
