@@ -204,4 +204,15 @@ pub fn close_others(app: &mut Application) -> Result {
             if buf.id == id {
                 // We've only got one buffer open; we're done.
                 break;
-            } else if bu
+            } else if buf.modified() && !buf.data().is_empty() {
+                modified_buffer = true;
+            } else {
+                app.view.forget_buffer(buf)?;
+            }
+        }
+
+        if modified_buffer {
+            // Display a confirmation prompt before closing a modified buffer.
+            let confirm_mode = ConfirmMode::new(close_others_confirm);
+            app.mode = Mode::Confirm(confirm_mode);
+     
