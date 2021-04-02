@@ -178,3 +178,14 @@ pub fn close(app: &mut Application) -> Result {
     }
 
     Ok(())
+}
+
+pub fn close_others(app: &mut Application) -> Result {
+    // Get the current buffer's ID so we know what *not* to close.
+    let id = app.workspace.current_buffer().map(|b| b.id).ok_or(BUFFER_MISSING)?;
+    let mut modified_buffer = false;
+
+    loop {
+        // Try to advance to the next buffer. Handles two important states:
+        //
+        // 1. The initial state, where
