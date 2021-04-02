@@ -194,4 +194,14 @@ pub fn close_others(app: &mut Application) -> Result {
         //    original buffer. Closing a buffer in this scenario selects the
         //    preceding buffer, which, without advancing, would be
         //    incorrectly interpreted as the completion of this process.
-        if app.workspace.current_buffer().map(|b| b.id) == Some
+        if app.workspace.current_buffer().map(|b| b.id) == Some(id) {
+            app.workspace.next_buffer();
+        }
+
+        // If we haven't yet looped back to the original buffer,
+        // clean up view-related data and close the current buffer.
+        if let Some(buf) = app.workspace.current_buffer() {
+            if buf.id == id {
+                // We've only got one buffer open; we're done.
+                break;
+            } else if bu
