@@ -231,4 +231,17 @@ pub fn close_others_confirm(app: &mut Application) -> Result {
         app.view.forget_buffer(buf)?;
     }
     app.workspace.close_current_buffer();
+    commands::application::switch_to_normal_mode(app)?;
+
+    Ok(())
+}
+
+pub fn backspace(app: &mut Application) -> Result {
+    let mut outdent = false;
+
+    if let Some(buffer) = app.workspace.current_buffer() {
+        if buffer.cursor.offset == 0 {
+            buffer.cursor.move_up();
+            buffer.cursor.move_to_end_of_line();
+            buffer.delete();
   
