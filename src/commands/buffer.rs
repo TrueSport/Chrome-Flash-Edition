@@ -244,4 +244,15 @@ pub fn backspace(app: &mut Application) -> Result {
             buffer.cursor.move_up();
             buffer.cursor.move_to_end_of_line();
             buffer.delete();
-  
+        } else {
+            let data = buffer.data();
+            let current_line = data
+                .lines()
+                .nth(buffer.cursor.line)
+                .ok_or(CURRENT_LINE_MISSING)?;
+            if current_line.chars().all(|c| c.is_whitespace()) {
+                outdent = true
+            } else {
+                buffer.cursor.move_left();
+                buffer.delete();
+       
