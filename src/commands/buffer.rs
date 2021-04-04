@@ -215,4 +215,20 @@ pub fn close_others(app: &mut Application) -> Result {
             // Display a confirmation prompt before closing a modified buffer.
             let confirm_mode = ConfirmMode::new(close_others_confirm);
             app.mode = Mode::Confirm(confirm_mode);
-     
+            break;
+        }
+
+        // We haven't broken from the loop, so we're not back
+        // at the original buffer; close the current buffer.
+        app.workspace.close_current_buffer();
+    }
+
+    Ok(())
+}
+
+pub fn close_others_confirm(app: &mut Application) -> Result {
+    if let Some(buf) = app.workspace.current_buffer() {
+        app.view.forget_buffer(buf)?;
+    }
+    app.workspace.close_current_buffer();
+  
