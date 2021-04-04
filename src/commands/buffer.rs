@@ -255,4 +255,19 @@ pub fn backspace(app: &mut Application) -> Result {
             } else {
                 buffer.cursor.move_left();
                 buffer.delete();
-       
+            }
+        }
+    } else {
+        bail!(BUFFER_MISSING);
+    }
+
+    if outdent {
+        commands::buffer::outdent_line(app)?;
+    }
+    commands::view::scroll_to_cursor(app)
+}
+
+pub fn insert_char(app: &mut Application) -> Result {
+    if let Some(buffer) = app.workspace.current_buffer() {
+        if let Some(Key::Char(character)) = *app.view.last_key() {
+            // TODO:
