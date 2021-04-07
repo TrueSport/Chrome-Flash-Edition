@@ -305,4 +305,15 @@ pub fn display_current_scope(app: &mut Application) -> Result {
 /// of the previous line's leading whitespace.
 pub fn insert_newline(app: &mut Application) -> Result {
     if let Some(buffer) = app.workspace.current_buffer() {
-        // Insert the newline character
+        // Insert the newline character.
+        buffer.insert("\n");
+
+        // Get the cursor position before moving it to the start of the new line.
+        let position = buffer.cursor.clone();
+        buffer.cursor.move_down();
+        buffer.cursor.move_to_start_of_line();
+
+        // Get a slice of the buffer up to and including the current line.
+        let data = buffer.data();
+        let end_of_current_line = data
+ 
