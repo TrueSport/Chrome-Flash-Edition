@@ -295,4 +295,14 @@ pub fn display_current_scope(app: &mut Application) -> Result {
             );
         }
 
-        scope
+        scope_display_buffer
+    };
+    util::add_buffer(scope_display_buffer, app)
+}
+
+/// Inserts a newline character at the current cursor position.
+/// Also performs automatic indentation, basing the indent off
+/// of the previous line's leading whitespace.
+pub fn insert_newline(app: &mut Application) -> Result {
+    if let Some(buffer) = app.workspace.current_buffer() {
+        // Insert the newline character
