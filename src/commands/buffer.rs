@@ -316,4 +316,12 @@ pub fn insert_newline(app: &mut Application) -> Result {
         // Get a slice of the buffer up to and including the current line.
         let data = buffer.data();
         let end_of_current_line = data
- 
+            .lines()
+            .nth(position.line)
+            .map(|l| (l.as_ptr() as usize) + l.len())
+            .unwrap();
+        let offset = end_of_current_line - (data.as_str().as_ptr() as usize);
+        let (previous_content, _) = data.split_at(offset);
+
+        // Searching backwards, copy the nearest non-blank line's indent content.
+        let nearest_non_blank_line = previous_content.lines().rev().find(|line| !line.is_em
