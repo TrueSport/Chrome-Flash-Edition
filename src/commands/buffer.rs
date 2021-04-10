@@ -324,4 +324,14 @@ pub fn insert_newline(app: &mut Application) -> Result {
         let (previous_content, _) = data.split_at(offset);
 
         // Searching backwards, copy the nearest non-blank line's indent content.
-        let nearest_non_blank_line = previous_content.lines().rev().find(|line| !line.is_em
+        let nearest_non_blank_line = previous_content.lines().rev().find(|line| !line.is_empty());
+        let indent_content = match nearest_non_blank_line {
+            Some(line) => line.chars().take_while(|&c| c.is_whitespace()).collect(),
+            None => String::new(),
+        };
+
+        // Insert and move to the end of the indent content.
+        let indent_length = indent_content.chars().count();
+        buffer.insert(indent_content);
+        buffer.cursor.move_to(Position {
+            line: position.line 
