@@ -334,4 +334,19 @@ pub fn insert_newline(app: &mut Application) -> Result {
         let indent_length = indent_content.chars().count();
         buffer.insert(indent_content);
         buffer.cursor.move_to(Position {
-            line: position.line 
+            line: position.line + 1,
+            offset: indent_length,
+        });
+    } else {
+        bail!(BUFFER_MISSING);
+    }
+    commands::view::scroll_to_cursor(app)?;
+
+    Ok(())
+}
+
+pub fn indent_line(app: &mut Application) -> Result {
+    let buffer = app.workspace.current_buffer().ok_or(BUFFER_MISSING)?;
+    let tab_content = app.preferences.borrow().tab_content(buffer.path.as_ref());
+
+    let target_position = match app.mo
