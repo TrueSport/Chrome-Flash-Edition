@@ -349,4 +349,17 @@ pub fn indent_line(app: &mut Application) -> Result {
     let buffer = app.workspace.current_buffer().ok_or(BUFFER_MISSING)?;
     let tab_content = app.preferences.borrow().tab_content(buffer.path.as_ref());
 
-    let target_position = match app.mo
+    let target_position = match app.mode {
+        Mode::Insert => {
+            Position {
+                line: buffer.cursor.line,
+                offset: buffer.cursor.offset + tab_content.chars().count(),
+            }
+        }
+        _ => *buffer.cursor.clone(),
+    };
+
+    // Get the range of lines we'll outdent based on
+    // either the current selection or cursor line.
+    let lines = match app.mode {
+        Mode::SelectLine(
