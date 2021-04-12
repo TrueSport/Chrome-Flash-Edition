@@ -362,4 +362,15 @@ pub fn indent_line(app: &mut Application) -> Result {
     // Get the range of lines we'll outdent based on
     // either the current selection or cursor line.
     let lines = match app.mode {
-        Mode::SelectLine(
+        Mode::SelectLine(ref mode) => {
+            if mode.anchor >= buffer.cursor.line {
+                buffer.cursor.line..mode.anchor + 1
+            } else {
+                mode.anchor..buffer.cursor.line + 1
+            }
+        }
+        _ => buffer.cursor.line..buffer.cursor.line + 1,
+    };
+
+    // Move to the start of the current line and
+    // insert the content, as a single operation.
