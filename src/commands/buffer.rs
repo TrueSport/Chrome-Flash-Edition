@@ -374,3 +374,21 @@ pub fn indent_line(app: &mut Application) -> Result {
 
     // Move to the start of the current line and
     // insert the content, as a single operation.
+    buffer.start_operation_group();
+    for line in lines {
+        buffer.cursor.move_to(Position {
+            line,
+            offset: 0,
+        });
+        buffer.insert(tab_content.clone());
+    }
+    buffer.end_operation_group();
+
+    // Move to the original position, shifted to compensate for the indent.
+    buffer.cursor.move_to(target_position);
+
+    Ok(())
+}
+
+pub fn outdent_line(app: &mut Application) -> Result {
+    let buf
