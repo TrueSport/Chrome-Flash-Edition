@@ -391,4 +391,13 @@ pub fn indent_line(app: &mut Application) -> Result {
 }
 
 pub fn outdent_line(app: &mut Application) -> Result {
-    let buf
+    let buffer = app.workspace.current_buffer().ok_or(BUFFER_MISSING)?;
+    let tab_content = app.preferences.borrow().tab_content(buffer.path.as_ref());
+
+    // FIXME: Determine this based on file type and/or user config.
+    let data = buffer.data();
+
+    // Get the range of lines we'll outdent based on
+    // either the current selection or cursor line.
+    let lines = match app.mode {
+        Mode::SelectLi
