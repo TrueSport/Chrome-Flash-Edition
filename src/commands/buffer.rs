@@ -400,4 +400,18 @@ pub fn outdent_line(app: &mut Application) -> Result {
     // Get the range of lines we'll outdent based on
     // either the current selection or cursor line.
     let lines = match app.mode {
-        Mode::SelectLi
+        Mode::SelectLine(ref mode) => {
+            if mode.anchor >= buffer.cursor.line {
+                buffer.cursor.line..mode.anchor + 1
+            } else {
+                mode.anchor..buffer.cursor.line + 1
+            }
+        }
+        _ => buffer.cursor.line..buffer.cursor.line + 1,
+    };
+
+    // Group the individual outdent operations as one.
+    buffer.start_operation_group();
+
+    for line in lines {
+        if let Some(content) = da
