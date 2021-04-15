@@ -425,4 +425,15 @@ pub fn outdent_line(app: &mut Application) -> Result {
                 }
             } else {
                 // We're looking for spaces.
-                for character i
+                for character in content.chars().take(tab_content.chars().count()) {
+                    if character == ' ' {
+                        space_char_count += 1;
+                    } else {
+                        // We've run into a non-whitespace character; stop here.
+                        break;
+                    }
+                }
+            }
+
+            // Remove leading whitespace, up to indent size,
+            // if we found any, and adjust cursor accor
