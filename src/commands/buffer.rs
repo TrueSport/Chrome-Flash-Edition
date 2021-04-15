@@ -414,4 +414,15 @@ pub fn outdent_line(app: &mut Application) -> Result {
     buffer.start_operation_group();
 
     for line in lines {
-        if let Some(content) = da
+        if let Some(content) = data.lines().nth(line) {
+            let mut space_char_count = 0;
+
+            // Check for leading whitespace.
+            if tab_content.chars().next() == Some('\t') {
+                // We're looking for a tab character.
+                if content.chars().next() == Some('\t') {
+                    space_char_count = 1;
+                }
+            } else {
+                // We're looking for spaces.
+                for character i
