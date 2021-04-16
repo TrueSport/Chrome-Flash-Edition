@@ -436,4 +436,12 @@ pub fn outdent_line(app: &mut Application) -> Result {
             }
 
             // Remove leading whitespace, up to indent size,
-            // if we found any, and adjust cursor accor
+            // if we found any, and adjust cursor accordingly.
+            if space_char_count > 0 {
+                buffer.delete_range(Range::new(Position {
+                                                   line,
+                                                   offset: 0,
+                                               },
+                                               Position {
+                                                   line,
+                           
