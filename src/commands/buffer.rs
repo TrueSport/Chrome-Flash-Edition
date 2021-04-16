@@ -444,4 +444,11 @@ pub fn outdent_line(app: &mut Application) -> Result {
                                                },
                                                Position {
                                                    line,
-                           
+                                                   offset: space_char_count,
+                                               }));
+
+                // Figure out where the cursor should sit, guarding against underflow.
+                let target_offset = buffer.cursor
+                                          .offset
+                                          .saturating_sub(space_char_count);
+           
