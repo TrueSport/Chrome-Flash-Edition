@@ -451,4 +451,21 @@ pub fn outdent_line(app: &mut Application) -> Result {
                 let target_offset = buffer.cursor
                                           .offset
                                           .saturating_sub(space_char_count);
-           
+                let target_line = buffer.cursor.line;
+
+                buffer.cursor.move_to(Position {
+                    line: target_line,
+                    offset: target_offset,
+                });
+            }
+        }
+    }
+
+    // Finish grouping the individual outdent operations as one.
+    buffer.end_operation_group();
+
+    Ok(())
+}
+
+pub fn toggle_line_comment(app: &mut Application) -> Result {
+    let buffer = app.workspace.current_bu
