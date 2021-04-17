@@ -468,4 +468,15 @@ pub fn outdent_line(app: &mut Application) -> Result {
 }
 
 pub fn toggle_line_comment(app: &mut Application) -> Result {
-    let buffer = app.workspace.current_bu
+    let buffer = app.workspace.current_buffer().ok_or(BUFFER_MISSING)?;
+    let original_cursor = *buffer.cursor.clone();
+
+    let comment_prefix = {
+        let path = buffer.path.as_ref().ok_or(BUFFER_PATH_MISSING)?;
+        let prefix = app.preferences.borrow().line_comment_prefix(path)
+            .ok_or("No line comment prefix for the current buffer")?;
+
+        prefix + " " // implicitly add trailing space
+    };
+
+ 
