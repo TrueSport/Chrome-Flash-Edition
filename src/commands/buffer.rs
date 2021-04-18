@@ -479,4 +479,14 @@ pub fn toggle_line_comment(app: &mut Application) -> Result {
         prefix + " " // implicitly add trailing space
     };
 
- 
+    // Get the range of lines we'll comment based on
+    // either the current selection or cursor line.
+    let line_numbers = match app.mode {
+        Mode::SelectLine(ref mode) => {
+            if mode.anchor >= buffer.cursor.line {
+                buffer.cursor.line..mode.anchor + 1
+            } else {
+                mode.anchor..buffer.cursor.line + 1
+            }
+        }
+        _ => buffer.cursor.line..buffe
