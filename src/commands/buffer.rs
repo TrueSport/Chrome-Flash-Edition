@@ -489,4 +489,16 @@ pub fn toggle_line_comment(app: &mut Application) -> Result {
                 mode.anchor..buffer.cursor.line + 1
             }
         }
-        _ => buffer.cursor.line..buffe
+        _ => buffer.cursor.line..buffer.cursor.line + 1,
+    };
+
+    let buffer_range = Range::new(
+        Position { line: line_numbers.start, offset: 0 },
+        Position { line: line_numbers.end, offset: 0 }
+    );
+
+    let buffer_range_content = buffer.read(&buffer_range).ok_or(CURRENT_LINE_MISSING)?;
+
+    // Produce a collection of (<line number>, <line content>) tuples, but only for
+    // non-empty lines.
+    let lines: Vec<(usize, &str)> = 
