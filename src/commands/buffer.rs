@@ -501,4 +501,11 @@ pub fn toggle_line_comment(app: &mut Application) -> Result {
 
     // Produce a collection of (<line number>, <line content>) tuples, but only for
     // non-empty lines.
-    let lines: Vec<(usize, &str)> = 
+    let lines: Vec<(usize, &str)> = line_numbers
+        .zip(buffer_range_content.split("\n"))     // produces (<line number>, <line content>)
+        .filter(|(_, line)| line.trim().len() > 0) // filter out any empty (non-whitespace-only) lines
+        .collect();
+
+    // We look at all lines to see if they start with `comment_prefix` or not.
+    // If even a single line does not, we need to comment all lines out,
+    // otherwise remove `comment_
