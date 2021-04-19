@@ -508,4 +508,11 @@ pub fn toggle_line_comment(app: &mut Application) -> Result {
 
     // We look at all lines to see if they start with `comment_prefix` or not.
     // If even a single line does not, we need to comment all lines out,
-    // otherwise remove `comment_
+    // otherwise remove `comment_prefix` on the start of each line.
+    let (toggle, offset) = lines.iter()
+        // Map (<line number>, <line content>) to (<has comment>, <number of spaces at line start>)
+        .map(|(_, line)| {
+            let content = line.trim_start();
+            (content.starts_with(&comment_prefix), line.len() - content.len())
+        })
+        // Now fold it into a single (<comment in or out>, <comment offset>
