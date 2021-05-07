@@ -515,4 +515,12 @@ pub fn toggle_line_comment(app: &mut Application) -> Result {
             let content = line.trim_start();
             (content.starts_with(&comment_prefix), line.len() - content.len())
         })
-        // Now fold it into a single (<comment in or out>, <comment offset>
+        // Now fold it into a single (<comment in or out>, <comment offset>) tuple.
+        // As soon as <has comment> is `false` a single time, <comment in or out>
+        // will result in `false`.
+        .fold((true, std::usize::MAX), |(folded_toggle, folded_offset), (has_comment, offset)| {
+            (folded_toggle & has_comment, folded_offset.min(offset))
+        });
+
+    // Move to the start of each of the line's content and
+    // insert/remove the comments, as a single oper
