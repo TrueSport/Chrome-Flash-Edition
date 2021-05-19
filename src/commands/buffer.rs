@@ -523,4 +523,19 @@ pub fn toggle_line_comment(app: &mut Application) -> Result {
         });
 
     // Move to the start of each of the line's content and
-    // insert/remove the comments, as a single oper
+    // insert/remove the comments, as a single operation.
+    buffer.start_operation_group();
+    if !toggle {
+        add_line_comment(buffer, &lines, offset, &comment_prefix);
+    } else {
+        remove_line_comment(buffer, &lines, &comment_prefix);
+    }
+    buffer.end_operation_group();
+
+    // Restore original cursor
+    buffer.cursor.move_to(original_cursor);
+
+    Ok(())
+}
+
+fn add_line_comment(buffer: &mut Buffer, lines: &[(usize, &str)], offset: usize
