@@ -570,4 +570,14 @@ pub fn change_token(app: &mut Application) -> Result {
     Ok(())
 }
 
-pub fn delete_rest_of_li
+pub fn delete_rest_of_line(app: &mut Application) -> Result {
+    let buffer = app.workspace.current_buffer().ok_or(BUFFER_MISSING)?;
+
+    // Create a range extending from the
+    // cursor's current position to the next line.
+    let starting_position = *buffer.cursor;
+    let target_line = buffer.cursor.line + 1;
+    buffer.start_operation_group();
+    buffer.delete_range(Range::new(starting_position,
+                                   Position {
+             
