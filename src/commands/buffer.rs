@@ -538,4 +538,17 @@ pub fn toggle_line_comment(app: &mut Application) -> Result {
     Ok(())
 }
 
-fn add_line_comment(buffer: &mut Buffer, lines: &[(usize, &str)], offset: usize
+fn add_line_comment(buffer: &mut Buffer, lines: &[(usize, &str)], offset: usize, prefix: &str) {
+    for (line_number, _) in lines {
+        let target = Position { line: *line_number, offset };
+
+        buffer.cursor.move_to(target);
+        buffer.insert(prefix);
+    }
+}
+
+fn remove_line_comment(buffer: &mut Buffer, lines: &[(usize, &str)], prefix: &str) {
+    for (line_number, line) in lines {
+        let start = Position {
+            line: *line_number,
+      
