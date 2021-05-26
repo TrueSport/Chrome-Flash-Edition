@@ -551,4 +551,23 @@ fn remove_line_comment(buffer: &mut Buffer, lines: &[(usize, &str)], prefix: &st
     for (line_number, line) in lines {
         let start = Position {
             line: *line_number,
-      
+            offset: line.len() - line.trim_start().len(),
+        };
+
+        let end = Position {
+            line: *line_number,
+            offset: start.offset + prefix.len(),
+        };
+
+        buffer.delete_range(Range::new(start, end));
+    }
+}
+
+pub fn change_token(app: &mut Application) -> Result {
+    commands::buffer::delete_token(app)?;
+    commands::application::switch_to_insert_mode(app)?;
+
+    Ok(())
+}
+
+pub fn delete_rest_of_li
