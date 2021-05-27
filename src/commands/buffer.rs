@@ -593,3 +593,26 @@ pub fn delete_rest_of_line(app: &mut Application) -> Result {
 pub fn change_rest_of_line(app: &mut Application) -> Result {
     commands::buffer::delete_rest_of_line(app)?;
     commands::application::switch_to_insert_mode(app)?;
+
+    Ok(())
+}
+
+pub fn start_command_group(app: &mut Application) -> Result {
+    app.workspace
+        .current_buffer()
+        .ok_or(BUFFER_MISSING)?
+        .start_operation_group();
+
+    Ok(())
+}
+
+pub fn end_command_group(app: &mut Application) -> Result {
+    app.workspace
+        .current_buffer()
+        .ok_or(BUFFER_MISSING)?
+        .end_operation_group();
+
+    Ok(())
+}
+
+pub fn undo(app: &mut Application) -> Resul
