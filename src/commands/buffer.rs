@@ -615,4 +615,14 @@ pub fn end_command_group(app: &mut Application) -> Result {
     Ok(())
 }
 
-pub fn undo(app: &mut Application) -> Resul
+pub fn undo(app: &mut Application) -> Result {
+    app.workspace.current_buffer().ok_or(BUFFER_MISSING)?.undo();
+    commands::view::scroll_to_cursor(app).chain_err(|| {
+        "Couldn't scroll to cursor after undoing."
+    })
+}
+
+pub fn redo(app: &mut Application) -> Result {
+    app.workspace.current_buffer().ok_or(BUFFER_MISSING)?.redo();
+    commands::view::scroll_to_cursor(app).chain_err(|| {
+        "Couldn't scroll to cursor af
