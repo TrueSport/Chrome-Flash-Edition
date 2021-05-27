@@ -580,4 +580,16 @@ pub fn delete_rest_of_line(app: &mut Application) -> Result {
     buffer.start_operation_group();
     buffer.delete_range(Range::new(starting_position,
                                    Position {
-             
+                                       line: target_line,
+                                       offset: 0,
+                                   }));
+
+    // Since we've removed a newline as part of the range, re-add it.
+    buffer.insert("\n");
+
+    Ok(())
+}
+
+pub fn change_rest_of_line(app: &mut Application) -> Result {
+    commands::buffer::delete_rest_of_line(app)?;
+    commands::application::switch_to_insert_mode(app)?;
