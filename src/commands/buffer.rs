@@ -625,4 +625,19 @@ pub fn undo(app: &mut Application) -> Result {
 pub fn redo(app: &mut Application) -> Result {
     app.workspace.current_buffer().ok_or(BUFFER_MISSING)?.redo();
     commands::view::scroll_to_cursor(app).chain_err(|| {
-        "Couldn't scroll to cursor af
+        "Couldn't scroll to cursor after redoing."
+    })
+}
+
+pub fn paste(app: &mut Application) -> Result {
+    let insert_below = match app.mode {
+        Mode::Select(_) | Mode::SelectLine(_) | Mode::Search(_) => {
+            commands::selection::delete(app).chain_err(|| {
+                "Couldn't delete selection prior to pasting."
+            })?;
+            false
+        }
+        _ => true,
+    };
+
+    // TODO: Clean up duplicate buffer.insert(co
