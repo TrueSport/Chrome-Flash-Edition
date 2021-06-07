@@ -640,4 +640,12 @@ pub fn paste(app: &mut Application) -> Result {
         _ => true,
     };
 
-    // TODO: Clean up duplicate buffer.insert(co
+    // TODO: Clean up duplicate buffer.insert(content.clone()) calls.
+    if let Some(buffer) = app.workspace.current_buffer() {
+        match *app.clipboard.get_content() {
+            ClipboardContent::Inline(ref content) => buffer.insert(content.clone()),
+            ClipboardContent::Block(ref content) => {
+                let original_cursor_position = *buffer.cursor.clone();
+                let line = original_cursor_position.line;
+
+                i
