@@ -648,4 +648,12 @@ pub fn paste(app: &mut Application) -> Result {
                 let original_cursor_position = *buffer.cursor.clone();
                 let line = original_cursor_position.line;
 
-                i
+                if insert_below {
+                    buffer.cursor.move_to(Position {
+                        line: line + 1,
+                        offset: 0,
+                    });
+
+                    if *buffer.cursor == original_cursor_position {
+                        // That didn't work because we're at the last line.
+                        // Move to the end of the line to insert the data.
