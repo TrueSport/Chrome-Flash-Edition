@@ -657,3 +657,10 @@ pub fn paste(app: &mut Application) -> Result {
                     if *buffer.cursor == original_cursor_position {
                         // That didn't work because we're at the last line.
                         // Move to the end of the line to insert the data.
+                        if let Some(line_content) = buffer.data().lines().nth(line) {
+                            buffer.cursor.move_to(Position {
+                                line,
+                                offset: line_content.len(),
+                            });
+                            buffer.insert(format!("\n{}", content));
+                            buffer.cursor.move_to(or
