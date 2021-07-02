@@ -663,4 +663,14 @@ pub fn paste(app: &mut Application) -> Result {
                                 offset: line_content.len(),
                             });
                             buffer.insert(format!("\n{}", content));
-                            buffer.cursor.move_to(or
+                            buffer.cursor.move_to(original_cursor_position);
+                        } else {
+                            // We're on a trailing newline, which doesn't
+                            // have any data; just insert the content here.
+                            buffer.insert(content.clone());
+                        }
+                    } else {
+                        buffer.insert(content.clone());
+                    }
+                } else {
+ 
