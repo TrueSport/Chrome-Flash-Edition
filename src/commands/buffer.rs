@@ -689,4 +689,13 @@ pub fn paste(app: &mut Application) -> Result {
 pub fn paste_above(app: &mut Application) -> Result {
     let buffer = app.workspace.current_buffer().ok_or(BUFFER_MISSING)?;
 
-    if le
+    if let ClipboardContent::Block(ref content) = *app.clipboard.get_content() {
+        let mut start_of_line = Position {
+            line: buffer.cursor.line,
+            offset: 0,
+        };
+
+        // Temporarily move the cursor to the start of the line
+        // to insert the clipboard content (without allocating).
+        mem::swap(&mut *buffer.cursor, &mut start_of_line);
+        buffer.insert(content.clon
