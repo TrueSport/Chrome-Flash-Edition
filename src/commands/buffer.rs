@@ -673,4 +673,20 @@ pub fn paste(app: &mut Application) -> Result {
                         buffer.insert(content.clone());
                     }
                 } else {
- 
+                    buffer.insert(content.clone());
+                }
+            }
+            ClipboardContent::None => (),
+        }
+    } else {
+        bail!(BUFFER_MISSING);
+    }
+    commands::view::scroll_to_cursor(app)?;
+
+    Ok(())
+}
+
+pub fn paste_above(app: &mut Application) -> Result {
+    let buffer = app.workspace.current_buffer().ok_or(BUFFER_MISSING)?;
+
+    if le
