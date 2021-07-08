@@ -722,4 +722,17 @@ pub fn remove_trailing_whitespace(app: &mut Application) -> Result {
                                        },
                                        Position {
                                            line,
-                                     
+                                           offset,
+                                       }));
+            }
+
+            // We've hit a newline, so increase the line
+            // count and reset other counters.
+            line += 1;
+            offset = 0;
+            space_count = 0;
+        } else {
+            if character == ' ' || character == '\t' {
+                // We've run into a space; track it.
+                space_count += 1;
+      
