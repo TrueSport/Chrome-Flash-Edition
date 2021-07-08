@@ -715,3 +715,11 @@ pub fn remove_trailing_whitespace(app: &mut Application) -> Result {
     for character in buffer.data().chars() {
         if character == '\n' {
             if space_count > 0 {
+                // We've found some trailing whitespace; track it.
+                ranges.push(Range::new(Position {
+                                           line,
+                                           offset: offset - space_count,
+                                       },
+                                       Position {
+                                           line,
+                                     
