@@ -698,4 +698,20 @@ pub fn paste_above(app: &mut Application) -> Result {
         // Temporarily move the cursor to the start of the line
         // to insert the clipboard content (without allocating).
         mem::swap(&mut *buffer.cursor, &mut start_of_line);
-        buffer.insert(content.clon
+        buffer.insert(content.clone());
+        mem::swap(&mut *buffer.cursor, &mut start_of_line);
+    }
+
+    Ok(())
+}
+
+pub fn remove_trailing_whitespace(app: &mut Application) -> Result {
+    let buffer = app.workspace.current_buffer().ok_or(BUFFER_MISSING)?;
+    let mut line = 0;
+    let mut offset = 0;
+    let mut space_count = 0;
+    let mut ranges = Vec::new();
+
+    for character in buffer.data().chars() {
+        if character == '\n' {
+            if space_count > 0 {
