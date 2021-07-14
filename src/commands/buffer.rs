@@ -735,4 +735,18 @@ pub fn remove_trailing_whitespace(app: &mut Application) -> Result {
             if character == ' ' || character == '\t' {
                 // We've run into a space; track it.
                 space_count += 1;
-      
+            } else {
+                // We've run into a non-space; reset the counter.
+                space_count = 0;
+            }
+
+            offset += 1;
+        }
+    }
+
+    // The file may not have a trailing newline. If there is
+    // any trailing whitespace on the last line, track it.
+    if space_count > 0 {
+        ranges.push(Range::new(Position {
+                                   line,
+       
