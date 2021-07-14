@@ -749,4 +749,15 @@ pub fn remove_trailing_whitespace(app: &mut Application) -> Result {
     if space_count > 0 {
         ranges.push(Range::new(Position {
                                    line,
-       
+                                   offset: offset - space_count,
+                               },
+                               Position {
+                                   line,
+                                   offset,
+                               }));
+    }
+
+    // Step through the whitespace ranges in reverse order
+    // and remove them from the buffer. We do this in
+    // reverse as deletions would shift/invalidate ranges
+    // that occur 
