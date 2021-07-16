@@ -760,4 +760,18 @@ pub fn remove_trailing_whitespace(app: &mut Application) -> Result {
     // Step through the whitespace ranges in reverse order
     // and remove them from the buffer. We do this in
     // reverse as deletions would shift/invalidate ranges
-    // that occur 
+    // that occur after the deleted range.
+    for range in ranges.into_iter().rev() {
+        buffer.delete_range(range);
+    }
+
+    Ok(())
+}
+
+pub fn ensure_trailing_newline(app: &mut Application) -> Result {
+    let buffer = app.workspace.current_buffer().ok_or(BUFFER_MISSING)?;
+
+    // Find end of buffer position.
+    let data = buffer.data();
+    if let Some(c) = data.chars().last() {
+        if c != '\n' { // There's no pre-existing
