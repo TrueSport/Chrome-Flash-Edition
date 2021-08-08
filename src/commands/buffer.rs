@@ -774,4 +774,16 @@ pub fn ensure_trailing_newline(app: &mut Application) -> Result {
     // Find end of buffer position.
     let data = buffer.data();
     if let Some(c) = data.chars().last() {
-        if c != '\n' { // There's no pre-existing
+        if c != '\n' { // There's no pre-existing trailing newline.
+            let (line_no, line) = data
+                .lines()
+                .enumerate()
+                .last()
+                .ok_or("Couldn't find the last line to insert a trailing newline")?;
+            let original_position = *buffer.cursor;
+            let target_position = Position {
+                line: line_no,
+                offset: line.chars().count(),
+            };
+
+            if buffer.c
