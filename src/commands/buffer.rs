@@ -786,4 +786,18 @@ pub fn ensure_trailing_newline(app: &mut Application) -> Result {
                 offset: line.chars().count(),
             };
 
-            if buffer.c
+            if buffer.cursor.move_to(target_position) {
+                buffer.insert("\n");
+                buffer.cursor.move_to(original_position);
+            } else {
+                bail!("Couldn't move to the end of the buffer and insert a newline.");
+            }
+        }
+    } else {
+        buffer.insert('\n'); // Empty buffer
+    }
+
+    Ok(())
+}
+
+pub fn insert_tab(app: &mut Application) -> 
