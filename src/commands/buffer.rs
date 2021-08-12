@@ -800,4 +800,18 @@ pub fn ensure_trailing_newline(app: &mut Application) -> Result {
     Ok(())
 }
 
-pub fn insert_tab(app: &mut Application) -> 
+pub fn insert_tab(app: &mut Application) -> Result {
+    let buffer = app.workspace.current_buffer().ok_or(BUFFER_MISSING)?;
+    let tab_content = app.preferences.borrow().tab_content(buffer.path.as_ref());
+    let tab_content_width = tab_content.chars().count();
+    buffer.insert(tab_content.clone());
+
+    // Move the cursor to the end of the inserted content.
+    for _ in 0..tab_content_width {
+        buffer.cursor.move_right();
+    }
+
+    Ok(())
+}
+
+#[cf
