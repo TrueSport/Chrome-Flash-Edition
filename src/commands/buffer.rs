@@ -814,4 +814,18 @@ pub fn insert_tab(app: &mut Application) -> Result {
     Ok(())
 }
 
-#[cf
+#[cfg(test)]
+mod tests {
+    use crate::commands;
+    use crate::models::Application;
+    use crate::models::application::{ClipboardContent, Mode};
+    use scribe::Buffer;
+    use scribe::buffer::Position;
+    use std::path::Path;
+
+    #[test]
+    fn insert_newline_uses_current_line_indentation() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+
+       
