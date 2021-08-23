@@ -841,4 +841,13 @@ mod tests {
         app.workspace.add_buffer(buffer);
         super::insert_newline(&mut app).unwrap();
 
-    
+        // Ensure that the whitespace is inserted.
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "    amp\n    ");
+
+        // Also ensure that the cursor is moved to the end of the inserted whitespace.
+        let expected_position = Position {
+            line: 1,
+            offset: 4,
+        };
+        assert_eq!(app.workspace.current_buffer().unwrap().cu
