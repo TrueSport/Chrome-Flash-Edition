@@ -850,4 +850,15 @@ mod tests {
             line: 1,
             offset: 4,
         };
-        assert_eq!(app.workspace.current_buffer().unwrap().cu
+        assert_eq!(app.workspace.current_buffer().unwrap().cursor.line,
+                   expected_position.line);
+        assert_eq!(app.workspace.current_buffer().unwrap().cursor.offset,
+                   expected_position.offset);
+    }
+
+    #[test]
+    fn insert_newline_uses_nearest_line_indentation_when_current_line_blank() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+
+        // Inser
