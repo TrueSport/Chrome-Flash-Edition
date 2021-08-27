@@ -861,4 +861,14 @@ mod tests {
         let mut app = Application::new(&Vec::new()).unwrap();
         let mut buffer = Buffer::new();
 
-        // Inser
+        // Insert data with indentation and move to the end of the line.
+        buffer.insert("    amp\n");
+        let position = Position { line: 1, offset: 0 };
+        buffer.cursor.move_to(position);
+
+        // Now that we've set up the buffer, add it
+        // to the application and call the command.
+        app.workspace.add_buffer(buffer);
+        super::insert_newline(&mut app).unwrap();
+
+        // Ensure that t
