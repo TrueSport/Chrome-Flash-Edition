@@ -894,4 +894,17 @@ mod tests {
         let mut app = Application::new(&Vec::new()).unwrap();
         let mut buffer = Buffer::new();
 
-        // Insert data with indentatio
+        // Insert data with indentation and move to the end of the line.
+        buffer.insert("    amp\neditor");
+        let position = Position {
+            line: 0,
+            offset: 4,
+        };
+        buffer.cursor.move_to(position);
+
+        // Now that we've set up the buffer, add it
+        // to the application and call the command.
+        app.workspace.add_buffer(buffer);
+        super::change_rest_of_line(&mut app).unwrap();
+
+        // Ensure that the c
