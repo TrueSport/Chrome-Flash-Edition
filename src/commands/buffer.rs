@@ -907,4 +907,16 @@ mod tests {
         app.workspace.add_buffer(buffer);
         super::change_rest_of_line(&mut app).unwrap();
 
-        // Ensure that the c
+        // Ensure that the content is removed.
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "    \neditor");
+
+        // Ensure that we're in insert mode.
+        assert!(match app.mode {
+            crate::models::application::Mode::Insert => true,
+            _ => false,
+        });
+
+        // Ensure that sub-commands and subsequent inserts are run in batch.
+        app.workspace.current_buffer().unwrap().insert(" ");
+       
