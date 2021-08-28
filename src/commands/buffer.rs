@@ -881,4 +881,17 @@ mod tests {
         let expected_position = Position { line: 2, offset: 4 };
         assert_eq!(
             app.workspace.current_buffer().unwrap().cursor.line,
-            e
+            expected_position.line
+        );
+        assert_eq!(
+            app.workspace.current_buffer().unwrap().cursor.offset,
+            expected_position.offset
+        );
+    }
+
+    #[test]
+    fn change_rest_of_line_removes_content_and_switches_to_insert_mode() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+
+        // Insert data with indentatio
