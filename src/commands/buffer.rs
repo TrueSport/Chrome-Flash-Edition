@@ -919,4 +919,15 @@ mod tests {
 
         // Ensure that sub-commands and subsequent inserts are run in batch.
         app.workspace.current_buffer().unwrap().insert(" ");
-       
+        app.workspace.current_buffer().unwrap().undo();
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "    amp\neditor");
+    }
+
+    #[test]
+    fn delete_token_deletes_current_token_and_trailing_whitespace() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("amp editor");
+
+        
