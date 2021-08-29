@@ -941,4 +941,14 @@ mod tests {
 
     #[test]
     fn delete_token_does_not_delete_newline_characters() {
-        let mut app = Application::n
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("amp\neditor");
+
+        // Now that we've set up the buffer, add it
+        // to the application and call the command.
+        app.workspace.add_buffer(buffer);
+        super::delete_token(&mut app).unwrap();
+
+        // Ensure that the content is removed.
+        assert_eq!(app.workspace.current_bu
