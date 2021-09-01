@@ -951,4 +951,18 @@ mod tests {
         super::delete_token(&mut app).unwrap();
 
         // Ensure that the content is removed.
-        assert_eq!(app.workspace.current_bu
+        assert_eq!(app.workspace.current_buffer().unwrap().data(), "\neditor");
+    }
+
+    #[test]
+    fn delete_current_line_deletes_current_line() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+
+        // Insert data with indentation and move to the end of the line.
+        buffer.insert("    amp\neditor");
+        let position = Position {
+            line: 0,
+            offset: 4,
+        };
+        buffer.
