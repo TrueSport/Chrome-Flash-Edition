@@ -965,4 +965,13 @@ mod tests {
             line: 0,
             offset: 4,
         };
-        buffer.
+        buffer.cursor.move_to(position);
+
+        // Now that we've set up the buffer, add it
+        // to the application and call the command.
+        app.workspace.add_buffer(buffer);
+        super::delete_current_line(&mut app).unwrap();
+
+        // Ensure that the content is removed.
+        assert_eq!(app.workspace.current_buffer().unwrap().data(), "editor");
+   
