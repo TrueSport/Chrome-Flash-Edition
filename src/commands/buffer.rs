@@ -974,4 +974,17 @@ mod tests {
 
         // Ensure that the content is removed.
         assert_eq!(app.workspace.current_buffer().unwrap().data(), "editor");
-   
+    }
+
+    #[test]
+    fn indent_line_inserts_two_spaces_at_start_of_line() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("amp\neditor");
+        buffer.cursor.move_to(Position {
+            line: 1,
+            offset: 2,
+        });
+
+        // Now that we've set up the buffer, add it
+        // to the ap
