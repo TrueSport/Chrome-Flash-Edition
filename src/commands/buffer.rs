@@ -1017,4 +1017,17 @@ mod tests {
     #[test]
     fn indent_line_moves_cursor_in_insert_mode() {
         let mut app = Application::new(&Vec::new()).unwrap();
-        let mut buffer = 
+        let mut buffer = Buffer::new();
+        buffer.insert("amp\neditor");
+        buffer.cursor.move_to(Position {
+            line: 1,
+            offset: 2,
+        });
+
+        // Now that we've set up the buffer, add it
+        // to the application and call the command.
+        app.workspace.add_buffer(buffer);
+        commands::application::switch_to_insert_mode(&mut app).unwrap();
+        super::indent_line(&mut app).unwrap();
+
+        // Ens
