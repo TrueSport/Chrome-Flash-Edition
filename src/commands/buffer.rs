@@ -987,4 +987,15 @@ mod tests {
         });
 
         // Now that we've set up the buffer, add it
-        // to the ap
+        // to the application and call the command.
+        app.workspace.add_buffer(buffer);
+        super::indent_line(&mut app).unwrap();
+
+        // Ensure that the content is inserted correctly.
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "amp\n  editor");
+    }
+
+    #[test]
+    fn indent_line_works_in_select_line_mode() {
+        let mut app = Application::new(&Vec
