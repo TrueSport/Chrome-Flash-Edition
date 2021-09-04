@@ -1007,4 +1007,14 @@ mod tests {
         app.workspace.add_buffer(buffer);
         commands::application::switch_to_select_line_mode(&mut app).unwrap();
         commands::cursor::move_down(&mut app).unwrap();
-        super::i
+        super::indent_line(&mut app).unwrap();
+
+        // Ensure that the content is inserted correctly.
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "  amp\n    editor");
+    }
+
+    #[test]
+    fn indent_line_moves_cursor_in_insert_mode() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = 
