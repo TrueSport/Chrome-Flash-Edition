@@ -1030,4 +1030,15 @@ mod tests {
         commands::application::switch_to_insert_mode(&mut app).unwrap();
         super::indent_line(&mut app).unwrap();
 
-        // Ens
+        // Ensure that the cursor is updated.
+        assert_eq!(*app.workspace.current_buffer().unwrap().cursor,
+                   Position {
+                       line: 1,
+                       offset: 4,
+                   });
+    }
+
+    #[test]
+    fn indent_line_does_not_move_cursor_in_normal_mode() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let
