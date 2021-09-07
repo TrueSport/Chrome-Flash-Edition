@@ -1065,4 +1065,13 @@ mod tests {
     fn indent_line_groups_multi_line_indents_as_a_single_operation() {
         let mut app = Application::new(&Vec::new()).unwrap();
         let mut buffer = Buffer::new();
-        buffer
+        buffer.insert("amp\n  editor");
+
+        // Now that we've set up the buffer, add it to the
+        // application, select all lines, and call the command.
+        app.workspace.add_buffer(buffer);
+        commands::application::switch_to_select_line_mode(&mut app).unwrap();
+        commands::cursor::move_down(&mut app).unwrap();
+        super::indent_line(&mut app).unwrap();
+
+        // Ensure tha
