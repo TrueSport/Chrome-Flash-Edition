@@ -1041,4 +1041,16 @@ mod tests {
     #[test]
     fn indent_line_does_not_move_cursor_in_normal_mode() {
         let mut app = Application::new(&Vec::new()).unwrap();
-        let
+        let mut buffer = Buffer::new();
+        buffer.insert("amp\neditor");
+        buffer.cursor.move_to(Position {
+            line: 1,
+            offset: 2,
+        });
+
+        // Now that we've set up the buffer, add it
+        // to the application and call the command.
+        app.workspace.add_buffer(buffer);
+        super::indent_line(&mut app).unwrap();
+
+        // Ensure that the 
