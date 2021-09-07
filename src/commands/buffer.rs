@@ -1053,4 +1053,16 @@ mod tests {
         app.workspace.add_buffer(buffer);
         super::indent_line(&mut app).unwrap();
 
-        // Ensure that the 
+        // Ensure that the cursor is not updated.
+        assert_eq!(*app.workspace.current_buffer().unwrap().cursor,
+                   Position {
+                       line: 1,
+                       offset: 2,
+                   });
+    }
+
+    #[test]
+    fn indent_line_groups_multi_line_indents_as_a_single_operation() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer
