@@ -1105,3 +1105,15 @@ mod tests {
 
     #[test]
     fn outdent_line_removes_two_spaces_from_start_of_line() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("amp\n  editor");
+        buffer.cursor.move_to(Position {
+            line: 1,
+            offset: 6,
+        });
+
+        // Now that we've set up the buffer, add it
+        // to the application and call the command.
+        app.workspace.add_buffer(buffer);
+        super:
