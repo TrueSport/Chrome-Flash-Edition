@@ -1085,4 +1085,12 @@ mod tests {
     }
 
     #[test]
-    fn indent_line_works_with_re
+    fn indent_line_works_with_reversed_selections() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("amp\neditor");
+
+        // Now that we've set up the buffer, add it to the
+        // application, select all lines, and call the command.
+        app.workspace.add_buffer(buffer);
+        commands::cursor::move_down(&mut app
