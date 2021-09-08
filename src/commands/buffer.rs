@@ -1074,4 +1074,15 @@ mod tests {
         commands::cursor::move_down(&mut app).unwrap();
         super::indent_line(&mut app).unwrap();
 
-        // Ensure tha
+        // Ensure that the indentation is applied correctly.
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "  amp\n    editor");
+
+        // Undo the indent and check that it's treated as one operation.
+        super::undo(&mut app).unwrap();
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "amp\n  editor");
+    }
+
+    #[test]
+    fn indent_line_works_with_re
