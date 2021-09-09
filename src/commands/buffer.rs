@@ -1116,4 +1116,18 @@ mod tests {
         // Now that we've set up the buffer, add it
         // to the application and call the command.
         app.workspace.add_buffer(buffer);
-        super:
+        super::outdent_line(&mut app).unwrap();
+
+        // Ensure that the content is removed.
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "amp\neditor");
+
+        // Ensure that the cursor is updated.
+        assert_eq!(*app.workspace.current_buffer().unwrap().cursor,
+                   Position {
+                       line: 1,
+                       offset: 4,
+                   });
+    }
+
+    #[t
