@@ -1142,4 +1142,16 @@ mod tests {
         });
 
         // Now that we've set up the buffer, add it
-        // to the application and cal
+        // to the application and call the command.
+        app.workspace.add_buffer(buffer);
+        super::outdent_line(&mut app).unwrap();
+
+        // Ensure that the content is inserted correctly.
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "amp\neditor");
+    }
+
+    #[test]
+    fn outdent_does_nothing_if_there_is_no_leading_whitespace() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+      
