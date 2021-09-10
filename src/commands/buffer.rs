@@ -1130,4 +1130,16 @@ mod tests {
                    });
     }
 
-    #[t
+    #[test]
+    fn outdent_line_removes_as_much_space_as_it_can_from_start_of_line_if_less_than_full_indent
+        () {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("amp\n editor");
+        buffer.cursor.move_to(Position {
+            line: 1,
+            offset: 2,
+        });
+
+        // Now that we've set up the buffer, add it
+        // to the application and cal
