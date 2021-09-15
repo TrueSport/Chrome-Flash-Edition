@@ -1164,4 +1164,16 @@ mod tests {
         app.workspace.add_buffer(buffer);
         super::outdent_line(&mut app).unwrap();
 
-        // Ensure that the content is ins
+        // Ensure that the content is inserted correctly.
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "amp\neditor   ");
+    }
+
+    #[test]
+    fn outdent_line_works_in_select_line_mode() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("  amp\n  editor");
+
+        // Now that we've set up the buffer, add it to the
+        // 
