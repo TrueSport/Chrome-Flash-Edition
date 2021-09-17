@@ -1183,4 +1183,16 @@ mod tests {
         super::outdent_line(&mut app).unwrap();
 
         // Ensure that the content is inserted correctly.
-        assert_eq!(app.workspace.current_buffer().unwrap().da
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "amp\neditor");
+    }
+
+    #[test]
+    fn outdent_line_groups_multi_line_indents_as_a_single_operation() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("  amp\n  editor");
+
+        // Now that we've set up the buffer, add it to the
+        // application, select all lines, and call the command.
+        app.wo
