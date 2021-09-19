@@ -1216,4 +1216,10 @@ mod tests {
         let mut buffer = Buffer::new();
         buffer.insert("  amp\n  editor");
 
-        // N
+        // Now that we've set up the buffer, add it to the
+        // application, select all lines, and call the command.
+        app.workspace.add_buffer(buffer);
+        commands::cursor::move_down(&mut app).unwrap();
+        commands::application::switch_to_select_line_mode(&mut app).unwrap();
+        commands::cursor::move_up(&mut app).unwrap();
+        super::outdent_line(&mut app).unwrap(
