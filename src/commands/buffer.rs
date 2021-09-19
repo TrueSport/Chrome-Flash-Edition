@@ -1195,4 +1195,13 @@ mod tests {
 
         // Now that we've set up the buffer, add it to the
         // application, select all lines, and call the command.
-        app.wo
+        app.workspace.add_buffer(buffer);
+        commands::application::switch_to_select_line_mode(&mut app).unwrap();
+        commands::cursor::move_down(&mut app).unwrap();
+        super::outdent_line(&mut app).unwrap();
+
+        // Ensure that the indentation is applied correctly.
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "amp\neditor");
+
+        // Undo the outdent and ch
