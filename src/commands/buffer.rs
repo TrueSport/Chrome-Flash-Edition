@@ -1204,4 +1204,16 @@ mod tests {
         assert_eq!(app.workspace.current_buffer().unwrap().data(),
                    "amp\neditor");
 
-        // Undo the outdent and ch
+        // Undo the outdent and check that it's treated as one operation.
+        super::undo(&mut app).unwrap();
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "  amp\n  editor");
+    }
+
+    #[test]
+    fn outdent_line_works_with_reversed_selections() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("  amp\n  editor");
+
+        // N
