@@ -1222,4 +1222,18 @@ mod tests {
         commands::cursor::move_down(&mut app).unwrap();
         commands::application::switch_to_select_line_mode(&mut app).unwrap();
         commands::cursor::move_up(&mut app).unwrap();
-        super::outdent_line(&mut app).unwrap(
+        super::outdent_line(&mut app).unwrap();
+
+        // Ensure that the indentation is applied correctly.
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "amp\neditor");
+    }
+
+    #[test]
+    fn remove_trailing_whitespace_works() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("  amp\n  \neditor ");
+
+        // Now that we've set up the buffer, add it
+   
