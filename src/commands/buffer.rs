@@ -1236,4 +1236,15 @@ mod tests {
         buffer.insert("  amp\n  \neditor ");
 
         // Now that we've set up the buffer, add it
-   
+        // to the application and call the command.
+        app.workspace.add_buffer(buffer);
+        super::remove_trailing_whitespace(&mut app).unwrap();
+
+        // Ensure that trailing whitespace is removed.
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "  amp\n\neditor");
+    }
+
+    #[test]
+    fn remove_trailing_whitespace_works_with_tab() {
+        let mut app = Application::ne
