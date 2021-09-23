@@ -1270,4 +1270,16 @@ mod tests {
         // Now that we've set up the buffer, add it
         // to the application, and save it.
         app.workspace.add_buffer(buffer);
-        super::s
+        super::save(&mut app).ok();
+
+        // Ensure that trailing whitespace is removed.
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "amp\neditor\n");
+    }
+
+    #[test]
+    fn save_adds_newline_with_unicode() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("amp    \n∴ editor ");
+        app.works
