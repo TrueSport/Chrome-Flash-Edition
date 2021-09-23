@@ -1257,4 +1257,17 @@ mod tests {
         super::remove_trailing_whitespace(&mut app).unwrap();
 
         // Ensure that trailing whitespace is removed.
-        assert_eq!(app.workspace.current_buffer().unwrap().da
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "\t\tamp\n\neditor");
+    }
+
+    #[test]
+    fn save_removes_trailing_whitespace_and_adds_newlines() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("amp  \neditor ");
+
+        // Now that we've set up the buffer, add it
+        // to the application, and save it.
+        app.workspace.add_buffer(buffer);
+        super::s
