@@ -1247,4 +1247,14 @@ mod tests {
 
     #[test]
     fn remove_trailing_whitespace_works_with_tab() {
-        let mut app = Application::ne
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("\t\tamp\n\t\t\neditor\t");
+
+        // Now that we've set up the buffer, add it
+        // to the application and call the command.
+        app.workspace.add_buffer(buffer);
+        super::remove_trailing_whitespace(&mut app).unwrap();
+
+        // Ensure that trailing whitespace is removed.
+        assert_eq!(app.workspace.current_buffer().unwrap().da
