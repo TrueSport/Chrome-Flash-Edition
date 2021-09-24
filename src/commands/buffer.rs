@@ -1282,4 +1282,16 @@ mod tests {
         let mut app = Application::new(&Vec::new()).unwrap();
         let mut buffer = Buffer::new();
         buffer.insert("amp    \n∴ editor ");
-        app.works
+        app.workspace.add_buffer(buffer);
+        super::save(&mut app).ok();
+
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "amp\n∴ editor\n");
+    }
+
+    #[test]
+    fn save_switches_to_path_mode_when_path_is_missing() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let buffer = Buffer::new();
+
+        // Now that we've set up the buffer, add it
