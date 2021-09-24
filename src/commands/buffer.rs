@@ -1320,4 +1320,16 @@ mod tests {
         if let Mode::Path(ref mode) = app.mode {
             assert!(mode.save_on_accept)
         } else {
-            panic!("Failed to switch to path mode
+            panic!("Failed to switch to path mode");
+        }
+    }
+
+    #[test]
+    fn paste_inserts_at_cursor_when_pasting_inline_data() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("amp\neditor");
+
+        // Now that we've set up the buffer, add it
+        // to the application, copy the first line to
+        // the buffer, and then paste the clipboard c
