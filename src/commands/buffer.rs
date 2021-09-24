@@ -1308,4 +1308,16 @@ mod tests {
 
     #[test]
     fn save_sets_save_on_accept_when_switching_to_path_mode() {
-        let mut app = Applicat
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let buffer = Buffer::new();
+
+        // Now that we've set up the buffer, add it
+        // to the application, and save it.
+        app.workspace.add_buffer(buffer);
+        super::save(&mut app).ok();
+
+        // Ensure that we've set the save_on_accept flag.
+        if let Mode::Path(ref mode) = app.mode {
+            assert!(mode.save_on_accept)
+        } else {
+            panic!("Failed to switch to path mode
