@@ -1295,3 +1295,17 @@ mod tests {
         let buffer = Buffer::new();
 
         // Now that we've set up the buffer, add it
+        // to the application, and save it.
+        app.workspace.add_buffer(buffer);
+        super::save(&mut app).ok();
+
+        // Ensure that we've switched to path mode.
+        if let Mode::Path(_) = app.mode {
+        } else {
+            panic!("Failed to switch to path mode");
+        }
+    }
+
+    #[test]
+    fn save_sets_save_on_accept_when_switching_to_path_mode() {
+        let mut app = Applicat
