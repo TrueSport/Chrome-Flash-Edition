@@ -1362,4 +1362,16 @@ mod tests {
         commands::selection::copy(&mut app).unwrap();
         commands::buffer::paste(&mut app).unwrap();
 
-        // Ensure that the clipboard contents ar
+        // Ensure that the clipboard contents are pasted to the line below.
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "amp\namp\neditor");
+    }
+
+    #[test]
+    fn paste_works_at_end_of_buffer_when_pasting_block_data() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("amp\neditor");
+        buffer.cursor.move_to(Position {
+            line: 0,
+       
