@@ -1341,4 +1341,17 @@ mod tests {
 
         // Ensure that the clipboard contents are pasted to the line below.
         assert_eq!(app.workspace.current_buffer().unwrap().data(),
-           
+                   "aamp\neditor");
+    }
+
+    #[test]
+    fn paste_inserts_on_line_below_when_pasting_block_data() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("amp\neditor");
+        buffer.cursor.move_to(Position {
+            line: 0,
+            offset: 2,
+        });
+
+        // Now that we've set up the buffer, add
