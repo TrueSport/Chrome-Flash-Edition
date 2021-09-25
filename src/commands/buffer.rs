@@ -1354,4 +1354,12 @@ mod tests {
             offset: 2,
         });
 
-        // Now that we've set up the buffer, add
+        // Now that we've set up the buffer, add it
+        // to the application, copy the first line to
+        // the buffer, and then paste the clipboard contents.
+        app.workspace.add_buffer(buffer);
+        commands::application::switch_to_select_line_mode(&mut app).unwrap();
+        commands::selection::copy(&mut app).unwrap();
+        commands::buffer::paste(&mut app).unwrap();
+
+        // Ensure that the clipboard contents ar
