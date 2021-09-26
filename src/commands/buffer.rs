@@ -1374,4 +1374,13 @@ mod tests {
         buffer.insert("amp\neditor");
         buffer.cursor.move_to(Position {
             line: 0,
-       
+            offset: 0,
+        });
+
+        // Now that we've set up the buffer, add it
+        // to the application, copy the first line to
+        // the buffer, and then paste it at the end of the buffer.
+        app.workspace.add_buffer(buffer);
+        commands::application::switch_to_select_line_mode(&mut app).unwrap();
+        commands::selection::copy(&mut app).unwrap();
+        commands::cursor::move_down(&mut app)
