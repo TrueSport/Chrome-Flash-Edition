@@ -1383,4 +1383,15 @@ mod tests {
         app.workspace.add_buffer(buffer);
         commands::application::switch_to_select_line_mode(&mut app).unwrap();
         commands::selection::copy(&mut app).unwrap();
-        commands::cursor::move_down(&mut app)
+        commands::cursor::move_down(&mut app).unwrap();
+        commands::buffer::paste(&mut app).unwrap();
+
+        // Ensure that the clipboard contents are pasted to the line below.
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "amp\neditor\namp\n");
+    }
+
+    #[test]
+    fn paste_works_on_trailing_newline_when_pasting_block_data() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer
