@@ -1405,4 +1405,12 @@ mod tests {
         // to the application, copy the first line to
         // the buffer, and then paste it at the end of the buffer.
         app.workspace.add_buffer(buffer);
-        commands::application::switch_to_
+        commands::application::switch_to_select_line_mode(&mut app).unwrap();
+        commands::selection::copy(&mut app).unwrap();
+        commands::cursor::move_down(&mut app).unwrap();
+        commands::cursor::move_down(&mut app).unwrap();
+        commands::buffer::paste(&mut app).unwrap();
+
+        // Ensure that the clipboard contents are pasted to the line below.
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+      
