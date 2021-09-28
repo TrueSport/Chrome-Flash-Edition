@@ -1394,4 +1394,15 @@ mod tests {
     #[test]
     fn paste_works_on_trailing_newline_when_pasting_block_data() {
         let mut app = Application::new(&Vec::new()).unwrap();
-        let mut buffer
+        let mut buffer = Buffer::new();
+        buffer.insert("amp\neditor\n");
+        buffer.cursor.move_to(Position {
+            line: 0,
+            offset: 0,
+        });
+
+        // Now that we've set up the buffer, add it
+        // to the application, copy the first line to
+        // the buffer, and then paste it at the end of the buffer.
+        app.workspace.add_buffer(buffer);
+        commands::application::switch_to_
