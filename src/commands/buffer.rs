@@ -1413,4 +1413,17 @@ mod tests {
 
         // Ensure that the clipboard contents are pasted to the line below.
         assert_eq!(app.workspace.current_buffer().unwrap().data(),
-      
+                   "amp\neditor\namp\n");
+    }
+
+    #[test]
+    fn backspace_outdents_line_if_line_is_whitespace() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("amp\neditor\n        ");
+        buffer.cursor.move_to(Position {
+            line: 2,
+            offset: 8,
+        });
+
+        // Now that we've set up the buffer
