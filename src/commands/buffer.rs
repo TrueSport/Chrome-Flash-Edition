@@ -1448,4 +1448,16 @@ mod tests {
         commands::buffer::merge_next_line(&mut app).unwrap();
 
         // Ensure that the lines are merged correctly.
-        assert
+        assert_eq!(app.workspace.current_buffer().unwrap().data(), "amp editor");
+
+        // Ensure that the cursor is moved to the end of the current line.
+        assert_eq!(*app.workspace.current_buffer().unwrap().cursor,
+                   Position {
+                       line: 0,
+                       offset: 3,
+                   });
+    }
+
+    #[test]
+    fn merge_next_line_does_nothing_if_there_is_no_next_line() {
+        
