@@ -1460,4 +1460,14 @@ mod tests {
 
     #[test]
     fn merge_next_line_does_nothing_if_there_is_no_next_line() {
-        
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("amp editor");
+
+        // Now that we've set up the buffer, add it
+        // to the application and run the command.
+        app.workspace.add_buffer(buffer);
+        commands::buffer::merge_next_line(&mut app).ok();
+
+        // Ensure that the lines are merged correctly.
+        assert_
