@@ -1426,4 +1426,15 @@ mod tests {
             offset: 8,
         });
 
-        // Now that we've set up the buffer
+        // Now that we've set up the buffer, add it
+        // to the application and run the command.
+        app.workspace.add_buffer(buffer);
+        commands::buffer::backspace(&mut app).unwrap();
+
+        // Ensure that the clipboard contents are pasted to the line below.
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "amp\neditor\n      ");
+    }
+
+    #[test]
+    fn merge_next_line_joins_current_and_next_lines_w
