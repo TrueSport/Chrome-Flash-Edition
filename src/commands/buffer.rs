@@ -1470,4 +1470,15 @@ mod tests {
         commands::buffer::merge_next_line(&mut app).ok();
 
         // Ensure that the lines are merged correctly.
-        assert_
+        assert_eq!(app.workspace.current_buffer().unwrap().data(), "amp editor");
+
+        // Ensure that the cursor is moved to the end of the current line.
+        assert_eq!(*app.workspace.current_buffer().unwrap().cursor,
+                   Position {
+                       line: 0,
+                       offset: 0,
+                   });
+    }
+
+    #[test]
+    fn merge_next_line_works_when_the_next_line_has_a_line_afte
