@@ -1491,4 +1491,16 @@ mod tests {
         app.workspace.add_buffer(buffer);
         commands::buffer::merge_next_line(&mut app).unwrap();
 
-        // Ensure that the lines are merged
+        // Ensure that the lines are merged correctly.
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "amp editor\ntest");
+    }
+
+    #[test]
+    fn merge_next_line_works_when_the_first_line_has_leading_whitespace() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("\n amp\neditor");
+        buffer.cursor.move_to(Position {
+            line: 1,
+            off
