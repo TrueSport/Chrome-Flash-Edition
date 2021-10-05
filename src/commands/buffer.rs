@@ -1503,4 +1503,18 @@ mod tests {
         buffer.insert("\n amp\neditor");
         buffer.cursor.move_to(Position {
             line: 1,
-            off
+            offset: 0,
+        });
+
+        // Now that we've set up the buffer, add it
+        // to the application and run the command.
+        app.workspace.add_buffer(buffer);
+        commands::buffer::merge_next_line(&mut app).unwrap();
+
+        // Ensure that the lines are merged correctly.
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "\n amp editor");
+    }
+
+    #[test]
+  
