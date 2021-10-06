@@ -1538,3 +1538,15 @@ mod tests {
         buffer.insert("amp\neditor");
 
         // Now that we've set up the buffer, add it
+        // to the application and run the command.
+        app.workspace.add_buffer(buffer);
+        commands::buffer::ensure_trailing_newline(&mut app).unwrap();
+
+        // Ensure that trailing newline is added.
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "amp\neditor\n");
+    }
+
+    #[test]
+    fn ensure_trailing_newline_does_nothing_when_already_present() {
+        let mut app = Application
