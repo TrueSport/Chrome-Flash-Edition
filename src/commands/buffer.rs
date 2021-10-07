@@ -1549,4 +1549,14 @@ mod tests {
 
     #[test]
     fn ensure_trailing_newline_does_nothing_when_already_present() {
-        let mut app = Application
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("amp\neditor\n");
+
+        // Now that we've set up the buffer, add it
+        // to the application and run the command.
+        app.workspace.add_buffer(buffer);
+        commands::buffer::ensure_trailing_newline(&mut app).unwrap();
+
+        // Ensure that trailing newline is added.
+        assert_eq!(app.workspace.
