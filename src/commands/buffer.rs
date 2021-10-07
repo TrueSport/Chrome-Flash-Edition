@@ -1559,4 +1559,15 @@ mod tests {
         commands::buffer::ensure_trailing_newline(&mut app).unwrap();
 
         // Ensure that trailing newline is added.
-        assert_eq!(app.workspace.
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "amp\neditor\n");
+    }
+
+    #[test]
+    fn paste_with_inline_content_replaces_selection() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("amp");
+        app.clipboard.set_content(ClipboardContent::Inline("editor".to_string())).unwrap();
+
+        // Now that we've set up the bu
