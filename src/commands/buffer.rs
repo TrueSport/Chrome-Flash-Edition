@@ -1570,4 +1570,12 @@ mod tests {
         buffer.insert("amp");
         app.clipboard.set_content(ClipboardContent::Inline("editor".to_string())).unwrap();
 
-        // Now that we've set up the bu
+        // Now that we've set up the buffer, add it to
+        // the application, select its contents, and paste.
+        app.workspace.add_buffer(buffer);
+        commands::application::switch_to_select_mode(&mut app).unwrap();
+        commands::cursor::move_to_end_of_line(&mut app).unwrap();
+        commands::buffer::paste(&mut app).unwrap();
+
+        // Ensure that the content is replaced
+        assert_eq!(app.workspace.current_buffer(
