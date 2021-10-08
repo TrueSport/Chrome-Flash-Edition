@@ -1578,4 +1578,14 @@ mod tests {
         commands::buffer::paste(&mut app).unwrap();
 
         // Ensure that the content is replaced
-        assert_eq!(app.workspace.current_buffer(
+        assert_eq!(app.workspace.current_buffer().unwrap().data(), "editor");
+
+        // TODO: Ensure that the operation is treated atomically.
+        // commands::buffer::undo(&mut app);
+        // assert_eq!(app.workspace.current_buffer().unwrap().data(), "amp");
+    }
+
+    #[test]
+    fn paste_with_block_content_replaces_selection() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new()
