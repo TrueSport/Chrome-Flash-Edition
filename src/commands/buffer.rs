@@ -1598,4 +1598,14 @@ mod tests {
         commands::application::switch_to_select_line_mode(&mut app).unwrap();
         commands::buffer::paste(&mut app).unwrap();
 
-     
+        // Ensure that the content is replaced
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "paste amp\neditor");
+
+        // TODO: Ensure that the operation is treated atomically.
+        // commands::buffer::undo(&mut app);
+        // assert_eq!(app.workspace.current_buffer().unwrap().data(), "amp");
+    }
+
+    #[test]
+    fn paste_above_inserts_cl
