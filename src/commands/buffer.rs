@@ -1588,4 +1588,14 @@ mod tests {
     #[test]
     fn paste_with_block_content_replaces_selection() {
         let mut app = Application::new(&Vec::new()).unwrap();
-        let mut buffer = Buffer::new()
+        let mut buffer = Buffer::new();
+        buffer.insert("amp\neditor");
+        app.clipboard.set_content(ClipboardContent::Block("paste amp\n".to_string())).unwrap();
+
+        // Now that we've set up the buffer, add it to
+        // the application, select its contents, and paste.
+        app.workspace.add_buffer(buffer);
+        commands::application::switch_to_select_line_mode(&mut app).unwrap();
+        commands::buffer::paste(&mut app).unwrap();
+
+     
