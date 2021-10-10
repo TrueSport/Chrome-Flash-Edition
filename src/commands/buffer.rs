@@ -1608,4 +1608,15 @@ mod tests {
     }
 
     #[test]
-    fn paste_above_inserts_cl
+    fn paste_above_inserts_clipboard_contents_on_a_new_line_above() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        let original_position = Position {
+            line: 0,
+            offset: 3,
+        };
+        buffer.insert("editor");
+        buffer.cursor.move_to(original_position.clone());
+        app.clipboard.set_content(ClipboardContent::Block("amp\n".to_string())).unwrap();
+
+        /
