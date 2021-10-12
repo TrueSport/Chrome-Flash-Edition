@@ -1619,4 +1619,12 @@ mod tests {
         buffer.cursor.move_to(original_position.clone());
         app.clipboard.set_content(ClipboardContent::Block("amp\n".to_string())).unwrap();
 
-        /
+        // Now that we've set up the buffer,
+        // add it to the application and paste.
+        app.workspace.add_buffer(buffer);
+        commands::buffer::paste_above(&mut app).unwrap();
+
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "amp\neditor");
+        assert_eq!(*app.workspace.current_buffer().unwrap().cursor,
+                   original_position);
