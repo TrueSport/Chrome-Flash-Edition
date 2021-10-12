@@ -1628,3 +1628,17 @@ mod tests {
                    "amp\neditor");
         assert_eq!(*app.workspace.current_buffer().unwrap().cursor,
                    original_position);
+    }
+
+    #[test]
+    fn close_displays_confirmation_when_buffer_is_modified() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("data");
+
+        // Now that we've set up the buffer, add
+        // it to the application and run the command.
+        app.workspace.add_buffer(buffer);
+        commands::buffer::close(&mut app).unwrap();
+
+      
