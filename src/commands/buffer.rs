@@ -1641,4 +1641,19 @@ mod tests {
         app.workspace.add_buffer(buffer);
         commands::buffer::close(&mut app).unwrap();
 
-      
+        if let Mode::Confirm(_) = app.mode {
+        } else {
+            panic!("Not in confirm mode");
+        }
+    }
+
+    #[test]
+    fn close_skips_confirmation_when_buffer_is_empty() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let buffer = Buffer::new();
+
+        // Empty the workspace.
+        app.workspace.close_current_buffer();
+
+        // Now that we've set up the buffer, add
+        // it to the app
