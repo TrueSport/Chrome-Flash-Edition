@@ -1656,4 +1656,16 @@ mod tests {
         app.workspace.close_current_buffer();
 
         // Now that we've set up the buffer, add
-        // it to the app
+        // it to the application and run the command.
+        app.workspace.add_buffer(buffer);
+        commands::buffer::close(&mut app).unwrap();
+
+        assert!(app.workspace.current_buffer().is_none());
+    }
+
+    #[test]
+    fn close_skips_confirmation_when_buffer_is_unmodified() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let buffer = Buffer::from_file(Path::new("LICENSE")).unwrap();
+
+        /
