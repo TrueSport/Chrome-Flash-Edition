@@ -1680,4 +1680,15 @@ mod tests {
     }
 
     #[test]
-    fn close_others_skips_confirmation_when_all_other_buffers_are
+    fn close_others_skips_confirmation_when_all_other_buffers_are_empty_or_unmodified() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let buffer_1 = Buffer::new();
+        let buffer_2 = Buffer::from_file(Path::new("LICENSE")).unwrap();
+        let mut buffer_3 = Buffer::new();
+        buffer_3.insert("three");
+
+        // Empty the workspace.
+        app.workspace.close_current_buffer();
+
+        // Now that we've set up the buffers, add
+        // them 
