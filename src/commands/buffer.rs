@@ -1712,4 +1712,16 @@ mod tests {
         // Empty the workspace.
         app.workspace.close_current_buffer();
 
-        // Now that we'v
+        // Now that we've set up the buffers, add
+        // them to the application and run the command.
+        app.workspace.add_buffer(modified_buffer);
+        app.workspace.add_buffer(buffer);
+        commands::buffer::close_others(&mut app).unwrap();
+
+        if let Mode::Confirm(_) = app.mode {
+        } else {
+            panic!("Not in confirm mode");
+        }
+
+        // Confirm the command.
+        commands::con
