@@ -1702,4 +1702,14 @@ mod tests {
         assert_eq!(app.workspace.current_buffer().unwrap().data(), "three");
     }
 
-  
+    #[test]
+    fn close_others_displays_confirmation_before_closing_modified_buffer() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let buffer = Buffer::new();
+        let mut modified_buffer = Buffer::new();
+        modified_buffer.insert("data");
+
+        // Empty the workspace.
+        app.workspace.close_current_buffer();
+
+        // Now that we'v
