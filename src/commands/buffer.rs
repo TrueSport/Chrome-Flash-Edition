@@ -1724,4 +1724,14 @@ mod tests {
         }
 
         // Confirm the command.
-        commands::con
+        commands::confirm::confirm_command(&mut app).unwrap();
+
+        assert_eq!(app.workspace.current_buffer().unwrap().data(), "");
+        app.workspace.next_buffer();
+        assert_eq!(app.workspace.current_buffer().unwrap().data(), "");
+    }
+
+    #[test]
+    fn close_others_works_when_current_buffer_is_last() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer_1 =
