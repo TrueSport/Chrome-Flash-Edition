@@ -1743,4 +1743,17 @@ mod tests {
 
         // Now that we've set up the buffers, add
         // them to the application and run the command.
-        app.workspace.
+        app.workspace.add_buffer(buffer_1);
+        app.workspace.add_buffer(buffer_2);
+        app.workspace.add_buffer(buffer_3);
+
+        // Run the command twice, to
+        commands::buffer::close_others(&mut app).unwrap();
+
+        assert_eq!(app.workspace.current_buffer().unwrap().data(), "three");
+        app.workspace.next_buffer();
+        assert_eq!(app.workspace.current_buffer().unwrap().data(), "three");
+    }
+
+    #[test]
+    fn close_
