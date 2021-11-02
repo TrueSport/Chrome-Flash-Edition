@@ -1734,4 +1734,13 @@ mod tests {
     #[test]
     fn close_others_works_when_current_buffer_is_last() {
         let mut app = Application::new(&Vec::new()).unwrap();
-        let mut buffer_1 =
+        let mut buffer_1 = Buffer::new();
+        let mut buffer_2 = Buffer::new();
+        let mut buffer_3 = Buffer::new();
+        buffer_1.insert(""); // Empty to prevent close confirmation.
+        buffer_2.insert(""); // Empty to prevent close confirmation.
+        buffer_3.insert("three");
+
+        // Now that we've set up the buffers, add
+        // them to the application and run the command.
+        app.workspace.
