@@ -1756,4 +1756,11 @@ mod tests {
     }
 
     #[test]
-    fn close_
+    fn close_others_works_when_current_buffer_is_not_last() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer_1 = Buffer::new();
+        let mut buffer_2 = Buffer::new();
+        let mut buffer_3 = Buffer::new();
+        buffer_1.insert("");    // Empty to prevent close confirmation.
+        buffer_2.insert("two");
+        buffer_3.insert("");    // Empty to prevent c
