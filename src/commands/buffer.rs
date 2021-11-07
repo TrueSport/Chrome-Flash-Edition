@@ -1784,4 +1784,15 @@ mod tests {
         let mut buffer = Buffer::new();
         buffer.insert("\tamp\n\teditor\n");
         buffer.cursor.move_to(Position {
-         
+            line: 0,
+            offset: 1
+        });
+        buffer.path = Some("test.rs".into());
+
+        // Now that we've set up the buffer, add it
+        // to the application and call the command.
+        app.workspace.add_buffer(buffer);
+        super::toggle_line_comment(&mut app).unwrap();
+
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "\t// amp\n\tedito
