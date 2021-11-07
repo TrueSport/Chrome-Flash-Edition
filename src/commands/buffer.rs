@@ -1763,4 +1763,14 @@ mod tests {
         let mut buffer_3 = Buffer::new();
         buffer_1.insert("");    // Empty to prevent close confirmation.
         buffer_2.insert("two");
-        buffer_3.insert("");    // Empty to prevent c
+        buffer_3.insert("");    // Empty to prevent close confirmation.
+
+        // Now that we've set up the buffers, add
+        // them to the application and run the command.
+        app.workspace.add_buffer(buffer_1);
+        app.workspace.add_buffer(buffer_2);
+        app.workspace.add_buffer(buffer_3);
+        app.workspace.previous_buffer();
+        commands::buffer::close_others(&mut app).unwrap();
+
+        assert_eq!(app.workspace.cur
