@@ -1773,4 +1773,15 @@ mod tests {
         app.workspace.previous_buffer();
         commands::buffer::close_others(&mut app).unwrap();
 
-        assert_eq!(app.workspace.cur
+        assert_eq!(app.workspace.current_buffer().unwrap().data(), "two");
+        app.workspace.next_buffer();
+        assert_eq!(app.workspace.current_buffer().unwrap().data(), "two");
+    }
+
+    #[test]
+    fn toggle_line_comment_add_single_in_normal_mode() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("\tamp\n\teditor\n");
+        buffer.cursor.move_to(Position {
+         
