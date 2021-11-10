@@ -1795,4 +1795,17 @@ mod tests {
         super::toggle_line_comment(&mut app).unwrap();
 
         assert_eq!(app.workspace.current_buffer().unwrap().data(),
-                   "\t// amp\n\tedito
+                   "\t// amp\n\teditor\n");
+        assert_eq!(app.workspace.current_buffer().unwrap().cursor.position,
+                   Position { line: 0, offset: 1 });
+    }
+
+    #[test]
+    fn toggle_line_comment_add_multiple_in_select_line_mode() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("\tamp\n\t\teditor\n");
+        buffer.cursor.move_to(Position {
+            line: 0,
+            offset: 1,
+      
