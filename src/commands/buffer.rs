@@ -1808,4 +1808,14 @@ mod tests {
         buffer.cursor.move_to(Position {
             line: 0,
             offset: 1,
-      
+        });
+        buffer.path = Some("test.rs".into());
+
+        // Now that we've set up the buffer, add it
+        // to the application and call the command.
+        app.workspace.add_buffer(buffer);
+        commands::application::switch_to_select_line_mode(&mut app).unwrap();
+        app.workspace.current_buffer().unwrap().cursor.move_to(Position {
+            line: 1,
+            offset: 1,
+        });
