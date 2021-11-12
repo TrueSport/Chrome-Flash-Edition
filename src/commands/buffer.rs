@@ -1842,3 +1842,14 @@ mod tests {
         // Now that we've set up the buffer, add it
         // to the application and call the command.
         app.workspace.add_buffer(buffer);
+        super::toggle_line_comment(&mut app).unwrap();
+
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "\tamp\n\teditor\n");
+        assert_eq!(app.workspace.current_buffer().unwrap().cursor.position,
+                   Position { line: 0, offset: 1 });
+    }
+
+    #[test]
+    fn toggle_line_comment_remove_multiple_in_select_line_mode() {
+        let
