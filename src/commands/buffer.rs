@@ -1852,4 +1852,16 @@ mod tests {
 
     #[test]
     fn toggle_line_comment_remove_multiple_in_select_line_mode() {
-        let
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("\t// amp\n\t// \teditor\n");
+        buffer.cursor.move_to(Position {
+            line: 0,
+            offset: 1,
+        });
+        buffer.path = Some("test.rs".into());
+
+        // Now that we've set up the buffer, add it
+        // to the application and call the command.
+        app.workspace.add_buffer(buffer);
+ 
