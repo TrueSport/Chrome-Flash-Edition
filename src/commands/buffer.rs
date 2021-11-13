@@ -1864,4 +1864,14 @@ mod tests {
         // Now that we've set up the buffer, add it
         // to the application and call the command.
         app.workspace.add_buffer(buffer);
- 
+        commands::application::switch_to_select_line_mode(&mut app).unwrap();
+        app.workspace.current_buffer().unwrap().cursor.move_to(Position {
+            line: 1,
+            offset: 1,
+        });
+
+        super::toggle_line_comment(&mut app).unwrap();
+
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "\tamp\n\t\teditor\n");
+        assert_eq!(app.workspace.current_buf
