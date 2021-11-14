@@ -1874,4 +1874,16 @@ mod tests {
 
         assert_eq!(app.workspace.current_buffer().unwrap().data(),
                    "\tamp\n\t\teditor\n");
-        assert_eq!(app.workspace.current_buf
+        assert_eq!(app.workspace.current_buffer().unwrap().cursor.position,
+                   Position { line: 1, offset: 1 });
+    }
+
+    #[test]
+    fn toggle_line_comment_remove_multiple_with_unequal_indent_in_select_line_mode() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("\t// amp\n\t\t// editor\n");
+        buffer.cursor.move_to(Position {
+            line: 0,
+            offset: 1,
+        });
