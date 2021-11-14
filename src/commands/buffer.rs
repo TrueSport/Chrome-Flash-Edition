@@ -1898,4 +1898,14 @@ mod tests {
             offset: 1,
         });
 
-  
+        super::toggle_line_comment(&mut app).unwrap();
+
+        assert_eq!(app.workspace.current_buffer().unwrap().data(),
+                   "\tamp\n\t\teditor\n");
+        assert_eq!(app.workspace.current_buffer().unwrap().cursor.position,
+                   Position { line: 1, offset: 1 });
+    }
+
+    #[test]
+    fn toggle_line_comment_add_correctly_preserves_empty_lines() {
+        let mut app = Application
