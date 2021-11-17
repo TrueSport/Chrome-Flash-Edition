@@ -1930,4 +1930,14 @@ mod tests {
 
         assert_eq!(app.workspace.current_buffer().unwrap().data(),
                    "\t// amp\n\n\t// editor\n");
-        assert_eq!
+        assert_eq!(app.workspace.current_buffer().unwrap().cursor.position,
+                   Position { line: 2, offset: 0 });
+    }
+
+    #[test]
+    fn toggle_line_comment_remove_correctly_preserves_empty_lines() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("\t// amp\n\n\t// editor\n");
+        buffer.cursor.move_to(Position {
+   
