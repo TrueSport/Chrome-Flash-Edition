@@ -1908,4 +1908,16 @@ mod tests {
 
     #[test]
     fn toggle_line_comment_add_correctly_preserves_empty_lines() {
-        let mut app = Application
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("\tamp\n\n\teditor\n");
+        buffer.cursor.move_to(Position {
+            line: 0,
+            offset: 0,
+        });
+        buffer.path = Some("test.rs".into());
+
+        // Now that we've set up the buffer, add it
+        // to the application and call the command.
+        app.workspace.add_buffer(buffer);
+        command
