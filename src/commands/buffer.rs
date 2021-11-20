@@ -1940,4 +1940,13 @@ mod tests {
         let mut buffer = Buffer::new();
         buffer.insert("\t// amp\n\n\t// editor\n");
         buffer.cursor.move_to(Position {
-   
+            line: 0,
+            offset: 0,
+        });
+        buffer.path = Some("test.rs".into());
+
+        // Now that we've set up the buffer, add it
+        // to the application and call the command.
+        app.workspace.add_buffer(buffer);
+        commands::application::switch_to_select_line_mode(&mut app).unwrap();
+        app.workspace.current_buffer().unwrap().cursor.move_to(Position {
