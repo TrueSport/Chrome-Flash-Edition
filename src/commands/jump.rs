@@ -18,4 +18,18 @@ pub fn match_tag(app: &mut Application) -> Result {
                     } else {
                         return Ok(()) // Not enough data to match to a position.
                     }
-                }
+                },
+                _ => jump_to_tag(jump_mode, &mut app.workspace),
+            }
+        } else {
+            bail!("Can't match jump tags outside of jump mode.");
+        };
+    switch_to_previous_mode(app);
+
+    result
+}
+
+// Try to find a position for the input tag and jump to it.
+fn jump_to_tag(jump_mode: &mut JumpMode, workspace: &mut Workspace) -> Result {
+    let position = jump_mode
+  
