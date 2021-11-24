@@ -67,3 +67,53 @@ pub fn copy_remote_url(app: &mut Application) -> Result {
                 if line_1 < line_2 {
                     format!("#L{}-L{}", line_1, line_2)
                 } else if line_2 < line_1 {
+                    format!("#L{}-L{}", line_2, line_1)
+                } else {
+                    format!("#L{}", line_1)
+                }
+            },
+            _ => String::new(),
+        };
+
+        let gh_url = format!(
+            "https://github.com/{}/blob/{:?}/{}{}",
+            gh_path,
+            last_oid,
+            relative_path.to_string_lossy(),
+            line_range
+        );
+
+        app.clipboard.set_content(
+            ClipboardContent::Inline(gh_url)
+        )?;
+    } else {
+        bail!("No repository available");
+    }
+
+    commands::application::switch_to_normal_mode(app)?;
+
+    Ok(())
+}
+
+fn get_gh_path(url: &str) -> errors::Result<&str> {
+    lazy_static! {
+        static ref REGEX: Regex =
+            Regex::new(r"^(?:https://|git@)github.com(?::|/)(.*?)(?:.git)?$").unwrap();
+    }
+    REGEX.captures(url).and_then(|c| c.at(1)).chain_err(|| {
+        "Failed to capture remote repo path"
+    })
+}
+
+#[test]
+fn test_get_gh_path() {
+    let cases = [
+        ("git@github.com:jmacdonald/amp.git", "jmacdonald/amp"),
+        ("https://github.com/jmacdonald/amp.git", "jmacdonald/amp"),
+        ("https://github.com/jmacdonald/amp", "jmacdonald/amp"),
+    ];
+
+    cases.iter().for_each(|(url, expected_gh_path)| {
+        assert_eq!(&get_gh_path(url).unwrap(), expected_gh_path)
+    })
+}
