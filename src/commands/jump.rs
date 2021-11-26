@@ -55,4 +55,17 @@ fn switch_to_previous_mode(app: &mut Application) {
                 app.mode = Mode::Select(select_mode);
             }
             jump::SelectModeOptions::SelectLine(select_mode) => {
- 
+                app.mode = Mode::SelectLine(select_mode);
+            }
+        }
+    }
+}
+
+pub fn push_search_char(app: &mut Application) -> Result {
+    if let Some(ref key) = *app.view.last_key() {
+        if let Mode::Jump(ref mut mode) = app.mode {
+            match *key {
+                Key::Char('f') => {
+                    if mode.first_phase {
+                        mode.first_phase = false;
+                
