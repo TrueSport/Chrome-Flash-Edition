@@ -44,4 +44,15 @@ fn jump_to_tag(jump_mode: &mut JumpMode, workspace: &mut Workspace) -> Result {
 }
 
 fn switch_to_previous_mode(app: &mut Application) {
-    let old_mode = mem::replace
+    let old_mode = mem::replace(&mut app.mode, Mode::Normal);
+
+    // Now that we own the jump mode, switch to
+    // the previous select mode, if there was one.
+    if let Mode::Jump(jump_mode) = old_mode {
+        match jump_mode.select_mode {
+            jump::SelectModeOptions::None => (),
+            jump::SelectModeOptions::Select(select_mode) => {
+                app.mode = Mode::Select(select_mode);
+            }
+            jump::SelectModeOptions::SelectLine(select_mode) => {
+ 
