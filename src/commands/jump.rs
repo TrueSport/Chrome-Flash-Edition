@@ -80,3 +80,8 @@ pub fn push_search_char(app: &mut Application) -> Result {
             bail!("Can't push jump character outside of jump mode")
         }
     } else {
+        bail!("View hasn't tracked a key press")
+    }
+
+    match_tag(app)
+}
