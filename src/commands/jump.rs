@@ -68,4 +68,15 @@ pub fn push_search_char(app: &mut Application) -> Result {
                 Key::Char('f') => {
                     if mode.first_phase {
                         mode.first_phase = false;
-                
+                    } else {
+                        // Add the input to whatever we've received in jump mode so far.
+                        mode.input.push('f');
+                    }
+                },
+                Key::Char(c) => mode.input.push(c),
+                _ => bail!("Last key press wasn't a character")
+            }
+        } else {
+            bail!("Can't push jump character outside of jump mode")
+        }
+    } else {
