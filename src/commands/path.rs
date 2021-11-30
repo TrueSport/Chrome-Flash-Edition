@@ -13,4 +13,21 @@ pub fn push_char(app: &mut Application) -> Result {
             bail!("Cannot push char outside of path mode");
         }
     } else {
-        bail!("
+        bail!("Last key press wasn't a character");
+    }
+    Ok(())
+}
+
+pub fn pop_char(app: &mut Application) -> Result {
+    if let Mode::Path(ref mut mode) = app.mode {
+        mode.pop_char();
+    } else {
+        bail!("Cannot pop char outside of path mode");
+    }
+    Ok(())
+}
+
+pub fn accept_path(app: &mut Application) -> Result {
+    let save_on_accept =
+        if let Mode::Path(ref mut mode) = app.mode {
+            let current_buf
