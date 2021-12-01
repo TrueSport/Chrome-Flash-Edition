@@ -30,4 +30,15 @@ pub fn pop_char(app: &mut Application) -> Result {
 pub fn accept_path(app: &mut Application) -> Result {
     let save_on_accept =
         if let Mode::Path(ref mut mode) = app.mode {
-            let current_buf
+            let current_buffer = app.workspace.current_buffer().ok_or(BUFFER_MISSING)?;
+            let path_name = mode.input.clone();
+            if path_name.is_empty() {
+                bail!("Please provide a non-empty path")
+            }
+            current_buffer.path = Some(PathBuf::from(path_name));
+            mode.save_on_accept
+        } else {
+            bail!("Cannot accept path outside of path mode");
+        };
+
+    app.workspace.update_current_syntax(
