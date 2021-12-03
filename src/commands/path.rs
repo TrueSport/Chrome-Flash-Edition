@@ -41,4 +41,25 @@ pub fn accept_path(app: &mut Application) -> Result {
             bail!("Cannot accept path outside of path mode");
         };
 
-    app.workspace.update_current_syntax(
+    app.workspace.update_current_syntax().chain_err(||
+        "Failed to update buffer's syntax definition"
+    )?;
+    app.mode = Mode::Normal;
+
+    if save_on_accept {
+        commands::buffer::save(app)
+    } else {
+        Ok(())
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::commands;
+    use crate::models::Application;
+    use crate::models::application::Mode;
+    use scribe::Buffer;
+    use std::path::{PathBuf, Path};
+
+    #[test]
+    fn accept_path_sets_buffer_pa
