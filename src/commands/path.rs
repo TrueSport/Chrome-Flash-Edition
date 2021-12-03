@@ -62,4 +62,13 @@ mod tests {
     use std::path::{PathBuf, Path};
 
     #[test]
-    fn accept_path_sets_buffer_pa
+    fn accept_path_sets_buffer_path_based_on_input_and_switches_to_normal_mode() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+
+        let buffer = Buffer::new();
+        app.workspace.add_buffer(buffer);
+
+        // Switch to the mode, add a name, and accept it.
+        commands::application::switch_to_path_mode(&mut app).unwrap();
+        if let Mode::Path(ref mut mode) = app.mode {
+ 
