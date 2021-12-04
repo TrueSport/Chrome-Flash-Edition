@@ -87,4 +87,13 @@ mod tests {
     }
 
     #[test]
-    fn accept_path_respects_save_on_accep
+    fn accept_path_respects_save_on_accept_flag() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+
+        let buffer = Buffer::new();
+        app.workspace.add_buffer(buffer);
+
+        // Switch to the mode, add a name, set the flag, and accept it.
+        commands::application::switch_to_path_mode(&mut app).unwrap();
+        if let Mode::Path(ref mut mode) = app.mode {
+            mode.input = Path::new(concat!(env!("OUT_DIR"), "new_path")).to_st
