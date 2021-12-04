@@ -71,4 +71,20 @@ mod tests {
         // Switch to the mode, add a name, and accept it.
         commands::application::switch_to_path_mode(&mut app).unwrap();
         if let Mode::Path(ref mut mode) = app.mode {
- 
+            mode.input = String::from("new_path");
+        }
+        super::accept_path(&mut app).unwrap();
+
+        assert_eq!(
+            app.workspace.current_buffer().unwrap().path,
+            Some(PathBuf::from("new_path"))
+        );
+
+        if let Mode::Normal = app.mode {
+        } else {
+            panic!("Not in normal mode");
+        }
+    }
+
+    #[test]
+    fn accept_path_respects_save_on_accep
