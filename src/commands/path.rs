@@ -96,4 +96,17 @@ mod tests {
         // Switch to the mode, add a name, set the flag, and accept it.
         commands::application::switch_to_path_mode(&mut app).unwrap();
         if let Mode::Path(ref mut mode) = app.mode {
-            mode.input = Path::new(concat!(env!("OUT_DIR"), "new_path")).to_st
+            mode.input = Path::new(concat!(env!("OUT_DIR"), "new_path")).to_string_lossy().into();
+            mode.save_on_accept = true;
+        }
+        super::accept_path(&mut app).unwrap();
+
+        assert!(!app.workspace.current_buffer().unwrap().modified());
+    }
+
+    #[test]
+    fn accept_path_doesnt_set_buffer_path_for_empty_input_and_doesnt_change_modes() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+
+        let buffer = Buffer::new();
+        app.workspace.add_buffer(buffer)
