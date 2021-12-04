@@ -109,4 +109,15 @@ mod tests {
         let mut app = Application::new(&Vec::new()).unwrap();
 
         let buffer = Buffer::new();
-        app.workspace.add_buffer(buffer)
+        app.workspace.add_buffer(buffer);
+
+        // Switch to the mode, add a name, and accept it.
+        commands::application::switch_to_path_mode(&mut app).unwrap();
+        if let Mode::Path(ref mut mode) = app.mode {
+            mode.input = String::from("");
+        }
+        let result = super::accept_path(&mut app);
+        assert!(result.is_err());
+        assert!(app.workspace.current_buffer().unwrap().path.is_none());
+
+        if let Mode::Path(_
