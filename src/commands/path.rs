@@ -137,4 +137,13 @@ mod tests {
         // Switch to the mode, add a name, and accept it.
         commands::application::switch_to_path_mode(&mut app).unwrap();
         if let Mode::Path(ref mut mode) = app.mode {
-   
+            mode.input = String::from("path.rs");
+        }
+        super::accept_path(&mut app).unwrap();
+
+        assert_eq!(
+            app.workspace.current_buffer().unwrap().syntax_definition.as_ref().unwrap().name,
+            "Rust"
+        );
+    }
+}
