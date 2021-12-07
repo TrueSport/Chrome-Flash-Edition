@@ -120,4 +120,21 @@ mod tests {
         assert!(result.is_err());
         assert!(app.workspace.current_buffer().unwrap().path.is_none());
 
-        if let Mode::Path(_
+        if let Mode::Path(_) = app.mode {
+        } else {
+            panic!("Not in path mode");
+        }
+
+    }
+
+    #[test]
+    fn accept_path_updates_syntax() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+
+        let buffer = Buffer::new();
+        app.workspace.add_buffer(buffer);
+
+        // Switch to the mode, add a name, and accept it.
+        commands::application::switch_to_path_mode(&mut app).unwrap();
+        if let Mode::Path(ref mut mode) = app.mode {
+   
