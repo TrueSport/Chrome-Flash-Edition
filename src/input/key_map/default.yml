@@ -1,0 +1,9 @@
+normal:
+  up: cursor::move_up
+  down: cursor::move_down
+  left: cursor::move_left
+  right: cursor::move_right
+  j: cursor::move_down
+  k: cursor::move_up
+  h: cursor::move_left
+  l: c
