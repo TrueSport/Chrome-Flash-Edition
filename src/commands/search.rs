@@ -245,3 +245,45 @@ mod tests {
 
         // Advance beyond the last result, forcing the wrap.
         commands::search::move_to_next_result(&mut app).unwrap();
+
+        // Ensure the buffer cursor is at the expected position.
+        assert_eq!(*app.workspace.current_buffer().unwrap().cursor,
+                   Position {
+                       line: 0,
+                       offset: 4,
+                   });
+    }
+
+    #[test]
+    fn accept_query_disables_insert_sub_mode_and_moves_to_next_match() {
+        let mut app = Application::new(&Vec::new()).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.insert("amp editor\nedit\nedit");
+
+        // Move to a location just at the first
+        // result before adding it to the workspace.
+        buffer.cursor.move_to(Position{ line: 0, offset: 4 });
+        app.workspace.add_buffer(buffer);
+
+        // Add a search query, enter search mode, and accept the query.
+        app.search_query = Some(String::from("ed"));
+        commands::application::switch_to_search_mode(&mut app).unwrap();
+        commands::search::accept_query(&mut app).unwrap();
+
+        // Ensure that we've disabled insert sub-mode.
+        assert!(match app.mode {
+            crate::models::application::Mode::Search(ref mode) => !mode.insert_mode(),
+            _ => false,
+        });
+
+        // Ensure that the search query is properly set.
+        assert_eq!(app.search_query, Some("ed".to_string()));
+
+        // Ensure the buffer cursor is at the expected position.
+        assert_eq!(*app.workspace.current_buffer().unwrap().cursor,
+                   Position {
+                       line: 1,
+                       offset: 0,
+                   });
+    }
+}
