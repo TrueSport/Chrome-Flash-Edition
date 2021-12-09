@@ -19,4 +19,16 @@ normal:
   a: cursor::append_to_current_token
   I: cursor::insert_at_first_word_of_line
   A: cursor::insert_at_end_of_line
-  o: curso
+  o: cursor::insert_with_newline
+  O: cursor::insert_with_newline_above
+  x: buffer::delete
+  d: buffer::delete_token
+  ;: buffer::delete_current_line
+  D: buffer::delete_rest_of_line
+  C: buffer::change_rest_of_line
+  s: buffer::save
+  i: application::switch_to_insert_mode
+  f: application::switch_to_second_stage_jump_mode
+  v: application::switch_to_select_mode
+  V: application::switch_to_select_line_mode
+  g: application::switch_to_
