@@ -46,4 +46,19 @@ normal:
     - search::move_to_previous_result
   m: view::scroll_down
   M: buffer::merge_next_line
-  y: buffer::copy_current_
+  y: buffer::copy_current_line
+  c: buffer::change_token
+  R: git::copy_remote_url
+  z: application::suspend
+  Q: application::exit
+  B: workspace::new_buffer
+  E: application::display_last_error
+  "'": application::switch_to_jump_mode
+  "0": application::switch_to_command_mode
+  "#": application::switch_to_syntax_mode
+  /:
+    - application::switch_to_search_mode
+    - search::clear_query
+  ",": view::scroll_up
+  ">": buffer::indent_line
+  "<": 
