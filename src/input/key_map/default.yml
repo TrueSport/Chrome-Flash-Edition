@@ -31,4 +31,19 @@ normal:
   f: application::switch_to_second_stage_jump_mode
   v: application::switch_to_select_mode
   V: application::switch_to_select_line_mode
-  g: application::switch_to_
+  g: application::switch_to_line_jump_mode
+  t: application::switch_to_theme_mode
+  u: buffer::undo
+  r: buffer::redo
+  p: buffer::paste
+  P: buffer::paste_above
+  n:
+    - application::switch_to_search_mode
+    - search::accept_query
+  N:
+    - application::switch_to_search_mode
+    - search::accept_query
+    - search::move_to_previous_result
+  m: view::scroll_down
+  M: buffer::merge_next_line
+  y: buffer::copy_current_
