@@ -91,4 +91,20 @@ insert:
   right: cursor::move_right
   home: cursor::move_to_start_of_line
   end: cursor::move_to_end_of_line
-  
+  page_up: view::scroll_up
+  page_down: view::scroll_down
+  escape: application::switch_to_normal_mode
+  delete: buffer::delete
+  ctrl-a: selection::select_all
+  ctrl-z: application::suspend
+  ctrl-c: application::exit
+
+jump:
+  _: jump::push_search_char
+  escape: application::switch_to_normal_mode
+  ctrl-z: application::suspend
+  ctrl-c: application::exit
+
+line_jump:
+  _: line_jump::push_search_char
+  enter: line_jump::ac
