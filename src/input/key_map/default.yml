@@ -119,4 +119,21 @@ search:
     - application::handle_input
   escape: application::switch_to_normal_mode
   enter: application::switch_to_symbol_jump_mode
-  space: application::swit
+  space: application::switch_to_open_mode
+  backspace:
+    - selection::delete
+    - search::run
+  /:
+    - application::switch_to_search_mode
+    - search::clear_query
+  m: view::scroll_down
+  ",": view::scroll_up
+  n: search::move_to_next_result
+  N: search::move_to_previous_result
+  c: selection::change
+  d:
+    - selection::copy_and_delete
+    - search::run
+    - view::scroll_to_cursor
+  delete:
+    - selection::copy_and_del
