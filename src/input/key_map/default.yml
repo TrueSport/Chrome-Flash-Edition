@@ -107,4 +107,16 @@ jump:
 
 line_jump:
   _: line_jump::push_search_char
-  enter: line_jump::ac
+  enter: line_jump::accept_input
+  backspace: line_jump::pop_search_char
+  escape: application::switch_to_normal_mode
+  ctrl-z: application::suspend
+  ctrl-c: application::exit
+
+search:
+  _:
+    - application::switch_to_normal_mode
+    - application::handle_input
+  escape: application::switch_to_normal_mode
+  enter: application::switch_to_symbol_jump_mode
+  space: application::swit
