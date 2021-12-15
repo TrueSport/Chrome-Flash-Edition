@@ -168,4 +168,18 @@ search_select:
   up: search_select::select_previous
   down: search_select::select_next
   i: search_select::enable_insert
-  j: se
+  j: search_select::select_next
+  k: search_select::select_previous
+  z: application::suspend
+  ctrl-z: application::suspend
+  ctrl-c: application::exit
+
+search_select_insert:
+  _: search_select::push_search_char
+  enter: search_select::accept
+  backspace: search_select::pop_search_token
+  escape: search_select::step_back
+  down: search_select::select_next
+  up: search_select::select_previous
+  ctrl-j: search_select::select_next
+ 
