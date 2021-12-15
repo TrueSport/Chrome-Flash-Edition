@@ -136,4 +136,23 @@ search:
     - search::run
     - view::scroll_to_cursor
   delete:
-    - selection::copy_and_del
+    - selection::copy_and_delete
+    - search::run
+    - view::scroll_to_cursor
+  p:
+    - buffer::paste
+    - search::run
+    - view::scroll_to_cursor
+
+search_insert:
+  _: search::push_search_char
+  enter: search::accept_query
+  backspace: search::pop_search_char
+  escape: application::switch_to_normal_mode
+  ctrl-z: application::suspend
+  ctrl-c: application::exit
+
+path:
+  _: path::push_char
+  enter: path::accept_path
+  backspa
