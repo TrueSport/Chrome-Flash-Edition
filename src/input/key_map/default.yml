@@ -155,4 +155,17 @@ search_insert:
 path:
   _: path::push_char
   enter: path::accept_path
-  backspa
+  backspace: path::pop_char
+  escape: application::switch_to_normal_mode
+  ctrl-z: application::suspend
+  ctrl-c: application::exit
+
+search_select:
+  enter: search_select::accept
+  space: search_select::accept
+  backspace: search_select::pop_search_token
+  escape: application::switch_to_normal_mode
+  up: search_select::select_previous
+  down: search_select::select_next
+  i: search_select::enable_insert
+  j: se
