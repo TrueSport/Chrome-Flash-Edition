@@ -182,4 +182,20 @@ search_select_insert:
   down: search_select::select_next
   up: search_select::select_previous
   ctrl-j: search_select::select_next
- 
+  ctrl-k: search_select::select_previous
+  ctrl-z: application::suspend
+  ctrl-c: application::exit
+
+select:
+  up: cursor::move_up
+  down: cursor::move_down
+  left: cursor::move_left
+  right: cursor::move_right
+  j: cursor::move_down
+  k: cursor::move_up
+  h: cursor::move_left
+  l: cursor::move_right
+  J: cursor::move_to_last_line
+  K: cursor::move_to_first_line
+  H: cursor::move_to_start_of_line
+  L: cursor::move_t
