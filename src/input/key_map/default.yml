@@ -212,3 +212,17 @@ select:
     - view::scroll_to_cursor
   c: selection::change
   y: selection::copy
+  p:
+    - buffer::paste
+    - application::switch_to_normal_mode
+  R: git::copy_remote_url
+  m: view::scroll_down
+  f: application::switch_to_second_stage_jump_mode
+  z: application::suspend
+  Z: selection::justify
+  "'": application::switch_to_jump_mode
+  ",": view::scroll_up
+  page_up: view::scroll_up
+  page_down: view::scroll_down
+  escape: application::switch_to_normal_mode
+  ctrl-a: selection::select_al
