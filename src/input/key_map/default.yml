@@ -241,4 +241,18 @@ select_line:
   J: cursor::move_to_last_line
   K: cursor::move_to_first_line
   H: cursor::move_to_start_of_line
-  L: cursor::move_t
+  L: cursor::move_to_end_of_line
+  b: cursor::move_to_start_of_previous_token
+  w: cursor::move_to_start_of_next_token
+  e: cursor::move_to_end_of_current_token
+  d:
+    - selection::copy_and_delete
+    - application::switch_to_normal_mode
+    - view::scroll_to_cursor
+  delete:
+    - selection::copy_and_delete
+    - application::switch_to_normal_mode
+    - view::scroll_to_cursor
+  ;:
+    - selection::copy_and_delete
+    - application:
