@@ -271,4 +271,16 @@ select_line:
   ">": buffer::indent_line
   "<": buffer::outdent_line
   "[": buffer::toggle_line_comment
-  page
+  page_up: view::scroll_up
+  page_down: view::scroll_down
+  escape: application::switch_to_normal_mode
+  ctrl-a: selection::select_all
+  ctrl-z: application::suspend
+  ctrl-c: application::exit
+
+confirm:
+  n: application::switch_to_normal_mode
+  y: confirm::confirm_command
+  escape: application::switch_to_normal_mode
+  ctrl-z: application::suspend
+  ctrl-c: application::exit
