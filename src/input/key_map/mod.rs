@@ -36,4 +36,14 @@ impl KeyMap {
             keymap.insert(mode.to_string(), key_bindings);
         }
 
-        Ok(KeyMap(k
+        Ok(KeyMap(keymap))
+    }
+
+    /// Searches the keymap for the specified key.
+    /// Character keys will fall back to wildcard character bindings
+    /// if the specific character binding cannot be found.
+    ///
+    pub fn commands_for(&self, mode: &str, key: &Key) -> Option<SmallVec<[Command; 4]>> {
+        self.0.get(mode).and_then(|mode_keymap| {
+            if let Key::Char(_) = *key {
+                // Look for a comm
