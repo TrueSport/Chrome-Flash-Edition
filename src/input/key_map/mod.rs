@@ -46,4 +46,14 @@ impl KeyMap {
     pub fn commands_for(&self, mode: &str, key: &Key) -> Option<SmallVec<[Command; 4]>> {
         self.0.get(mode).and_then(|mode_keymap| {
             if let Key::Char(_) = *key {
-                // Look for a comm
+                // Look for a command for this specific character, falling
+                // back to another search for a wildcard character binding.
+                mode_keymap.get(key).or_else(|| mode_keymap.get(&Key::AnyChar))
+            } else {
+                mode_keymap.get(key)
+            }
+        }).map(|commands| (*commands).clone())
+    }
+
+    /// Loads the default keymap from a static
+    /// YAML document injected during 
