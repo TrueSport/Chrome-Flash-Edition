@@ -67,4 +67,19 @@ impl KeyMap {
         KeyMap::from(&default_keymap_data.as_hash().unwrap())
     }
 
-    /// Returns the defaul
+    /// Returns the default YAML keymap data as a string.
+    pub fn default_data() -> &'static str {
+        include_str!("default.yml")
+    }
+
+    /// Merges each of the passed key map's modes, consuming them in the process.
+    /// Note: the mode must exist to be merged; unmatched modes are discarded.
+    ///
+    /// e.g.
+    ///
+    /// normal:
+    ///     k: "cursor::move_up"
+    ///
+    /// merged with:
+    ///
+    /// nor
