@@ -82,4 +82,18 @@ impl KeyMap {
     ///
     /// merged with:
     ///
-    /// nor
+    /// normal:
+    ///     j: "cursor::move_down"
+    /// unknown:
+    ///     l: "cursor::move_right"
+    ///
+    /// becomes this:
+    ///
+    ///   "normal" => {
+    ///       Key::Char('k') => commands::cursor::move_up
+    ///       Key::Char('j') => commands::cursor::move_down
+    ///   }
+    ///
+    pub fn merge(&mut self, mut key_map: KeyMap) {
+        // Step through the specified key map's modes.
+        for (mode
