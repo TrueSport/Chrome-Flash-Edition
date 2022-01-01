@@ -110,3 +110,16 @@ impl KeyMap {
 /// Parses the key bindings for a particular mode.
 ///
 /// e.g.
+///
+///   k: "cursor::move_up"
+///
+/// becomes this HashMap entry:
+///
+///   Key::Char('k') => [commands::cursor::move_up]
+///
+fn parse_mode_key_bindings(mode: &Yaml, commands: &HashMap<&str, Command>) -> Result<HashMap<Key, SmallVec<[Command; 4]>>> {
+    let mode_key_bindings = mode.as_hash().ok_or(
+        "Keymap mode config didn't return a hash of key bindings",
+    )?;
+
+    let mut key_bindings = HashMap::new(
