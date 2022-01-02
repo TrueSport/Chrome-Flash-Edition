@@ -122,4 +122,14 @@ fn parse_mode_key_bindings(mode: &Yaml, commands: &HashMap<&str, Command>) -> Re
         "Keymap mode config didn't return a hash of key bindings",
     )?;
 
-    let mut key_bindings = HashMap::new(
+    let mut key_bindings = HashMap::new();
+    for (yaml_key, yaml_command) in mode_key_bindings {
+        // Parse modifier/character from key component.
+        let key = parse_key(yaml_key.as_str().ok_or_else(||
+            "A keymap key couldn't be parsed as a string".to_string()
+        )?)?;
+
+        let mut key_commands = SmallVec::new();
+
+        // Parse and find command reference from command component.
+        match *yaml_command
