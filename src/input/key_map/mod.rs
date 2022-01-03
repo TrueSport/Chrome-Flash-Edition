@@ -143,4 +143,12 @@ fn parse_mode_key_bindings(mode: &Yaml, commands: &HashMap<&str, Command>) -> Re
                     ))?
                 );
             },
-            Yaml::Array(re
+            Yaml::Array(ref command_array) => {
+                for command in command_array {
+                    let command_string = command.as_str().ok_or_else(||
+                        format!("Keymap command \"{:?}\" couldn't be parsed as a string", command)
+                    )?;
+
+                    key_commands.push(
+                        *commands.get(command_string).ok_or_else(||
+                            for
