@@ -132,4 +132,15 @@ fn parse_mode_key_bindings(mode: &Yaml, commands: &HashMap<&str, Command>) -> Re
         let mut key_commands = SmallVec::new();
 
         // Parse and find command reference from command component.
-        match *yaml_command
+        match *yaml_command {
+            Yaml::String(ref command) => {
+                let command_string = command.as_str();
+
+                key_commands.push(
+                    *commands.get(&command_string).ok_or_else(|| format!(
+                        "Keymap command \"{}\" doesn't exist",
+                        command_string
+                    ))?
+                );
+            },
+            Yaml::Array(re
