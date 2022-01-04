@@ -170,4 +170,15 @@ fn parse_mode_key_bindings(mode: &Yaml, commands: &HashMap<&str, Command>) -> Re
 ///
 /// e.g.
 ///
-/// 
+///   ctrl-r becomes Key::Ctrl('r')
+///
+fn parse_key(data: &str) -> Result<Key> {
+    let mut key_components = data.split('-');
+    let component = key_components.next().ok_or(
+        "A keymap key is an empty string",
+    )?;
+
+    if let Some(key) = key_components.next() {
+        // We have a modifier-qualified key; get the key.
+        let key_char = key.chars().nth(0).ok_or_else(|| format!(
+            "Keymap key
