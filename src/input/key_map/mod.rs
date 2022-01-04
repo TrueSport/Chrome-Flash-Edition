@@ -151,4 +151,23 @@ fn parse_mode_key_bindings(mode: &Yaml, commands: &HashMap<&str, Command>) -> Re
 
                     key_commands.push(
                         *commands.get(command_string).ok_or_else(||
-                            for
+                            format!("Keymap command \"{}\" doesn't exist", command_string)
+                        )?
+                    );
+                }
+            },
+            _ => bail!(format!("Keymap command \"{:?}\" couldn't be parsed", yaml_command))
+        }
+
+        // Add a key/command entry to the mapping.
+        key_bindings.insert(key, key_commands);
+    }
+
+    Ok(key_bindings)
+}
+
+/// Parses a str-based key into its Key equivalent.
+///
+/// e.g.
+///
+/// 
