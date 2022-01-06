@@ -181,4 +181,17 @@ fn parse_key(data: &str) -> Result<Key> {
     if let Some(key) = key_components.next() {
         // We have a modifier-qualified key; get the key.
         let key_char = key.chars().nth(0).ok_or_else(|| format!(
-            "Keymap key
+            "Keymap key \"{}\" is invalid",
+            key
+        ))?;
+
+        // Find the variant for the specified modifier.
+        match component {
+            "ctrl" => Ok(Key::Ctrl(key_char)),
+            _ => bail!(format!("Keymap modifier \"{}\" is invalid", component)),
+        }
+    } else {
+        // No modifier; just get the key.
+        Ok(match component {
+            "space"     => Key::Char(' '),
+            "backspace" => Key::Backsp
