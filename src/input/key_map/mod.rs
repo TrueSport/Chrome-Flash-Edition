@@ -205,4 +205,12 @@ fn parse_key(data: &str) -> Result<Key> {
             "page_down" => Key::PageDown,
             "delete"    => Key::Delete,
             "insert"    => Key::Insert,
-            "escap
+            "escape"    => Key::Esc,
+            "tab"       => Key::Tab,
+            "enter"     => Key::Enter,
+            "_"         => Key::AnyChar,
+            _           => Key::Char(
+                // It's not a keyword; take its first character, if available.
+                component.chars().nth(0).ok_or_else(||
+                    format!("Keymap key \"{}\" is invalid", component)
+               
