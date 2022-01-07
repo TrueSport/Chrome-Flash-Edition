@@ -194,4 +194,15 @@ fn parse_key(data: &str) -> Result<Key> {
         // No modifier; just get the key.
         Ok(match component {
             "space"     => Key::Char(' '),
-            "backspace" => Key::Backsp
+            "backspace" => Key::Backspace,
+            "left"      => Key::Left,
+            "right"     => Key::Right,
+            "up"        => Key::Up,
+            "down"      => Key::Down,
+            "home"      => Key::Home,
+            "end"       => Key::End,
+            "page_up"   => Key::PageUp,
+            "page_down" => Key::PageDown,
+            "delete"    => Key::Delete,
+            "insert"    => Key::Insert,
+            "escap
