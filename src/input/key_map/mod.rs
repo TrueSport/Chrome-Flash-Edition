@@ -213,4 +213,24 @@ fn parse_key(data: &str) -> Result<Key> {
                 // It's not a keyword; take its first character, if available.
                 component.chars().nth(0).ok_or_else(||
                     format!("Keymap key \"{}\" is invalid", component)
-               
+                )?
+            ),
+        })
+    }
+}
+
+impl Deref for KeyMap {
+    type Target = HashMap<String, HashMap<Key, SmallVec<[Command; 4]>>>;
+
+    fn deref(&self) -> &HashMap<String, HashMap<Key, SmallVec<[Command; 4]>>> {
+        &self.0
+    }
+}
+
+impl DerefMut for KeyMap {
+    fn deref_mut(&mut self) -> &mut HashMap<String, HashMap<Key, SmallVec<[Command; 4]>>> {
+        &mut self.0
+    }
+}
+
+impl Into<HashMap<String, HashMap<Key, SmallVec<[Comman
