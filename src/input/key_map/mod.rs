@@ -233,4 +233,20 @@ impl DerefMut for KeyMap {
     }
 }
 
-impl Into<HashMap<String, HashMap<Key, SmallVec<[Comman
+impl Into<HashMap<String, HashMap<Key, SmallVec<[Command; 4]>>>> for KeyMap {
+    fn into(self) -> HashMap<String, HashMap<Key, SmallVec<[Command; 4]>>> {
+        self.0
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::yaml::YamlLoader;
+    use super::KeyMap;
+    use crate::commands;
+    use crate::input::Key;
+
+    #[test]
+    fn keymap_correctly_parses_yaml_character_keybindings() {
+        // Build the keymap
+        let yaml_data = "normal:\n  k
