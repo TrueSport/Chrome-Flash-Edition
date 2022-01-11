@@ -249,4 +249,13 @@ mod tests {
     #[test]
     fn keymap_correctly_parses_yaml_character_keybindings() {
         // Build the keymap
-        let yaml_data = "normal:\n  k
+        let yaml_data = "normal:\n  k: cursor::move_up";
+        let yaml = YamlLoader::load_from_str(yaml_data).unwrap();
+        let keymap = KeyMap::from(&yaml[0].as_hash().unwrap()).unwrap();
+
+        let command = keymap.commands_for("normal", &Key::Char('k')).expect(
+            "Keymap doesn't contain command",
+        );
+        assert_eq!(
+            (command[0] as *const usize),
+            (commands::cursor::move_up as *const 
