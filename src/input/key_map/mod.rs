@@ -258,4 +258,16 @@ mod tests {
         );
         assert_eq!(
             (command[0] as *const usize),
-            (commands::cursor::move_up as *const 
+            (commands::cursor::move_up as *const usize)
+        );
+    }
+
+    #[test]
+    fn keymap_correctly_parses_yaml_wildcard_character_keybindings() {
+        // Build the keymap
+        let yaml_data = "normal:\n  _: cursor::move_up";
+        let yaml = YamlLoader::load_from_str(yaml_data).unwrap();
+        let keymap = KeyMap::from(&yaml[0].as_hash().unwrap()).unwrap();
+
+        let characters = vec!['a', 'b', 'c'];
+     
