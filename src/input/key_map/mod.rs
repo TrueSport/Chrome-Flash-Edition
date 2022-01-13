@@ -270,4 +270,16 @@ mod tests {
         let keymap = KeyMap::from(&yaml[0].as_hash().unwrap()).unwrap();
 
         let characters = vec!['a', 'b', 'c'];
-     
+        for c in characters.into_iter() {
+            let command = keymap.commands_for("normal", &Key::Char(c)).expect(
+                "Keymap doesn't contain command",
+            );
+            assert_eq!(
+                (command[0] as *const usize),
+                (commands::cursor::move_up as *const usize)
+            );
+        }
+    }
+
+    #[test]
+    fn keymap_correctly_prioritizes_character_over_wildcard_characte
