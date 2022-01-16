@@ -290,3 +290,14 @@ mod tests {
 
         let char_command = keymap.commands_for("normal", &Key::Char('j')).expect(
             "Keymap doesn't contain command",
+        );
+        assert_eq!(
+            (char_command[0] as *const usize),
+            (commands::cursor::move_down as *const usize)
+        );
+        let wildcard_command = keymap.commands_for("normal", &Key::Char('a')).expect(
+            "Keymap doesn't contain command",
+        );
+        assert_eq!(
+            (wildcard_command[0] as *const usize),
+            (commands::cursor::move_up as *cons
