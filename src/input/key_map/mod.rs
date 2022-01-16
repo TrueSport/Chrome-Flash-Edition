@@ -282,4 +282,11 @@ mod tests {
     }
 
     #[test]
-    fn keymap_correctly_prioritizes_character_over_wildcard_characte
+    fn keymap_correctly_prioritizes_character_over_wildcard_character_keybindings() {
+        // Build the keymap
+        let yaml_data = "normal:\n  j: cursor::move_down\n  _: cursor::move_up";
+        let yaml = YamlLoader::load_from_str(yaml_data).unwrap();
+        let keymap = KeyMap::from(&yaml[0].as_hash().unwrap()).unwrap();
+
+        let char_command = keymap.commands_for("normal", &Key::Char('j')).expect(
+            "Keymap doesn't contain command",
