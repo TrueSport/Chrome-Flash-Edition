@@ -312,4 +312,16 @@ mod tests {
         let keymap = KeyMap::from(&yaml[0].as_hash().unwrap()).unwrap();
 
         let command = keymap.commands_for("normal", &Key::Ctrl('r')).expect(
-            "Keyma
+            "Keymap doesn't contain command",
+        );
+        assert_eq!(
+            (command[0] as *const usize),
+            (commands::cursor::move_up as *const usize)
+        );
+    }
+
+    #[test]
+    fn keymap_correctly_parses_yaml_keyword_keybindings() {
+        let mappings = vec![
+            ("normal:\n  space: cursor::move_up",     Key::Char(' '), commands::cursor::move_up),
+            ("normal:\n  backspace: cursor::move_up",
