@@ -300,4 +300,16 @@ mod tests {
         );
         assert_eq!(
             (wildcard_command[0] as *const usize),
-            (commands::cursor::move_up as *cons
+            (commands::cursor::move_up as *const usize)
+        );
+    }
+
+    #[test]
+    fn keymap_correctly_parses_yaml_control_keybindings() {
+        // Build the keymap
+        let yaml_data = "normal:\n  ctrl-r: cursor::move_up";
+        let yaml = YamlLoader::load_from_str(yaml_data).unwrap();
+        let keymap = KeyMap::from(&yaml[0].as_hash().unwrap()).unwrap();
+
+        let command = keymap.commands_for("normal", &Key::Ctrl('r')).expect(
+            "Keyma
