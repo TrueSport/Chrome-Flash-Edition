@@ -324,4 +324,8 @@ mod tests {
     fn keymap_correctly_parses_yaml_keyword_keybindings() {
         let mappings = vec![
             ("normal:\n  space: cursor::move_up",     Key::Char(' '), commands::cursor::move_up),
-            ("normal:\n  backspace: cursor::move_up",
+            ("normal:\n  backspace: cursor::move_up", Key::Backspace, commands::cursor::move_up),
+            ("normal:\n  left: cursor::move_up",      Key::Left,      commands::cursor::move_up),
+            ("normal:\n  right: cursor::move_up",     Key::Right,     commands::cursor::move_up),
+            ("normal:\n  up: cursor::move_up",        Key::Up,        commands::cursor::move_up),
+            ("normal:\n  down: cursor::move_up",      Key::Do
