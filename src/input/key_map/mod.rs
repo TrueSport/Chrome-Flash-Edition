@@ -328,4 +328,8 @@ mod tests {
             ("normal:\n  left: cursor::move_up",      Key::Left,      commands::cursor::move_up),
             ("normal:\n  right: cursor::move_up",     Key::Right,     commands::cursor::move_up),
             ("normal:\n  up: cursor::move_up",        Key::Up,        commands::cursor::move_up),
-            ("normal:\n  down: cursor::move_up",      Key::Do
+            ("normal:\n  down: cursor::move_up",      Key::Down,      commands::cursor::move_up),
+            ("normal:\n  home: cursor::move_up",      Key::Home,      commands::cursor::move_up),
+            ("normal:\n  end: cursor::move_up",       Key::End,       commands::cursor::move_up),
+            ("normal:\n  page_up: cursor::move_up",   Key::PageUp,    commands::cursor::move_up),
+            ("normal:\n  page_down: cursor::move_up", Key::PageDown,  c
