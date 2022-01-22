@@ -332,4 +332,9 @@ mod tests {
             ("normal:\n  home: cursor::move_up",      Key::Home,      commands::cursor::move_up),
             ("normal:\n  end: cursor::move_up",       Key::End,       commands::cursor::move_up),
             ("normal:\n  page_up: cursor::move_up",   Key::PageUp,    commands::cursor::move_up),
-            ("normal:\n  page_down: cursor::move_up", Key::PageDown,  c
+            ("normal:\n  page_down: cursor::move_up", Key::PageDown,  commands::cursor::move_up),
+            ("normal:\n  delete: cursor::move_up",    Key::Delete,    commands::cursor::move_up),
+            ("normal:\n  insert: cursor::move_up",    Key::Insert,    commands::cursor::move_up),
+            ("normal:\n  escape: cursor::move_up",    Key::Esc,       commands::cursor::move_up),
+            ("normal:\n  tab: cursor::move_up",       Key::Tab,       commands::cursor::move_up),
+            ("normal:\n  enter
