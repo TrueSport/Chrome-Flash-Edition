@@ -337,4 +337,12 @@ mod tests {
             ("normal:\n  insert: cursor::move_up",    Key::Insert,    commands::cursor::move_up),
             ("normal:\n  escape: cursor::move_up",    Key::Esc,       commands::cursor::move_up),
             ("normal:\n  tab: cursor::move_up",       Key::Tab,       commands::cursor::move_up),
-            ("normal:\n  enter
+            ("normal:\n  enter: cursor::move_up",     Key::Enter,     commands::cursor::move_up)
+        ];
+
+        for (binding, key, command) in mappings {
+            // Build the keymap
+            let yaml = YamlLoader::load_from_str(binding).unwrap();
+            let keymap = KeyMap::from(&yaml[0].as_hash().unwrap()).unwrap();
+
+            let parsed_command = keymap.commands_for("normal", &key).expect("Keymap doesn't contain command
