@@ -345,4 +345,18 @@ mod tests {
             let yaml = YamlLoader::load_from_str(binding).unwrap();
             let keymap = KeyMap::from(&yaml[0].as_hash().unwrap()).unwrap();
 
-            let parsed_command = keymap.commands_for("normal", &key).expect("Keymap doesn't contain command
+            let parsed_command = keymap.commands_for("normal", &key).expect("Keymap doesn't contain command");
+            assert_eq!((parsed_command[0] as *const usize), (command as *const usize));
+        }
+    }
+
+    #[test]
+    fn keymap_correctly_loads_default_keybindings() {
+        // Build the keymap
+        let keymap = KeyMap::default().unwrap();
+
+        let command = keymap.commands_for("normal", &Key::Char('k')).expect(
+            "Keymap doesn't contain command",
+        );
+        assert_eq!(
+            (command[0] as *const 
