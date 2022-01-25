@@ -359,4 +359,15 @@ mod tests {
             "Keymap doesn't contain command",
         );
         assert_eq!(
-            (command[0] as *const 
+            (command[0] as *const usize),
+            (commands::cursor::move_up as *const usize)
+        );
+    }
+
+    #[test]
+    fn keymap_correctly_merges_keybindings() {
+        let yaml_data = "normal:\n  k: cursor::move_up\n  j: cursor::move_down";
+        let yaml = YamlLoader::load_from_str(yaml_data).unwrap();
+        let mut keymap = KeyMap::from(&yaml[0].as_hash().unwrap()).unwrap();
+
+        let other_yaml_data = "normal:\n 
