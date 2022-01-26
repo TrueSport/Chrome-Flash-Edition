@@ -370,4 +370,14 @@ mod tests {
         let yaml = YamlLoader::load_from_str(yaml_data).unwrap();
         let mut keymap = KeyMap::from(&yaml[0].as_hash().unwrap()).unwrap();
 
-        let other_yaml_data = "normal:\n 
+        let other_yaml_data = "normal:\n  k: cursor::move_left\n  l: cursor::move_right";
+        let other_yaml = YamlLoader::load_from_str(other_yaml_data).unwrap();
+        let other_keymap = KeyMap::from(&other_yaml[0].as_hash().unwrap()).unwrap();
+
+        keymap.merge(other_keymap);
+
+        let mut command = keymap.commands_for("normal", &Key::Char('j')).expect(
+            "Keymap doesn't contain original command",
+        );
+        assert_eq!(
+            (command[0] as *c
