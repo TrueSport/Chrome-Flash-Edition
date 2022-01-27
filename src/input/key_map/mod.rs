@@ -392,4 +392,16 @@ mod tests {
             (commands::cursor::move_left as *const usize)
         );
 
-        command = keymap.commands_for("normal", &
+        command = keymap.commands_for("normal", &Key::Char('l')).expect(
+            "Keymap doesn't contain other command",
+        );
+        assert_eq!(
+            (command[0] as *const usize),
+            (commands::cursor::move_right as *const usize)
+        );
+    }
+
+    #[test]
+    fn keymap_correctly_parses_multiple_yaml_keybindings() {
+        // Build the keymap
+        let yaml_data = "normal:\n  ctrl-r:\n    - cursor::move_up\n    - curso
