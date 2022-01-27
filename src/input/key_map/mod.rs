@@ -380,4 +380,16 @@ mod tests {
             "Keymap doesn't contain original command",
         );
         assert_eq!(
-            (command[0] as *c
+            (command[0] as *const usize),
+            (commands::cursor::move_down as *const usize)
+        );
+
+        command = keymap.commands_for("normal", &Key::Char('k')).expect(
+            "Keymap doesn't contain overlapping command",
+        );
+        assert_eq!(
+            (command[0] as *const usize),
+            (commands::cursor::move_left as *const usize)
+        );
+
+        command = keymap.commands_for("normal", &
