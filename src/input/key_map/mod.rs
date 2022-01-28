@@ -404,4 +404,13 @@ mod tests {
     #[test]
     fn keymap_correctly_parses_multiple_yaml_keybindings() {
         // Build the keymap
-        let yaml_data = "normal:\n  ctrl-r:\n    - cursor::move_up\n    - curso
+        let yaml_data = "normal:\n  ctrl-r:\n    - cursor::move_up\n    - cursor::move_down";
+        let yaml = YamlLoader::load_from_str(yaml_data).unwrap();
+        let keymap = KeyMap::from(&yaml[0].as_hash().unwrap()).unwrap();
+
+        let command = keymap.commands_for("normal", &Key::Ctrl('r')).expect(
+            "Keymap doesn't contain command",
+        );
+        assert_eq!(
+            (command[0] as *const usize),
+            (commands::cursor::move_up as *const u
