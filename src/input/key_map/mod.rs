@@ -413,4 +413,11 @@ mod tests {
         );
         assert_eq!(
             (command[0] as *const usize),
-            (commands::cursor::move_up as *const u
+            (commands::cursor::move_up as *const usize)
+        );
+        assert_eq!(
+            (command[1] as *const usize),
+            (commands::cursor::move_down as *const usize)
+        );
+    }
+}
