@@ -19,4 +19,18 @@ pub enum SelectModeOptions {
     SelectLine(SelectLineMode),
 }
 
-e
+enum MappedLexemeValue {
+    Tag((String, Position)),
+    Text((String, Position)),
+}
+
+pub struct JumpMode {
+    pub input: String,
+    pub first_phase: bool,
+    cursor_line: usize,
+    pub select_mode: SelectModeOptions,
+    tag_positions: HashMap<String, Position>,
+    tag_generator: TagGenerator,
+    single_characters: SingleCharacterTagGenerator,
+    current_position: Position,
+    mapped_lexeme_values:
