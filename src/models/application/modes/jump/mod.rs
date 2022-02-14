@@ -33,4 +33,17 @@ pub struct JumpMode {
     tag_generator: TagGenerator,
     single_characters: SingleCharacterTagGenerator,
     current_position: Position,
-    mapped_lexeme_values:
+    mapped_lexeme_values: Vec<MappedLexemeValue>,
+}
+
+impl JumpMode {
+    pub fn new(cursor_line: usize) -> JumpMode {
+        JumpMode {
+            input: String::new(),
+            first_phase: true,
+            cursor_line,
+            select_mode: SelectModeOptions::None,
+            tag_positions: HashMap::new(),
+            tag_generator: TagGenerator::new(),
+            single_characters: SingleCharacterTagGenerator::new(),
+     
