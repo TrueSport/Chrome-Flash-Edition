@@ -46,4 +46,19 @@ impl JumpMode {
             tag_positions: HashMap::new(),
             tag_generator: TagGenerator::new(),
             single_characters: SingleCharacterTagGenerator::new(),
-     
+            current_position: Position{ line: 0, offset: 0 },
+            mapped_lexeme_values: Vec::new(),
+        }
+    }
+
+    pub fn map_tag(&self, tag: &str) -> Option<&Position> {
+        self.tag_positions.get(tag)
+    }
+
+    pub fn reset_display(&mut self) {
+        self.tag_positions.clear();
+        self.tag_generator.reset();
+        self.single_characters.reset();
+    }
+}
+
