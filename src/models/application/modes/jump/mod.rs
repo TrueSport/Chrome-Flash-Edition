@@ -62,3 +62,12 @@ impl JumpMode {
     }
 }
 
+impl LexemeMapper for JumpMode {
+    // Translates a regular set of tokens into one appropriate
+    // appropriate for jump mode. Lexemes of a size greater than 2
+    // have their leading characters replaced with a jump tag, and
+    // the set of categories is reduced to two: keywords (tags) and
+    // regular text.
+    //
+    // We also track jump tag locations so that tags can be
+    // resolved to po
