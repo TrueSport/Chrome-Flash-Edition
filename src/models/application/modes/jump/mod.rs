@@ -70,4 +70,13 @@ impl LexemeMapper for JumpMode {
     // regular text.
     //
     // We also track jump tag locations so that tags can be
-    // resolved to po
+    // resolved to positions for performing the actual jump later on.
+    fn map<'a, 'b>(&'a mut self, lexeme: &'b str, position: Position) -> Vec<MappedLexeme<'a>> {
+        self.mapped_lexeme_values = Vec::new();
+        self.current_position = position;
+
+        for subtoken in movement_lexer::lex(lexeme) {
+            if subtoken.category == Category::Whitespace {
+                let distance = Distance::of_str(&subtoken.lexeme);
+
+          
