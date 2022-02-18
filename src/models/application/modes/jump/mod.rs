@@ -79,4 +79,15 @@ impl LexemeMapper for JumpMode {
             if subtoken.category == Category::Whitespace {
                 let distance = Distance::of_str(&subtoken.lexeme);
 
-          
+                // We don't do anything to whitespace tokens.
+                self.mapped_lexeme_values.push(
+                    MappedLexemeValue::Text((
+                        subtoken.lexeme,
+                        self.current_position
+                    ))
+                );
+
+                // Advance beyond this subtoken.
+                self.current_position += distance;
+            } else {
+                let tag = if self.f
