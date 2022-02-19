@@ -90,4 +90,14 @@ impl LexemeMapper for JumpMode {
                 // Advance beyond this subtoken.
                 self.current_position += distance;
             } else {
-                let tag = if self.f
+                let tag = if self.first_phase {
+                    if self.current_position.line >= self.cursor_line {
+                        self.single_characters.next()
+                    } else {
+                        None // We haven't reached the cursor yet.
+                    }
+                } else if subtoken.lexeme.len() > 1 {
+                    self.tag_generator.next()
+                } else {
+                    None
+      
