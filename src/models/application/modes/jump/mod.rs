@@ -100,4 +100,14 @@ impl LexemeMapper for JumpMode {
                     self.tag_generator.next()
                 } else {
                     None
-      
+                };
+
+                match tag {
+                    Some(tag) => {
+                        let tag_len = tag.len();
+
+                        // Keep a copy of the current tag
+                        // that we'll use to loan out a lexeme.
+                        self.mapped_lexeme_values.push(
+                            MappedLexemeValue::Tag((
+                         
