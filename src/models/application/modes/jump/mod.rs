@@ -110,4 +110,14 @@ impl LexemeMapper for JumpMode {
                         // that we'll use to loan out a lexeme.
                         self.mapped_lexeme_values.push(
                             MappedLexemeValue::Tag((
-                         
+                                tag.clone(),
+                                self.current_position
+                            ))
+                        );
+
+                        // Track the location of this tag.
+                        self.tag_positions.insert(tag, self.current_position);
+
+                        // Advance beyond this tag.
+                        self.current_position += Distance{
+                   
