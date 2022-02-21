@@ -120,4 +120,16 @@ impl LexemeMapper for JumpMode {
 
                         // Advance beyond this tag.
                         self.current_position += Distance{
-                   
+                            lines: 0,
+                            offset: tag_len
+                        };
+
+                        let suffix: String =
+                            subtoken
+                            .lexeme
+                            .chars()
+                            .skip(tag_len)
+                            .collect();
+                        let suffix_len = suffix.len();
+
+                        if suffix_len > 
