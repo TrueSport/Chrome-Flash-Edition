@@ -132,4 +132,13 @@ impl LexemeMapper for JumpMode {
                             .collect();
                         let suffix_len = suffix.len();
 
-                        if suffix_len > 
+                        if suffix_len > 0 {
+                            // Push the suffix into the mapped set.
+                            self.mapped_lexeme_values.push(
+                                MappedLexemeValue::Text((
+                                    suffix,
+                                    self.current_position
+                                ))
+                            );
+
+                    
