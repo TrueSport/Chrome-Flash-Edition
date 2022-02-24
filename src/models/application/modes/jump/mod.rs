@@ -141,4 +141,14 @@ impl LexemeMapper for JumpMode {
                                 ))
                             );
 
-                    
+                            // Advance beyond this suffix.
+                            self.current_position += Distance{
+                                lines: 0,
+                                offset: suffix_len
+                            };
+                        }
+                    }
+                    None => {
+                        let distance = Distance::of_str(&subtoken.lexeme);
+
+                     
