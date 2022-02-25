@@ -151,4 +151,13 @@ impl LexemeMapper for JumpMode {
                     None => {
                         let distance = Distance::of_str(&subtoken.lexeme);
 
-                     
+                        // We couldn't tag this subtoken; move along.
+                        self.mapped_lexeme_values.push(
+                            MappedLexemeValue::Text((
+                                subtoken.lexeme,
+                                self.current_position
+                            ))
+                        );
+
+                        // Advance beyond this subtoken.
+                        self.
