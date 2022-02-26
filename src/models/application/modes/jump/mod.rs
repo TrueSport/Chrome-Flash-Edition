@@ -160,4 +160,15 @@ impl LexemeMapper for JumpMode {
                         );
 
                         // Advance beyond this subtoken.
-                        self.
+                        self.current_position += distance;
+                    }
+                }
+            }
+        }
+
+        self.mapped_lexeme_values.iter().map(|mapped_lexeme| {
+            match *mapped_lexeme {
+                MappedLexemeValue::Tag((ref lexeme, _)) => {
+                    MappedLexeme::Focused(lexeme.as_str())
+                },
+                MappedLexemeValue::Text((ref lexe
