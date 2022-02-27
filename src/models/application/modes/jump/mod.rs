@@ -171,4 +171,20 @@ impl LexemeMapper for JumpMode {
                 MappedLexemeValue::Tag((ref lexeme, _)) => {
                     MappedLexeme::Focused(lexeme.as_str())
                 },
-                MappedLexemeValue::Text((ref lexe
+                MappedLexemeValue::Text((ref lexeme, _)) => {
+                    MappedLexeme::Blurred(lexeme.as_str())
+                },
+            }
+        }).collect()
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::view::{LexemeMapper, MappedLexeme};
+    use scribe::buffer::Position;
+    use super::JumpMode;
+
+    #[test]
+    fn map_returns_the_correct_lexemes_in_first_phase() {
+        let mut jump_mode = JumpMode::new(0)
