@@ -187,4 +187,18 @@ mod tests {
 
     #[test]
     fn map_returns_the_correct_lexemes_in_first_phase() {
-        let mut jump_mode = JumpMode::new(0)
+        let mut jump_mode = JumpMode::new(0);
+
+        assert_eq!(
+            jump_mode.map("amp", Position{ line: 0, offset: 0 }),
+            vec![
+                MappedLexeme::Focused("a"),
+                MappedLexeme::Blurred("mp")
+            ]
+        );
+
+        assert_eq!(
+            jump_mode.map("editor", Position{ line: 0, offset: 3 }),
+            vec![
+                MappedLexeme::Focused("b"),
+                MappedLexeme::Blurred("
