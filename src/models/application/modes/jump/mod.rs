@@ -201,4 +201,18 @@ mod tests {
             jump_mode.map("editor", Position{ line: 0, offset: 3 }),
             vec![
                 MappedLexeme::Focused("b"),
-                MappedLexeme::Blurred("
+                MappedLexeme::Blurred("ditor")
+            ]
+        );
+    }
+
+    #[test]
+    fn map_returns_the_correct_lexemes_in_second_phase() {
+        let mut jump_mode = JumpMode::new(0);
+        jump_mode.first_phase = false;
+
+        assert_eq!(
+            jump_mode.map("amp", Position{ line: 0, offset: 0 }),
+            vec![
+                MappedLexeme::Focused("aa"),
+                MappedLexeme::Blurred("p
