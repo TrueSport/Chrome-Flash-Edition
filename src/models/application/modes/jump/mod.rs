@@ -215,4 +215,22 @@ mod tests {
             jump_mode.map("amp", Position{ line: 0, offset: 0 }),
             vec![
                 MappedLexeme::Focused("aa"),
-                MappedLexeme::Blurred("p
+                MappedLexeme::Blurred("p")
+            ]
+        );
+
+        assert_eq!(
+            jump_mode.map("editor", Position{ line: 0, offset: 3 }),
+            vec![
+                MappedLexeme::Focused("ab"),
+                MappedLexeme::Blurred("itor")
+            ]
+        );
+    }
+
+    #[test]
+    fn map_splits_passed_tokens_on_whitespace() {
+        let mut jump_mode = JumpMode::new(0);
+        jump_mode.first_phase = false;
+
+        assert_eq!(
