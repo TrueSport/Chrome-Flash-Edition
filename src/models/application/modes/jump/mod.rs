@@ -234,3 +234,17 @@ mod tests {
         jump_mode.first_phase = false;
 
         assert_eq!(
+            jump_mode.map("do a test", Position{ line: 0, offset: 0 }),
+            vec![
+                MappedLexeme::Focused("aa"),
+                MappedLexeme::Blurred(" "),
+                MappedLexeme::Blurred("a"),
+                MappedLexeme::Blurred(" "),
+                MappedLexeme::Focused("ab"),
+                MappedLexeme::Blurred("st")
+            ]
+        )
+    }
+
+    #[test]
+    fn map_tracks_the_positions_of_each_jump_token() {
