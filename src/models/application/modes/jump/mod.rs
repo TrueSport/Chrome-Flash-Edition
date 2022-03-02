@@ -248,3 +248,10 @@ mod tests {
 
     #[test]
     fn map_tracks_the_positions_of_each_jump_token() {
+        let mut jump_mode = JumpMode::new(0);
+        jump_mode.first_phase = false;
+
+        // Adding space to a lexeme invokes sublexeme handling, since we split
+        // based on whitespace. It's important to ensure the tracked positions
+        // take this into account, too, which is why there's leading whitespace.
+        jump_mode.map("  amp", Position{ line: 0, offset: 0 
