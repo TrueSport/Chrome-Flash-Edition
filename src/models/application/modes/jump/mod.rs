@@ -254,4 +254,16 @@ mod tests {
         // Adding space to a lexeme invokes sublexeme handling, since we split
         // based on whitespace. It's important to ensure the tracked positions
         // take this into account, too, which is why there's leading whitespace.
-        jump_mode.map("  amp", Position{ line: 0, offset: 0 
+        jump_mode.map("  amp", Position{ line: 0, offset: 0 });
+        jump_mode.map("editor", Position{ line: 0, offset: 5 });
+
+        assert_eq!(*jump_mode.tag_positions.get("aa").unwrap(),
+                   Position {
+                       line: 0,
+                       offset: 2,
+                   });
+        assert_eq!(*jump_mode.tag_positions.get("ab").unwrap(),
+                   Position {
+                       line: 0,
+                       offset: 5,
+  
