@@ -282,4 +282,16 @@ mod tests {
         );
         jump_mode.reset_display();
 
-     
+        assert_eq!(
+            jump_mode.map("editor", Position{ line: 0, offset: 3 }),
+            vec![
+                MappedLexeme::Focused("a"),
+                MappedLexeme::Blurred("ditor")
+            ]
+        );
+    }
+
+    #[test]
+    fn reset_display_restarts_double_character_token_generator() {
+        let mut jump_mode = JumpMode::new(0);
+        jump_mode.first_phase = false;
