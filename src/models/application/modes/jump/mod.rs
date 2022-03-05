@@ -266,4 +266,20 @@ mod tests {
                    Position {
                        line: 0,
                        offset: 5,
-  
+                   });
+    }
+
+    #[test]
+    fn reset_display_restarts_single_character_token_generator() {
+        let mut jump_mode = JumpMode::new(0);
+
+        assert_eq!(
+            jump_mode.map("amp", Position{ line: 0, offset: 0 }),
+            vec![
+                MappedLexeme::Focused("a"),
+                MappedLexeme::Blurred("mp")
+            ]
+        );
+        jump_mode.reset_display();
+
+     
