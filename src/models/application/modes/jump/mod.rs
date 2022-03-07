@@ -309,4 +309,17 @@ mod tests {
             jump_mode.map("editor", Position{ line: 0, offset: 3 }),
             vec![
                 MappedLexeme::Focused("aa"),
-    
+                MappedLexeme::Blurred("itor")
+            ]
+        );
+    }
+
+    #[test]
+    fn map_can_handle_unicode_data() {
+        let mut jump_mode = JumpMode::new(0);
+        jump_mode.first_phase = false;
+
+        // It's important to put the unicode character as the
+        // second character to ensure splitting off the first
+        // two characters would cause a panic.
+        assert_eq!(
