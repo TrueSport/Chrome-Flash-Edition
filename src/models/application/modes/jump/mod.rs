@@ -323,3 +323,17 @@ mod tests {
         // second character to ensure splitting off the first
         // two characters would cause a panic.
         assert_eq!(
+            jump_mode.map("eéditor", Position{ line: 0, offset: 0 }),
+            vec![
+                MappedLexeme::Focused("aa"),
+                MappedLexeme::Blurred("ditor")
+            ]
+        );
+    }
+
+    #[test]
+    fn map_tag_returns_position_when_available() {
+        let mut jump_mode = JumpMode::new(0);
+        jump_mode.first_phase = false;
+
+        jump_mode.map("amp", Position{ line: 0, offset: 0 }
