@@ -336,4 +336,17 @@ mod tests {
         let mut jump_mode = JumpMode::new(0);
         jump_mode.first_phase = false;
 
-        jump_mode.map("amp", Position{ line: 0, offset: 0 }
+        jump_mode.map("amp", Position{ line: 0, offset: 0 });
+        jump_mode.map("editor", Position{ line: 1, offset: 3 });
+        assert_eq!(jump_mode.map_tag("ab"),
+                   Some(&Position {
+                       line: 1,
+                       offset: 3,
+                   }));
+        assert_eq!(jump_mode.map_tag("none"), None);
+    }
+
+    #[test]
+    fn map_splits_tokens_correctly_using_movement_lexer() {
+        let mut jump_mode = JumpMode::new(0);
+        jump_mode.first_
