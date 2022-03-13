@@ -349,4 +349,17 @@ mod tests {
     #[test]
     fn map_splits_tokens_correctly_using_movement_lexer() {
         let mut jump_mode = JumpMode::new(0);
-        jump_mode.first_
+        jump_mode.first_phase = false;
+
+        assert_eq!(
+            jump_mode.map("amp_editor", Position{ line: 0, offset: 0}),
+            vec![
+                MappedLexeme::Focused("aa"),
+                MappedLexeme::Blurred("p"),
+                MappedLexeme::Blurred("_"),
+                MappedLexeme::Focused("ab"),
+                MappedLexeme::Blurred("itor")
+            ]
+        );
+    }
+}
