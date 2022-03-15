@@ -37,4 +37,16 @@ impl Iterator for SingleCharacterTagGenerator {
 
 #[cfg(test)]
 mod tests {
-    use
+    use super::SingleCharacterTagGenerator;
+
+    #[test]
+    fn it_returns_a_lowercase_set_of_alphabetical_characters_excluding_f() {
+        let generator = SingleCharacterTagGenerator::new();
+        let expected_result = (97..123).fold(
+            String::new(),
+            |mut acc, i| {
+                // Skip f
+                if i != 102 {
+                    acc.push((i as u8) as char);
+                }
+                acc
