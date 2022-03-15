@@ -17,4 +17,24 @@ impl SingleCharacterTagGenerator {
 }
 
 impl Iterator for SingleCharacterTagGenerator {
-    type Ite
+    type Item = String;
+
+    fn next(&mut self) -> Option<String> {
+        if self.index >= TAG_INDEX_LIMIT {
+            None
+        } else {
+            self.index += 1;
+
+            // Skip f character (invalid token; used to leave first_phase).
+            if self.index == 102 {
+                self.index += 1;
+            }
+
+            Some((self.index as char).to_string())
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use
