@@ -50,3 +50,22 @@ mod tests {
                     acc.push((i as u8) as char);
                 }
                 acc
+            }
+        );
+        let result: String = generator.collect();
+
+        assert_eq!(result, expected_result);
+    }
+
+    #[test]
+    fn it_prevents_overflow_recycling() {
+        let mut generator = SingleCharacterTagGenerator::new();
+        for _ in 0..256 {
+            generator.next();
+        }
+
+        assert_eq!(generator.next(), None);
+    }
+
+    #[test]
+    fn reset_returns_the_seq
