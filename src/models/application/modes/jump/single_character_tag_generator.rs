@@ -68,4 +68,13 @@ mod tests {
     }
 
     #[test]
-    fn reset_returns_the_seq
+    fn reset_returns_the_sequence_to_the_start() {
+        let mut generator = SingleCharacterTagGenerator::new();
+
+        generator.next();
+        assert!(generator.next().unwrap() != "a");
+
+        generator.reset();
+        assert_eq!(generator.next().unwrap(), "a");
+    }
+}
