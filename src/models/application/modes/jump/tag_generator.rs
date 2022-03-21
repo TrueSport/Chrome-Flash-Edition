@@ -35,4 +35,19 @@ impl Iterator for TagGenerator {
         self.index += 1;
 
         // Stitch the two calculated letters together.
-        match String::from_utf8
+        match String::from_utf8(vec![first_letter, second_letter]) {
+            Ok(tag) => Some(tag),
+            Err(_) => panic!("Couldn't generate a valid UTF-8 jump mode tag."),
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::TagGenerator;
+
+    #[test]
+    fn next_returns_sequential_letters_of_the_alphabet() {
+        let mut generator = TagGenerator::new();
+        assert_eq!(generator.next().unwrap(), "aa");
+        as
