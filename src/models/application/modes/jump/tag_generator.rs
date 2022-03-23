@@ -50,4 +50,17 @@ mod tests {
     fn next_returns_sequential_letters_of_the_alphabet() {
         let mut generator = TagGenerator::new();
         assert_eq!(generator.next().unwrap(), "aa");
-        as
+        assert_eq!(generator.next().unwrap(), "ab");
+        assert_eq!(generator.next().unwrap(), "ac");
+    }
+
+    #[test]
+    fn next_carries_overflows_to_the_next_letter() {
+        let mut generator = TagGenerator::new();
+        for _ in 0..26 {
+            generator.next();
+        }
+        assert_eq!(generator.next().unwrap(), "ba");
+        assert_eq!(generator.next().unwrap(), "bb");
+        assert_eq!(generator.next().unwrap(), "bc");
+    }
