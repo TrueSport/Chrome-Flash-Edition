@@ -64,3 +64,15 @@ mod tests {
         assert_eq!(generator.next().unwrap(), "bb");
         assert_eq!(generator.next().unwrap(), "bc");
     }
+
+    #[test]
+    fn next_returns_none_when_limit_reached() {
+        let mut generator = TagGenerator::new();
+        for _ in 0..super::TAG_INDEX_LIMIT {
+            generator.next();
+        }
+
+        // Ensure that values are still being produced up until the limit.
+        assert_eq!(generator.next().unwrap(), "zz");
+
+        // Ensure that values stop b
