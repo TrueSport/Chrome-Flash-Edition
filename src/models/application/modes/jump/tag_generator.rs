@@ -75,4 +75,17 @@ mod tests {
         // Ensure that values are still being produced up until the limit.
         assert_eq!(generator.next().unwrap(), "zz");
 
-        // Ensure that values stop b
+        // Ensure that values stop being returned at and after the limit.
+        assert!(generator.next().is_none());
+        assert!(generator.next().is_none());
+    }
+
+    #[test]
+    fn reset_returns_the_sequence_to_the_start() {
+        let mut generator = TagGenerator::new();
+
+        generator.next();
+        assert!(generator.next().unwrap() != "aa");
+
+        generator.reset();
+        assert_eq!(generator.next().unwrap(),
