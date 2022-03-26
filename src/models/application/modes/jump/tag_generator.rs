@@ -88,4 +88,6 @@ mod tests {
         assert!(generator.next().unwrap() != "aa");
 
         generator.reset();
-        assert_eq!(generator.next().unwrap(),
+        assert_eq!(generator.next().unwrap(), "aa");
+    }
+}
