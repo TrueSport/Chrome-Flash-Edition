@@ -24,4 +24,4 @@ pub use self::select::SelectMode;
 pub use self::select_line::SelectLineMode;
 pub use self::symbol_jump::SymbolJumpMode;
 pub use self::syntax::SyntaxMode;
-pub use self::theme
+pub use self::theme::ThemeMode;
