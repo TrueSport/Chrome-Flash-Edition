@@ -15,4 +15,15 @@ impl Default for SearchSelectConfig {
 }
 
 /// This trait will become vastly simpler if/when fields are added to traits.
-/// See: https://github.com/rust-lang/rfcs/pull/154
+/// See: https://github.com/rust-lang/rfcs/pull/1546
+pub trait SearchSelectMode<T: Display>: Display {
+    fn query(&mut self) -> &mut String;
+    fn search(&mut self);
+    fn insert_mode(&self) -> bool;
+    fn set_insert_mode(&mut self, insert_mode: bool);
+    fn results(&self) -> Iter<T>;
+    fn selection(&self) -> Option<&T>;
+    fn selected_index(&self) -> usize;
+    fn select_previous(&mut self);
+    fn select_next(&mut self);
+    fn config(&self) -> &SearchSelectConfig;
