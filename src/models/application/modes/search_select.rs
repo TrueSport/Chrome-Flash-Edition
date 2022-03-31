@@ -39,4 +39,14 @@ pub trait SearchSelectMode<T: Display>: Display {
 
     fn push_search_char(&mut self, c: char) {
         self.query().push(c);
-    
+    }
+
+    fn pop_search_token(&mut self) {
+        let query = self.query();
+
+        // Find the last word boundary (transition to/from whitespace), using
+        // using fold to carry the previous character's type forward.
+        let mut boundary_index = 0;
+        query.char_indices().fold(true, |was_whitespace, (index, c)| {
+            if c.is_whitespace() != was_whitespace {
+                boundary_index = index
