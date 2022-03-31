@@ -49,4 +49,28 @@ pub trait SearchSelectMode<T: Display>: Display {
         let mut boundary_index = 0;
         query.char_indices().fold(true, |was_whitespace, (index, c)| {
             if c.is_whitespace() != was_whitespace {
-                boundary_index = index
+                boundary_index = index;
+            }
+
+            c.is_whitespace()
+        });
+
+        query.truncate(boundary_index);
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use std::fmt;
+    use std::slice::Iter;
+    use super::{SearchSelectMode, SearchSelectConfig};
+
+    #[derive(Default)]
+    struct TestMode {
+        input: String,
+        selection: String,
+        results: Vec<String>,
+        config: SearchSelectConfig,
+    }
+
+    impl fmt::Display f
