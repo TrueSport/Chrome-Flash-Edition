@@ -73,4 +73,18 @@ mod tests {
         config: SearchSelectConfig,
     }
 
-    impl fmt::Display f
+    impl fmt::Display for TestMode {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+            write!(f, "TEST")
+        }
+    }
+
+    impl SearchSelectMode<String> for TestMode {
+        fn query(&mut self) -> &mut String {
+            &mut self.input
+        }
+
+        fn search(&mut self) { }
+        fn insert_mode(&self) -> bool { false }
+        fn set_insert_mode(&mut self, _: bool) { }
+        fn results(
