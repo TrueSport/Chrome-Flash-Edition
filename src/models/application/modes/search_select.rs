@@ -87,4 +87,14 @@ mod tests {
         fn search(&mut self) { }
         fn insert_mode(&self) -> bool { false }
         fn set_insert_mode(&mut self, _: bool) { }
-        fn results(
+        fn results(&self) -> Iter<String> { self.results.iter() }
+        fn selection(&self) -> Option<&String> { Some(&self.selection) }
+        fn selected_index(&self) -> usize { 0 }
+        fn select_previous(&mut self) { }
+        fn select_next(&mut self) { }
+        fn config(&self) -> &SearchSelectConfig { &self.config }
+    }
+
+    #[test]
+    fn push_search_char_updates_query() {
+        let 
