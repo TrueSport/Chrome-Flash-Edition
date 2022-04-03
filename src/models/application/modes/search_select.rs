@@ -97,4 +97,17 @@ mod tests {
 
     #[test]
     fn push_search_char_updates_query() {
-        let 
+        let mut mode = TestMode{ .. Default::default() };
+        mode.push_search_char('a');
+        assert_eq!(mode.query(), "a");
+    }
+
+    #[test]
+    fn pop_search_token_pops_all_characters_when_on_only_token() {
+        let mut mode = TestMode{ input: String::from("amp"), .. Default::default() };
+        mode.pop_search_token();
+        assert_eq!(mode.query(), "");
+    }
+
+    #[test]
+    fn pop_search_
