@@ -118,4 +118,8 @@ mod tests {
 
     #[test]
     fn pop_search_token_pops_all_whitespace_characters_when_on_whitespace_character() {
-        let mut mode = TestMode{ input: Str
+        let mut mode = TestMode{ input: String::from("amp  "), .. Default::default() };
+        mode.pop_search_token();
+        assert_eq!(mode.query(), "amp");
+    }
+}
