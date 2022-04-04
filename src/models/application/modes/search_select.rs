@@ -110,4 +110,12 @@ mod tests {
     }
 
     #[test]
-    fn pop_search_
+    fn pop_search_token_pops_all_adjacent_non_whitespace_characters_when_on_non_whitespace_character() {
+        let mut mode = TestMode{ input: String::from("amp editor"), .. Default::default() };
+        mode.pop_search_token();
+        assert_eq!(mode.query(), "amp ");
+    }
+
+    #[test]
+    fn pop_search_token_pops_all_whitespace_characters_when_on_whitespace_character() {
+        let mut mode = TestMode{ input: Str
