@@ -1,0 +1,122 @@
+
+use fragment;
+use fragment::matching::AsStr;
+use scribe::buffer::{Position, Token, TokenSet};
+use syntect::highlighting::ScopeSelectors;
+use crate::util::SelectableVec;
+use std::fmt;
+use std::iter::Iterator;
+use std::clone::Clone;
+use std::str::FromStr;
+use std::slice::Iter;
+use crate::models::application::modes::{SearchSelectMode, SearchSelectConfig};
+
+pub struct SymbolJumpMode {
+    insert: bool,
+    input: String,
+    symbols: Vec<Symbol>,
+    results: SelectableVec<Symbol>,
+    config: SearchSelectConfig,
+}
+
+#[derive(PartialEq, Debug)]
+pub struct Symbol {
+    pub token: String,
+    pub position: Position,
+}
+
+impl fmt::Display for Symbol {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", &self.token)
+    }
+}
+
+impl Clone for Symbol {
+    fn clone(&self) -> Symbol {
+        Symbol{ token: self.token.clone(), position: self.position }
+    }
+
+    fn clone_from(&mut self, source: &Self) {
+        self.token = source.token.clone();
+        self.position = source.position;
+    }
+}
+
+impl AsStr for Symbol {
+    fn as_str(&self) -> &str {
+        &self.token
+    }
+}
+
+impl SymbolJumpMode {
+    pub fn new(tokens: &TokenSet, config: SearchSelectConfig) -> SymbolJumpMode {
+        let symbols = symbols(tokens.iter());
+
+        SymbolJumpMode {
+            insert: true,
+            input: String::new(),
+            symbols,
+            results: SelectableVec::new(Vec::new()),
+            config,
+        }
+    }
+}
+
+impl fmt::Display for SymbolJumpMode {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "SYMBOL")
+    }
+}
+
+impl SearchSelectMode<Symbol> for SymbolJumpMode {
+    fn search(&mut self) {
+        // Find the symbols we're looking for using the query.
+        let results = fragment::matching::find(&self.input, &self.symbols, self.config.max_results);
+
+        // We don't care about the result objects; we just want
+        // the underlying symbols. Map the collection to get these.
+        self.results = SelectableVec::new(results.into_iter().map(|r| r.clone()).collect());
+    }
+
+    fn query(&mut self) -> &mut String {
+        &mut self.input
+    }
+
+    fn insert_mode(&self) -> bool {
+        self.insert
+    }
+
+    fn set_insert_mode(&mut self, insert_mode: bool) {
+        self.insert = insert_mode;
+    }
+
+    fn results(&self) -> Iter<Symbol> {
+        self.results.iter()
+    }
+
+    fn selection(&self) -> Option<&Symbol> {
+        self.results.selection()
+    }
+
+    fn selected_index(&self) -> usize {
+        self.results.selected_index()
+    }
+
+    fn select_previous(&mut self) {
+        self.results.select_previous();
+    }
+
+    fn select_next(&mut self) {
+        self.results.select_next();
+    }
+
+    fn config(&self) -> &SearchSelectConfig {
+        &self.config
+    }
+}
+
+fn symbols<'a, T>(tokens: T) -> Vec<Symbol> where T: Iterator<Item=Token<'a>> {
+    let eligible_scopes = ScopeSelectors::from_str(
+        "entity.name.function, entity.name.class, entity.name.struct"
+    ).unwrap();
+    tokens.filter_map(|token| {
