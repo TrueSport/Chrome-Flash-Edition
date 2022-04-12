@@ -57,4 +57,24 @@ impl SearchSelectMode<String> for ThemeMode {
         self.insert = insert_mode;
     }
 
-    fn results(&self) -> Iter<S
+    fn results(&self) -> Iter<String> {
+        self.results.iter()
+    }
+
+    fn selection(&self) -> Option<&String> {
+        self.results.selection()
+    }
+
+    fn selected_index(&self) -> usize {
+        self.results.selected_index()
+    }
+
+    fn select_previous(&mut self) {
+        self.results.select_previous();
+    }
+
+    fn select_next(&mut self) {
+        self.results.select_next();
+    }
+
+    fn config(&self) -> &SearchS
