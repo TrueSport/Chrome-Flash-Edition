@@ -37,4 +37,24 @@ impl SearchSelectMode<String> for ThemeMode {
 
         // We don't care about the result objects; we just want
         // the underlying symbols. Map the collection to get these.
-        self.
+        self.results = SelectableVec::new(
+            results
+            .into_iter()
+            .map(|r| r.clone())
+            .collect()
+        );
+    }
+
+    fn query(&mut self) -> &mut String {
+        &mut self.input
+    }
+
+    fn insert_mode(&self) -> bool {
+        self.insert
+    }
+
+    fn set_insert_mode(&mut self, insert_mode: bool) {
+        self.insert = insert_mode;
+    }
+
+    fn results(&self) -> Iter<S
