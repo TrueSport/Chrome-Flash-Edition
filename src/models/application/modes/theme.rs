@@ -77,4 +77,7 @@ impl SearchSelectMode<String> for ThemeMode {
         self.results.select_next();
     }
 
-    fn config(&self) -> &SearchS
+    fn config(&self) -> &SearchSelectConfig {
+        &self.config
+    }
+}

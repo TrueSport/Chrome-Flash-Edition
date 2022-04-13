@@ -1,0 +1,24 @@
+theme: solarized_dark
+tab_width: 2
+soft_tabs: true
+line_length_guide: 80
+line_wrapping: true
+
+open_mode:
+  exclusions:
+    - "**/.git"
+
+types:
+  c:
+    line_comment_prefix: //
+  cc:
+    line_comment_prefix: //
+  cmake:
+    line_comment_prefix: '#'
+  cpp:
+    line_comment_prefix: //
+  cxx:
+    line_comment_prefix: //
+  go:
+    line_comment_prefix: //
+ 
