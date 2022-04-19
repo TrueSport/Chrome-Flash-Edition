@@ -475,3 +475,207 @@ mod tests {
         assert_eq!(preferences.syntax_definition_name(&Path::new("src/test.xyz")),
                    Some("Rust".to_owned()));
     }
+
+    #[test]
+    fn syntax_definition_name_returns_user_defined_syntax_for_full_filename_without_extension() {
+        let data = YamlLoader::load_from_str("types:\n  Makefile:\n    syntax: Makefile").unwrap();
+        let preferences = Preferences::new(data.into_iter().nth(0));
+
+        assert_eq!(preferences.syntax_definition_name(&Path::new("Makefile")),
+                   Some("Makefile".to_owned()));
+    }
+
+    #[test]
+    fn syntax_definition_name_returns_user_defined_syntax_for_full_deep_filename() {
+        let data = YamlLoader::load_from_str("types:\n  Makefile:\n    syntax: Makefile").unwrap();
+        let preferences = Preferences::new(data.into_iter().nth(0));
+
+        assert_eq!(preferences.syntax_definition_name(&Path::new("src/Makefile")),
+                   Some("Makefile".to_owned()));
+    }
+
+    #[test]
+    fn syntax_definition_name_returns_user_defined_syntax_for_full_filename_with_extension() {
+        let data = YamlLoader::load_from_str("types:\n  Makefile.lib:\n    syntax: Makefile").unwrap();
+        let preferences = Preferences::new(data.into_iter().nth(0));
+
+        assert_eq!(preferences.syntax_definition_name(&Path::new("Makefile.lib")),
+                   Some("Makefile".to_owned()));
+    }
+
+    #[test]
+    fn preferences_returns_user_defined_line_length_guide() {
+        let data = YamlLoader::load_from_str("line_length_guide: 100").unwrap();
+        let preferences = Preferences::new(data.into_iter().nth(0));
+
+        assert_eq!(preferences.line_length_guide(), Some(100));
+    }
+
+    #[test]
+    fn preferences_returns_user_disabled_line_length_guide() {
+        let data = YamlLoader::load_from_str("line_length_guide: false").unwrap();
+        let preferences = Preferences::new(data.into_iter().nth(0));
+
+        assert_eq!(preferences.line_length_guide(), None);
+    }
+
+    #[test]
+    fn preferences_returns_user_default_line_length_guide() {
+        let data = YamlLoader::load_from_str("line_length_guide: true").unwrap();
+        let preferences = Preferences::new(data.into_iter().nth(0));
+
+        assert_eq!(preferences.line_length_guide(), Some(80));
+    }
+
+    #[test]
+    fn preferences_returns_user_defined_line_wrapping() {
+        let data = YamlLoader::load_from_str("line_wrapping: false").unwrap();
+        let preferences = Preferences::new(data.into_iter().nth(0));
+
+        assert_eq!(preferences.line_wrapping(), false);
+    }
+
+    #[test]
+    fn preferences_returns_default_line_wrapping_when_user_defined_data_not_found() {
+        let preferences = Preferences::new(None);
+
+        assert_eq!(preferences.line_wrapping(), true);
+    }
+
+    #[test]
+    fn tab_content_uses_tab_width_spaces_when_soft_tabs_are_enabled() {
+        let data = YamlLoader::load_from_str("soft_tabs: true\ntab_width: 5").unwrap();
+        let preferences = Preferences::new(data.into_iter().nth(0));
+
+        assert_eq!(preferences.tab_content(None), "     ");
+    }
+
+    #[test]
+    fn tab_content_returns_tab_character_when_soft_tabs_are_disabled() {
+        let data = YamlLoader::load_from_str("soft_tabs: false\ntab_width: 5").unwrap();
+        let preferences = Preferences::new(data.into_iter().nth(0));
+
+        assert_eq!(preferences.tab_content(None), "\t");
+    }
+
+    #[test]
+    fn tab_content_uses_tab_width_spaces_when_type_specific_soft_tabs_are_enabled() {
+        let data = YamlLoader::load_from_str(
+            "soft_tabs: false\ntypes:\n  rs:\n    soft_tabs: true\n    tab_width: 5").unwrap();
+        let preferences = Preferences::new(data.into_iter().nth(0));
+
+        assert_eq!(preferences.tab_content(Some(PathBuf::from("preferences.rs")).as_ref()),
+                   "     ");
+    }
+
+    #[test]
+    fn tab_content_returns_tab_character_when_type_specific_soft_tabs_are_disabled() {
+        let data = YamlLoader::load_from_str(
+            "soft_tabs: true\ntab_width: 5\ntypes:\n  rs:\n    soft_tabs: false\n").unwrap();
+        let preferences = Preferences::new(data.into_iter().nth(0));
+
+        assert_eq!(preferences.tab_content(Some(PathBuf::from("preferences.rs")).as_ref()),
+                   "\t");
+    }
+
+    #[test]
+    fn open_mode_exclusions_returns_correct_defaults_when_no_data_provided() {
+        let preferences = Preferences::new(None);
+
+        assert_eq!(preferences.open_mode_exclusions().unwrap(), Some(vec![ExclusionPattern::new("**/.git").unwrap()]));
+    }
+
+    #[test]
+    fn open_mode_exclusions_returns_correct_defaults_when_exclusions_key_not_set() {
+        let data = YamlLoader::load_from_str("tab_width: 12").unwrap();
+        let preferences = Preferences::new(data.into_iter().nth(0));
+
+        assert_eq!(preferences.open_mode_exclusions().unwrap(), Some(vec![ExclusionPattern::new("**/.git").unwrap()]));
+    }
+
+    #[test]
+    fn open_mode_exclusions_returns_user_defined_values() {
+        let data = YamlLoader::load_from_str("open_mode:\n  exclusions:\n    - \".svn\"").unwrap();
+        let preferences = Preferences::new(data.into_iter().nth(0));
+
+        assert_eq!(preferences.open_mode_exclusions().unwrap(), Some(vec![ExclusionPattern::new(".svn").unwrap()]));
+    }
+
+    #[test]
+    fn open_mode_exclusions_returns_none_when_disabled() {
+        let data = YamlLoader::load_from_str("open_mode:\n  exclusions: false").unwrap();
+        let preferences = Preferences::new(data.into_iter().nth(0));
+
+        assert!(preferences.open_mode_exclusions().unwrap().is_none());
+    }
+
+    #[test]
+    fn line_comment_prefix_returns_correct_default_type_specific_data() {
+        let preferences = Preferences::new(None);
+
+        assert_eq!(preferences.line_comment_prefix(&PathBuf::from("preferences.rs")),
+                   Some("//".into()));
+    }
+
+    #[test]
+    fn line_comment_prefix_returns_correct_user_defined_type_specific_data() {
+        let data = YamlLoader::load_from_str("types:\n  rs:\n    line_comment_prefix: $$").unwrap();
+        let preferences = Preferences::new(data.into_iter().nth(0));
+
+        assert_eq!(preferences.line_comment_prefix(&PathBuf::from("preferences.rs")),
+                   Some("$$".into()));
+    }
+
+    #[test]
+    fn line_comment_prefix_returns_correct_user_defined_type_specific_data_with_no_default() {
+        let data = YamlLoader::load_from_str("types:\n  abc:\n    line_comment_prefix: $$").unwrap();
+        let preferences = Preferences::new(data.into_iter().nth(0));
+
+        assert_eq!(preferences.line_comment_prefix(&PathBuf::from("preferences.abc")),
+                   Some("$$".into()));
+    }
+
+    #[test]
+    fn line_comment_prefix_returns_none_for_non_existing_type() {
+        let preferences = Preferences::new(None);
+
+        assert_eq!(preferences.line_comment_prefix(&PathBuf::from("preferences.abc")),
+                   None);
+    }
+
+    #[test]
+    fn reload_clears_in_memory_theme() {
+        // Create an on-disk preferences file first, if one doesn't already exist.
+        if Preferences::load().is_err() {
+            Preferences::edit().unwrap().save().unwrap();
+        }
+
+        // Instantiate preferences and modify their in-memory theme.
+        let mut preferences = Preferences::new(None);
+        preferences.set_theme("new_in_memory_theme");
+
+        // Reload preferences and verify that we're no longer using the in-memory theme.
+        preferences.reload().unwrap();
+        assert_eq!(preferences.theme(), "solarized_dark");
+    }
+
+    #[test]
+    fn reload_refreshes_in_memory_keymap() {
+        // Create an on-disk preferences file first, if one doesn't already exist.
+        if Preferences::load().is_err() {
+            Preferences::edit().unwrap().save().unwrap();
+        }
+
+        // Build a preferences instance with an empty keymap.
+        let mut preferences = Preferences {
+            default: Yaml::Null,
+            data: None,
+            keymap: KeyMap::from(&Hash::new()).unwrap(),
+            theme: None
+        };
+
+        // Reload the preferences, ensuring that it refreshes the keymap.
+        preferences.reload().unwrap();
+        assert!(preferences.keymap().get("normal").is_some());
+    }
+}
