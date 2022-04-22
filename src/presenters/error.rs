@@ -13,4 +13,9 @@ pub fn display(workspace: &mut Workspace, view: &mut View, error: &Error) {
 
     presenter.print_status_line(&[StatusLineData {
         content: error.description().to_string(),
-        style: Styl
+        style: Style::Bold,
+        colors: Colors::Warning,
+    }]);
+
+    presenter.present();
+}
