@@ -11,4 +11,15 @@ fn path_as_title(path: &Path) -> String {
 }
 
 fn current_buffer_status_line_data(workspace: &mut Workspace) -> StatusLineData {
-    let 
+    let modified = workspace.current_buffer().map(|b| b.modified()).unwrap_or(false);
+
+    let (content, style) = workspace.current_buffer_path().map(|path| {
+        // Determine buffer title styles based on its modification status.
+        if modified {
+            // Use an emboldened path with an asterisk.
+            let mut title = path_as_title(path);
+            title.push('*');
+
+            (title, Style::Bold)
+        } else {
+           
