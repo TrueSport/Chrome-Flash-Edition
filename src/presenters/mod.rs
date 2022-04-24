@@ -22,4 +22,18 @@ fn current_buffer_status_line_data(workspace: &mut Workspace) -> StatusLineData 
 
             (title, Style::Bold)
         } else {
-           
+            (path_as_title(path), Style::Default)
+        }
+    }).unwrap_or((String::new(), Style::Default));
+
+    StatusLineData {
+        content,
+        style,
+        colors: Colors::Focused,
+    }
+}
+
+fn git_status_line_data(repo: &Option<Repository>, path: &Option<PathBuf>) -> StatusLineData {
+    // Build a display value for the current buffer's git status.
+    let mut content = String::new();
+    if 
