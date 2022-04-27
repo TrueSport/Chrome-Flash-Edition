@@ -44,4 +44,20 @@ fn git_status_line_data(repo: &Option<Repository>, path: &Option<PathBuf>) -> St
                         content = presentable_status(&status).to_string();
                     }
                 }
-     
+            }
+        }
+    }
+
+    StatusLineData {
+        content,
+        style: Style::Default,
+        colors: Colors::Focused,
+    }
+}
+fn presentable_status(status: &Status) -> &str {
+    if status.contains(git2::Status::WT_NEW) {
+        if status.contains(git2::Status::INDEX_NEW) {
+            // Parts of the file are staged as new in the index.
+            "[partially staged]"
+        } else {
+            // The file has never b
