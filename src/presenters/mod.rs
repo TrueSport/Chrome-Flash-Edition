@@ -36,4 +36,12 @@ fn current_buffer_status_line_data(workspace: &mut Workspace) -> StatusLineData 
 fn git_status_line_data(repo: &Option<Repository>, path: &Option<PathBuf>) -> StatusLineData {
     // Build a display value for the current buffer's git status.
     let mut content = String::new();
-    if 
+    if let Some(ref repo) = *repo {
+        if let Some(ref path) = *path {
+            if let Some(repo_path) = repo.workdir() {
+                if let Ok(relative_path) = path.strip_prefix(repo_path) {
+                    if let Ok(status) = repo.status_file(relative_path) {
+                        content = presentable_status(&status).to_string();
+                    }
+                }
+     
