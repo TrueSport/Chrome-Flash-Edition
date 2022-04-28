@@ -60,4 +60,13 @@ fn presentable_status(status: &Status) -> &str {
             // Parts of the file are staged as new in the index.
             "[partially staged]"
         } else {
-            // The file has never b
+            // The file has never been added to the repository.
+            "[untracked]"
+        }
+    } else if status.contains(git2::Status::INDEX_NEW) {
+        // The complete file is staged as new in the index.
+        "[staged]"
+    } else if status.contains(git2::Status::WT_MODIFIED) {
+        if status.contains(git2::Status::INDEX_MODIFIED) {
+            // The file has both staged and unstaged modifications.
+            "[partially
