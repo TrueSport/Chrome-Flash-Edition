@@ -69,4 +69,21 @@ fn presentable_status(status: &Status) -> &str {
     } else if status.contains(git2::Status::WT_MODIFIED) {
         if status.contains(git2::Status::INDEX_MODIFIED) {
             // The file has both staged and unstaged modifications.
-            "[partially
+            "[partially staged]"
+        } else {
+            // The file has unstaged modifications.
+            "[modified]"
+        }
+    } else if status.contains(git2::Status::INDEX_MODIFIED) {
+        // The file has staged modifications.
+        "[staged]"
+    } else {
+        // The file is tracked, but has no modifications.
+        "[ok]"
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use git2;
+    use super::presentable_statu
