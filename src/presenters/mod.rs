@@ -86,4 +86,15 @@ fn presentable_status(status: &Status) -> &str {
 #[cfg(test)]
 mod tests {
     use git2;
-    use super::presentable_statu
+    use super::presentable_status;
+
+    #[test]
+    pub fn presentable_status_returns_untracked_when_status_is_locally_new() {
+        let status = git2::Status::WT_NEW;
+        assert_eq!(presentable_status(&status), "[untracked]".to_string());
+    }
+
+    #[test]
+    pub fn presentable_status_returns_ok_when_status_unmodified() {
+        let status = git2::Status::CURRENT;
+        assert_eq!(presentable_status(&status), "[ok]
