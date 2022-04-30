@@ -97,4 +97,16 @@ mod tests {
     #[test]
     pub fn presentable_status_returns_ok_when_status_unmodified() {
         let status = git2::Status::CURRENT;
-        assert_eq!(presentable_status(&status), "[ok]
+        assert_eq!(presentable_status(&status), "[ok]".to_string());
+    }
+
+    #[test]
+    pub fn presentable_status_returns_staged_when_only_modified_in_index() {
+        let status = git2::Status::INDEX_MODIFIED;
+        assert_eq!(presentable_status(&status), "[staged]".to_string());
+    }
+
+    #[test]
+    pub fn presentable_status_returns_staged_when_new_in_index() {
+        let status = git2::Status::INDEX_NEW;
+        assert_eq!(presentable_stat
