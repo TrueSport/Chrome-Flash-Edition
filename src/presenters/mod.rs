@@ -109,4 +109,15 @@ mod tests {
     #[test]
     pub fn presentable_status_returns_staged_when_new_in_index() {
         let status = git2::Status::INDEX_NEW;
-        assert_eq!(presentable_stat
+        assert_eq!(presentable_status(&status), "[staged]".to_string());
+    }
+
+    #[test]
+    pub fn presentable_status_returns_partially_staged_when_modified_locally_and_in_index() {
+        let status = git2::Status::WT_MODIFIED | git2::Status::INDEX_MODIFIED;
+        assert_eq!(presentable_status(&status),
+                   "[partially staged]".to_string());
+    }
+
+    #[test]
+    pub fn presentable_status_returns_partially_staged_when
