@@ -120,4 +120,9 @@ mod tests {
     }
 
     #[test]
-    pub fn presentable_status_returns_partially_staged_when
+    pub fn presentable_status_returns_partially_staged_when_new_locally_and_in_index() {
+        let status = git2::Status::WT_NEW | git2::Status::INDEX_NEW;
+        assert_eq!(presentable_status(&status),
+                   "[partially staged]".to_string());
+    }
+}
