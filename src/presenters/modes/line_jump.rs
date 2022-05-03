@@ -23,4 +23,13 @@ pub fn display(workspace: &mut Workspace, mode: &LineJumpMode, view: &mut View) 
 
     // Move the cursor to the end of the search query input.
     let cursor_line = presenter.height() - 1;
-    pre
+    presenter.set_cursor(Some(Position {
+        line: cursor_line,
+        offset: input_prompt_len,
+    }));
+
+    // Render the changes to the screen.
+    presenter.present();
+
+    Ok(())
+}
