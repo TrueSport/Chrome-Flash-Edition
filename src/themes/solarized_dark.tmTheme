@@ -1199,3 +1199,422 @@
 				<key>foreground</key>
 				<string>#CB4B16</string>
 			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>C: constant</string>
+			<key>scope</key>
+			<string>constant.numeric.c</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#2AA198</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>C: Meta Preprocessor</string>
+			<key>scope</key>
+			<string>meta.preprocessor.c.include, meta.preprocessor.macro.c</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#CB4B16</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>C: Keyword</string>
+			<key>scope</key>
+			<string>keyword.control.import.define.c, keyword.control.import.include.c</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#CB4B16</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>C: Function Preprocessor</string>
+			<key>scope</key>
+			<string>entity.name.function.preprocessor.c</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#CB4B16</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>C: include &lt;something.c&gt;</string>
+			<key>scope</key>
+			<string>meta.preprocessor.c.include string.quoted.other.lt-gt.include.c, meta.preprocessor.c.include punctuation.definition.string.begin.c, meta.preprocessor.c.include punctuation.definition.string.end.c</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#2AA198</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>C: Function</string>
+			<key>scope</key>
+			<string>support.function.C99.c, support.function.any-method.c, entity.name.function.c</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#93A1A1</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>C: "</string>
+			<key>scope</key>
+			<string>punctuation.definition.string.begin.c, punctuation.definition.string.end.c</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#2AA198</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>C: Storage Type</string>
+			<key>scope</key>
+			<string>storage.type.c</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#B58900</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>diff: header</string>
+			<key>scope</key>
+			<string>meta.diff, meta.diff.header</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#B58900</string>
+				<key>fontStyle</key>
+				<string>italic</string>
+				<key>foreground</key>
+				<string>#EEE8D5</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>diff: deleted</string>
+			<key>scope</key>
+			<string>markup.deleted</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#EEE8D5</string>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#DC322F</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>diff: changed</string>
+			<key>scope</key>
+			<string>markup.changed</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#EEE8D5</string>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#CB4B16</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>diff: inserted</string>
+			<key>scope</key>
+			<string>markup.inserted</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#EEE8D5</string>
+				<key>foreground</key>
+				<string>#2AA198</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>reST raw</string>
+			<key>scope</key>
+			<string>text.restructuredtext markup.raw</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#2AA198</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Other: Removal</string>
+			<key>scope</key>
+			<string>other.package.exclude, other.remove</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#DC322F</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Other: Add</string>
+			<key>scope</key>
+			<string>other.add</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#2AA198</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Tex: {}</string>
+			<key>scope</key>
+			<string>punctuation.section.group.tex , punctuation.definition.arguments.begin.latex, punctuation.definition.arguments.end.latex, punctuation.definition.arguments.latex</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#DC322F</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Tex: {text}</string>
+			<key>scope</key>
+			<string>meta.group.braces.tex</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#B58900</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Tex: Other Math</string>
+			<key>scope</key>
+			<string>string.other.math.tex</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#B58900</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Tex: {var}</string>
+			<key>scope</key>
+			<string>variable.parameter.function.latex</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#CB4B16</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Tex: Math \\</string>
+			<key>scope</key>
+			<string>punctuation.definition.constant.math.tex</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#DC322F</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Tex: Constant Math</string>
+			<key>scope</key>
+			<string>text.tex.latex constant.other.math.tex, constant.other.general.math.tex, constant.other.general.math.tex, constant.character.math.tex</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#2AA198</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Tex: Other Math String</string>
+			<key>scope</key>
+			<string>string.other.math.tex</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#B58900</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Tex: $</string>
+			<key>scope</key>
+			<string>punctuation.definition.string.begin.tex, punctuation.definition.string.end.tex</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#DC322F</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Tex: \label</string>
+			<key>scope</key>
+			<string>keyword.control.label.latex, text.tex.latex constant.other.general.math.tex</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#2AA198</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Tex: \label { }</string>
+			<key>scope</key>
+			<string>variable.parameter.definition.label.latex</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#DC322F</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Tex: Function</string>
+			<key>scope</key>
+			<string>support.function.be.latex</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#859900</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Tex: Support Function Section</string>
+			<key>scope</key>
+			<string>support.function.section.latex</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#CB4B16</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Tex: Support Function</string>
+			<key>scope</key>
+			<string>support.function.general.tex</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#2AA198</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Tex: Comment</string>
+			<key>scope</key>
+			<string>punctuation.definition.comment.tex, comment.line.percentage.tex</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>italic</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Tex: Reference Label</string>
+			<key>scope</key>
+			<string>keyword.control.ref.latex</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#2AA198</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Python: storage</string>
+			<key>scope</key>
+			<string>storage.type.class.python, storage.type.function.python, storage.modifier.global.python</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#859900</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Python: import</string>
+			<key>scope</key>
+			<string>keyword.control.import.python, keyword.control.import.from.python</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#CB4B16</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Python: Support.exception</string>
+			<key>scope</key>
