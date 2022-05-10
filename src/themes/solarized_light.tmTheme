@@ -13,3 +13,21 @@
 				<string>#FDF6E3</string>
 				<key>caret</key>
 				<string>#657B83</string>
+				<key>foreground</key>
+				<string>#657B83</string>
+				<key>invisibles</key>
+				<string>#EEE8D5</string>
+				<key>lineHighlight</key>
+				<string>#EEE8D5</string>
+				<key>selection</key>
+				<string>#073642</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Comment</string>
+			<key>scope</key>
+			<string>comment</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</k
