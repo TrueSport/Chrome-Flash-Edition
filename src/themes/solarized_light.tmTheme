@@ -152,4 +152,18 @@
 			<key>name</key>
 			<string>Embedded code markers</string>
 			<key>scope</key>
-		
+			<string>punctuation.section.embedded.begin, punctuation.section.embedded.end</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#DC322F</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Built-in constant</string>
+			<key>scope</key>
+			<string>constant.language, meta.preprocessor</string>
+			<key>settings</key>
+			<dict>
+				<
