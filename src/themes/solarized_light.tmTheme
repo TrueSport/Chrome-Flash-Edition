@@ -329,4 +329,21 @@
 			<dict>
 				<key>foreground</key>
 				<string>#2AA198</string>
-			</
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Quotes</string>
+			<key>scope</key>
+			<string>punctuation.definition.string.begin, punctuation.definition.string.end</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#DC322F</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>CSS: Property name (body)</string>
+			<key>scope</key>
+			<string>entity.na
