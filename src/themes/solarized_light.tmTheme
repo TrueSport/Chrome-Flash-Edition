@@ -346,4 +346,17 @@
 			<key>name</key>
 			<string>CSS: Property name (body)</string>
 			<key>scope</key>
-			<string>entity.na
+			<string>entity.name.tag.css, support.type.property-name.css, meta.property-name.css, support.type.property-name.scss</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#657B83</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>CSS: @ rules (purple)</string>
+			<key>scope</key>
+			<string>punctuation.definition.keyword.scss, punctuation.definition.keyw
