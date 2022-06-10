@@ -359,4 +359,4 @@
 			<key>name</key>
 			<string>CSS: @ rules (purple)</string>
 			<key>scope</key>
-			<string>punctuation.definition.keyword.scss, punctuation.definition.keyw
+			<string>punctuation.definition.keyword.scss, punctuation.definition.keyword.css, keyword.control.at-rule.charset.css, keyword.control.at-rule.charset.scss, keyword.control.each.css, keyword.control.each.scss, keyword.control.else.css, keyword.control.else.scss, keyword.control.at-rule.import.css, keyword.control.at-rule.import.scss, keyword.control.at-rule.fontface.css, keyword.control.at-rule.fontface.scss, keyword.control.for.css, keyword.control.for.scss, keyword.control.at-rule.function.css, keywor
