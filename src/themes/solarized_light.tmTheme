@@ -370,4 +370,17 @@
 			<key>name</key>
 			<string>CSS: Numeric Value (blue)</string>
 			<key>scope</key>
-			<string>constant.numeric.css, keyword.other.unit.css, keyword.unit.css, constant.other.color.rgb-value.css, constant.numeric.scss, constant.other.color.rgb-value.scss, keyword.other.unit.scss, punctuation.definition.constant.scss, punctuation.defi
+			<string>constant.numeric.css, keyword.other.unit.css, keyword.unit.css, constant.other.color.rgb-value.css, constant.numeric.scss, constant.other.color.rgb-value.scss, keyword.other.unit.scss, punctuation.definition.constant.scss, punctuation.definition.constant.css, constant.other.rgb-value.css</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#268BD2</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>CSS: String, value and constants (azure)</string>
+			<key>scope</key>
+			<string>variable.parameter.url.scss, meta.property-value.css, meta.property-v
