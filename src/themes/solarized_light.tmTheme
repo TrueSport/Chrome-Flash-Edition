@@ -401,4 +401,20 @@
 			<dict>
 				<key>foreground</key>
 				<string>#DC322F</string>
-			</d
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>CSS: Standard color value (orange)</string>
+			<key>scope</key>
+			<string>support.constant.color, invalid.deprecated.color.w3c-non-standard-color-name.scss</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#CB4b16</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>CSS: : , () (body)</string>
+			<key>scop
