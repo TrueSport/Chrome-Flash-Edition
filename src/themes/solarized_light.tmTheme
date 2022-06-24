@@ -383,4 +383,22 @@
 			<key>name</key>
 			<string>CSS: String, value and constants (azure)</string>
 			<key>scope</key>
-			<string>variable.parameter.url.scss, meta.property-value.css, meta.property-value.scss, support.constant.property-value.scss, support.constant.font-name.scss, string.quoted.single.css, string.quoted.double.css, constant.character.escaped.css, string.quoted.variable.parameter.url, punctuation.definition.string.begin.scss, punctuation.definition.string.begin.css, punctuation.definition.string.end.scss, punctuation.definition.string.end.css, support.constant.property-value.css</
+			<string>variable.parameter.url.scss, meta.property-value.css, meta.property-value.scss, support.constant.property-value.scss, support.constant.font-name.scss, string.quoted.single.css, string.quoted.double.css, constant.character.escaped.css, string.quoted.variable.parameter.url, punctuation.definition.string.begin.scss, punctuation.definition.string.begin.css, punctuation.definition.string.end.scss, punctuation.definition.string.end.css, support.constant.property-value.css</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#2AA198</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>CSS: !Important (red)</string>
+			<key>scope</key>
+			<string>keyword.other.important.css</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#DC322F</string>
+			</d
