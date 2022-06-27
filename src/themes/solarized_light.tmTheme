@@ -417,4 +417,10 @@
 		<dict>
 			<key>name</key>
 			<string>CSS: : , () (body)</string>
-			<key>scop
+			<key>scope</key>
+			<string>punctuation.terminator.rule.css, punctuation.section.function.css, punctuation.section.function.scss, punctuation.separator.key-value.csspunctuation.scss, punctuation.css, keyword.operator.less, entity.name.tag.wildcard.scss, entity.name.tag.wildcard.css, entity.name.tag.reference.scss</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foregroun
