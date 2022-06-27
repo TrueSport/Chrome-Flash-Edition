@@ -443,4 +443,20 @@
 		<dict>
 			<key>name</key>
 			<string>CSS: Tag (green)</string>
-			<ke
+			<key>scope</key>
+			<string>entity.name.tag.css, entity.name.tag.scss</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#859900</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>CSS .class (yellow)</string>
+			<key>scope</key>
+			<string>entity.other.attribute-name.class.css, entity.other.less.mixin</string>
+			<key>settings</key>
+			<dict
