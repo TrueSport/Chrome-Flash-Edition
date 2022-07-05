@@ -459,4 +459,23 @@
 			<key>scope</key>
 			<string>entity.other.attribute-name.class.css, entity.other.less.mixin</string>
 			<key>settings</key>
-			<dict
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#B58900</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>CSS: #id (yellow)</string>
+			<key>scope</key>
+			<string>source.css entity.other.attribute-name.id</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#B58900</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>
