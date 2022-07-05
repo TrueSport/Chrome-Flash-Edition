@@ -478,4 +478,18 @@
 			</dict>
 		</dict>
 		<dict>
-			<key>
+			<key>name</key>
+			<string>CSS :pseudo (orange)</string>
+			<key>scope</key>
+			<string>entity.other.attribute-name.pseudo-element.css, entity.other.attribute-name.pseudo-class.css</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#CB4B16</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>SCSS: Variables (pink)</string
