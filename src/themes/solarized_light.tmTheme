@@ -492,4 +492,21 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>SCSS: Variables (pink)</string
+			<string>SCSS: Variables (pink)</string>
+			<key>scope</key>
+			<string>variable, variable.scss</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#D33682</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>JS: Function Name</string>
+			<key>scope</key>
+			<string>meta.function.js, entity.name.function.js, support.function.dom.js</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#B5
