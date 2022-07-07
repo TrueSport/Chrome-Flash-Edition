@@ -548,4 +548,23 @@
 			</dict>
 		</dict>
 		<dict>
-			<key>name
+			<key>name</key>
+			<string>JS: []</string>
+			<key>scope</key>
+			<string>meta.brace.square.js</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#268BD2</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>JS: Storage Type</string>
+			<key>scope</key>
+			<string>storage.type.js</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#268BD2</string>
+	
