@@ -567,4 +567,21 @@
 			<dict>
 				<key>foreground</key>
 				<string>#268BD2</string>
-	
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>()</string>
+			<key>scope</key>
+			<string>meta.brace.round, punctuation.definition.parameters.begin.js, punctuation.definition.parameters.end.js</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#93A1A1</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>{}</string>
+			<key>scope</key>
+			<string
