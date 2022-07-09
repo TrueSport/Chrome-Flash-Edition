@@ -584,4 +584,18 @@
 			<key>name</key>
 			<string>{}</string>
 			<key>scope</key>
-			<string
+			<string>meta.brace.curly.js</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#657B83</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>HTML: Doctype</string>
+			<key>scope</key>
+			<string>entity.name.tag.doctype.html, meta.tag.sgml.html, string.quoted.double.doctype.identifiers-and-DTDs.html</string>
+			<key>settings</key>
+			<dict>
+				<key>fontSty
