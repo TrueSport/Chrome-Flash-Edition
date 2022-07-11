@@ -662,4 +662,21 @@
 				<key>fontStyle</key>
 				<string></string>
 				<key>foreground</key>
-			
+				<string>#657B83</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>HTML: something=</string>
+			<key>scope</key>
+			<string>text.html.basic entity.other.attribute-name.html</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#657B83</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>HTML: "</string>
+			<key>scop
