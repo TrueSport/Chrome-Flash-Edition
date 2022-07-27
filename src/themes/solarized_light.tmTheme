@@ -691,4 +691,20 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<str
+			<string>HTML: &lt;tag&gt;</string>
+			<key>scope</key>
+			<string>entity.name.tag.block.any.html</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#268BD2</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>HTML: style</string>
+			<key>scope</key>
+			<string>source.css.embedded.html entity.name.tag.style.html</string>
+			<key>settings</key>
+			<dict>
+				<key
