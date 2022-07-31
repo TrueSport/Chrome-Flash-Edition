@@ -707,4 +707,23 @@
 			<string>source.css.embedded.html entity.name.tag.style.html</string>
 			<key>settings</key>
 			<dict>
-				<key
+				<key>fontStyle</key>
+				<string>italic</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>HTML: &lt;style&gt;</string>
+			<key>scope</key>
+			<string>entity.name.tag.style.html</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>HTML: {}</string>
+			<key>scope</key>
+			<string>text.html.basic, punctuation.sectio
