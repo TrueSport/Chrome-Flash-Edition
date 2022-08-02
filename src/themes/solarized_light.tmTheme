@@ -726,4 +726,21 @@
 			<key>name</key>
 			<string>HTML: {}</string>
 			<key>scope</key>
-			<string>text.html.basic, punctuation.sectio
+			<string>text.html.basic, punctuation.section.property-list.css</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>HTML: Embeddable</string>
+			<key>scope</key>
+			<string>source.css.embedded.html, comment.block.html</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string>italic</string>
+				<key>foreground</key>
+				<string>#839
