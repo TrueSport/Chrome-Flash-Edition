@@ -762,4 +762,22 @@
 		<dict>
 			<key>name</key>
 			<string>Ruby: Function Name</string>
-	
+			<key>scope</key>
+			<string>meta.function.method.with-arguments.ruby</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#657B83</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Ruby: Variable</string>
+			<key>scope</key>
+			<string>variable.language.ruby</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#2AA198</string>
+			</dict>
+		</d
