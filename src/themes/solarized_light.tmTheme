@@ -892,4 +892,19 @@
 			<key>name</key>
 			<string>Ruby: :symbol</string>
 			<key>scope</key>
-			<string>constant.other.symbol.ruby</st
+			<string>constant.other.symbol.ruby</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#2AA198</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Ruby: Punctuation Section ''</string>
+			<key>scope</key>
+			<string>punctuation.section.embedded.ruby, punctuation.definition.string.begin.ruby, punctuation.definition.string.end.ruby</string>
+			<key>settings</key>
+	
