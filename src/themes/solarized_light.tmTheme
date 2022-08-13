@@ -961,4 +961,19 @@
 			</dict>
 		</dict>
 		<dict>
-			<key>name<
+			<key>name</key>
+			<string>PHP: Quoted Single</string>
+			<key>scope</key>
+			<string>punctuation.definition.string.begin, punctuation.definition.string.end</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#839496</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>PHP: Class Names</string>
+			<key>scope</key>
+			<string>support.class.php</string>
+			<ke
