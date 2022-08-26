@@ -1043,4 +1043,27 @@
 			<key>name</key>
 			<string>PHP: Numeric Constant</string>
 			<key>scope</key>
-			<string>constant.numeric.
+			<string>constant.numeric.php</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#2AA198</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>PHP: New</string>
+			<key>scope</key>
+			<string>keyword.other.new.php</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#CB4B16</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>PHP: ::</string>
+			<key>scope</key>
+			<string>keyword.operator.class</string>
+			<key>settings</
