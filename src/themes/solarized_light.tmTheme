@@ -1030,4 +1030,17 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<st
+			<string>PHP: Array Begin</string>
+			<key>scope</key>
+			<string>punctuation.definition.array.begin, punctuation.definition.array.end</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#DC322F</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>PHP: Numeric Constant</string>
+			<key>scope</key>
+			<string>constant.numeric.
