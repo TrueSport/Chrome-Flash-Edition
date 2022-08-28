@@ -1086,4 +1086,19 @@
 			</dict>
 		</dict>
 		<dict>
-		
+			<key>name</key>
+			<string>PHP: Class</string>
+			<key>scope</key>
+			<string>storage.modifier.extends.php, storage.type.class.php, keyword.operator.class.php</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#B58900</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>PHP: Semicolon</string>
+			<key>scope</key>
+			<string>punctuation.terminator.expression.php</string>
+			<key>settings
