@@ -1066,4 +1066,24 @@
 			<string>PHP: ::</string>
 			<key>scope</key>
 			<string>keyword.operator.class</string>
-			<key>settings</
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#586E75</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>PHP: Other Property</string>
+			<key>scope</key>
+			<string>variable.other.property.php</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#839496</string>
+			</dict>
+		</dict>
+		<dict>
+		
