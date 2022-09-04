@@ -1139,4 +1139,21 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#8
+				<string>#839496</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>PHP: Function Construct</string>
+			<key>scope</key>
+			<string>support.function.construct.php</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#859900</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>PHP: Function Call</string>
+			<key>scope</ke
