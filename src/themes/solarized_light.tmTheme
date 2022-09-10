@@ -1192,4 +1192,20 @@
 			<key>name</key>
 			<string>PHP: Storage Type Function</string>
 			<key>scope</key>
-	
+			<string>storage.type.function.php</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#CB4B16</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>C: constant</string>
+			<key>scope</key>
+			<string>constant.numeric.c</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key
