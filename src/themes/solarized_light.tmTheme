@@ -1208,4 +1208,23 @@
 			<dict>
 				<key>fontStyle</key>
 				<string></string>
-				<key>foreground</key
+				<key>foreground</key>
+				<string>#2AA198</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>C: Meta Preprocessor</string>
+			<key>scope</key>
+			<string>meta.preprocessor.c.include, meta.preprocessor.macro.c</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#CB4B16</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>C: Keyword</s
