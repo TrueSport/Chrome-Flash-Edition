@@ -1227,4 +1227,21 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>C: Keyword</s
+			<string>C: Keyword</string>
+			<key>scope</key>
+			<string>keyword.control.import.define.c, keyword.control.import.include.c</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#CB4B16</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>C: Function Preprocessor</string>
+			<key>scope</key>
+			<string>entity.name.function.preprocessor.c</string>
+			<key>settings</key>
+			
