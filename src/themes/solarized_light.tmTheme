@@ -1380,4 +1380,24 @@
 			<key>settings</key>
 			<dict>
 				<key>fontStyle</key>
-				<string></st
+				<string></string>
+				<key>foreground</key>
+				<string>#DC322F</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Other: Add</string>
+			<key>scope</key>
+			<string>other.add</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#2AA198</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Tex: {}</string>
+			<key>scope</key>
+			<string>punctuation.section.group.tex , pun
