@@ -1326,4 +1326,21 @@
 			<key>settings</key>
 			<dict>
 				<key>background</key>
-	
+				<string>#EEE8D5</string>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#DC322F</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>diff: changed</string>
+			<key>scope</key>
+			<string>markup.changed</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#EEE8D5</string>
+				<key>fontStyle</key>
+				<s
