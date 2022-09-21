@@ -1363,4 +1363,21 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<str
+			<string>reST raw</string>
+			<key>scope</key>
+			<string>text.restructuredtext markup.raw</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#2AA198</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Other: Removal</string>
+			<key>scope</key>
+			<string>other.package.exclude, other.remove</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></st
