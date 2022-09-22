@@ -1400,4 +1400,18 @@
 			<key>name</key>
 			<string>Tex: {}</string>
 			<key>scope</key>
-			<string>punctuation.section.group.tex , pun
+			<string>punctuation.section.group.tex , punctuation.definition.arguments.begin.latex, punctuation.definition.arguments.end.latex, punctuation.definition.arguments.latex</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#DC322F</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Tex: {text}</string>
+			<key>scope</key>
+			<string>meta.group.braces.tex</string>
+		
