@@ -1414,4 +1414,21 @@
 			<string>Tex: {text}</string>
 			<key>scope</key>
 			<string>meta.group.braces.tex</string>
-		
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#B58900</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Tex: Other Math</string>
+			<key>scope</key>
+			<string>string.other.math.tex</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
