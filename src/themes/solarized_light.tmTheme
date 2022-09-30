@@ -1451,4 +1451,18 @@
 		<dict>
 			<key>name</key>
 			<string>Tex: Math \\</string>
-			<key>
+			<key>scope</key>
+			<string>punctuation.definition.constant.math.tex</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#DC322F</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Tex: Constant Math</string>
+			<key>scope</key>
+			<string>text.tex.latex constant.other.math.tex, constant.other.general.math.tex, constant.other.general.math.
