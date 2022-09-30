@@ -1432,3 +1432,23 @@
 				<key>fontStyle</key>
 				<string></string>
 				<key>foreground</key>
+				<string>#B58900</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Tex: {var}</string>
+			<key>scope</key>
+			<string>variable.parameter.function.latex</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#CB4B16</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Tex: Math \\</string>
+			<key>
