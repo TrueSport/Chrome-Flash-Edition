@@ -1590,4 +1590,20 @@
 			</dict>
 		</dict>
 		<dict>
-			<key>
+			<key>name</key>
+			<string>Python: storage</string>
+			<key>scope</key>
+			<string>storage.type.class.python, storage.type.function.python, storage.modifier.global.python</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#859900</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Python: import</string>
+			<key>scope</key>
+		
