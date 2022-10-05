@@ -1555,4 +1555,19 @@
 		<dict>
 			<key>name</key>
 			<string>Tex: Support Function</string>
-			<key>scope</
+			<key>scope</key>
+			<string>support.function.general.tex</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#2AA198</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Tex: Comment</string>
+			<key>scope</key>
+			<string>punctuation.definition.comment.tex, comment.line.percentage.tex</string>
+			<key>
