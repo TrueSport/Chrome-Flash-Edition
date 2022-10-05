@@ -1606,4 +1606,18 @@
 			<key>name</key>
 			<string>Python: import</string>
 			<key>scope</key>
-		
+			<string>keyword.control.import.python, keyword.control.import.from.python</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#CB4B16</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Python: Support.exception</string>
+			<key>scope</key>
+			<string>support.type.exception.python</string>
+			<key>settings</key>
+			<dict>
+			
