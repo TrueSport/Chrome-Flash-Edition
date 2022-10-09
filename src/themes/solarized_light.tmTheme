@@ -1745,4 +1745,22 @@
 				<key>fontStyle</key>
 				<string></string>
 				<key>foreground</key>
-		
+				<string>#586E75</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Java: Class</string>
+			<key>scope</key>
+			<string>meta.class.java storage.modifier.java</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#B58900</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Java: /* com
