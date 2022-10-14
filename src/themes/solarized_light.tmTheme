@@ -1763,4 +1763,19 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>Java: /* com
+			<string>Java: /* comment */</string>
+			<key>scope</key>
+			<string>source.java comment.block</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#586E75</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Java: /* @param */</string>
+			<key>scope</key>
+			<string>comment.block meta.documentation.tag.param.javadoc keyword.other.documentation.param.javadoc</stri
