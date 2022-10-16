@@ -1778,4 +1778,17 @@
 			<key>name</key>
 			<string>Java: /* @param */</string>
 			<key>scope</key>
-			<string>comment.block meta.documentation.tag.param.javadoc keyword.other.documentation.param.javadoc</stri
+			<string>comment.block meta.documentation.tag.param.javadoc keyword.other.documentation.param.javadoc</string>
+			<key>settings</key>
+			<dict>
+				<key>fontStyle</key>
+				<string></string>
+				<key>foreground</key>
+				<string>#586E75</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Perl: variables</string>
+			<key>scope</key>
+			<string>punctuation.definition.variable.perl, variable.other.readwrite.global.perl, variable.other.predefined.perl, keyword.operator.comparison.p
