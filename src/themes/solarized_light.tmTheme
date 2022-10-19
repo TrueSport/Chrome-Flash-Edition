@@ -1827,4 +1827,24 @@
 			<string>Perl: quotes</string>
 			<key>scope</key>
 			<string>punctuation.definition.string.begin.perl, punctuation.definition.string.end.perl</string>
-			<key>settin
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#2AA198</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Perl: \char</string>
+			<key>scope</key>
+			<string>constant.character.escape.perl</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#DC322F</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Markdown punctuation</string>
+			<k
