@@ -1847,4 +1847,20 @@
 		<dict>
 			<key>Name</key>
 			<string>Markdown punctuation</string>
-			<k
+			<key>scope</key>
+			<string>markup.list, text.html.markdown punctuation.definition, meta.separator.markdown</string>
+			<key>settings</key>
+				<dict>
+					<key>foreground</key>
+					<string>#CB4b16</string>
+				</dict>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Markdown heading</string>
+			<key>scope</key>
+			<string>markup.heading</string>
+			<key>settings</key>
+				<dict>
+					<key>foreground</key>
+				
