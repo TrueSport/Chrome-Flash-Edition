@@ -1863,4 +1863,22 @@
 			<key>settings</key>
 				<dict>
 					<key>foreground</key>
-				
+					<string>#268BD2</string>
+				</dict>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Markdown text inside some block element</string>
+			<key>scope</key>
+			<string>markup.quote, meta.paragraph.list</string>
+			<key>settings</key>
+				<dict>
+					<key>foreground</key>
+					<string>#2AA198</string>
+				</dict>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Markdown em</string>
+			<key>scope</key>
+			<string>markup.itali
