@@ -1881,4 +1881,24 @@
 			<key>Name</key>
 			<string>Markdown em</string>
 			<key>scope</key>
-			<string>markup.itali
+			<string>markup.italic</string>
+			<key>settings</key>
+				<dict>
+					<key>fontStyle</key>
+					<string>italic</string>
+				</dict>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Markdown strong</string>
+			<key>scope</key>
+			<string>markup.bold</string>
+			<key>settings</key>
+				<dict>
+					<key>fontStyle</key>
+					<string>bold</string>
+				</dict>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Markdown 
