@@ -1901,4 +1901,16 @@
 		</dict>
 		<dict>
 			<key>Name</key>
-			<string>Markdown 
+			<string>Markdown reference</string>
+			<key>scope</key>
+			<string>markup.underline.link.markdown, meta.link.inline punctuation.definition.metadata, meta.link.reference.markdown punctuation.definition.constant, meta.link.reference.markdown constant.other.reference</string>
+			<key>settings</key>
+				<dict>
+					<key>foreground</key>
+					<string>#B58900</string>
+				</dict>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Markdown linebreak</string>
+			<key>scope</ke
