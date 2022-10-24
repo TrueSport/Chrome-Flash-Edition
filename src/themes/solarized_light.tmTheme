@@ -1913,4 +1913,21 @@
 		<dict>
 			<key>Name</key>
 			<string>Markdown linebreak</string>
-			<key>scope</ke
+			<key>scope</key>
+			<string>meta.paragraph.markdown meta.dummy.line-break</string>
+			<key>settings</key>
+				<dict>
+					<key>background</key>
+					<string>#6C71c4</string>
+				</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>SublimeLinter Annotations</string>
+			<key>scope</key>
+			<string>sublimelinter.notes</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#eee8d5</string>
+				<key>f
