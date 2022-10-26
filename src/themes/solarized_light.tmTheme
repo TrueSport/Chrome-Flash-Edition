@@ -1949,4 +1949,21 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>SublimeLint
+			<string>SublimeLinter Error Underline</string>
+			<key>scope</key>
+			<string>sublimelinter.underline.illegal</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#dc322f</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>SublimeLinter Warning Outline</string>
+			<key>scope</key>
+			<string>sublimelinter.outline.warning</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<s
