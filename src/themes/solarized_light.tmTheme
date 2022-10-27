@@ -1984,4 +1984,20 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>SublimeLinter 
+			<string>SublimeLinter Violation Outline</string>
+			<key>scope</key>
+			<string>sublimelinter.outline.violation</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#657b83</string>
+				<key>foreground</key>
+				<string>#657b83</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>SublimeLinter Violation Underline</string>
+			<key>scope</key>
+			<string>sublimelinter.underline.violation</string>
+	
