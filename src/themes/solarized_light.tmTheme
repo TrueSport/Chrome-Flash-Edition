@@ -1966,4 +1966,22 @@
 			<key>settings</key>
 			<dict>
 				<key>background</key>
-				<s
+				<string>#839496</string>
+				<key>foreground</key>
+				<string>#839496</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>SublimeLinter Warning Underline</string>
+			<key>scope</key>
+			<string>sublimelinter.underline.warning</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#b58900</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>SublimeLinter 
