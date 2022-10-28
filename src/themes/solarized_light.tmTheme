@@ -2000,4 +2000,24 @@
 			<string>SublimeLinter Violation Underline</string>
 			<key>scope</key>
 			<string>sublimelinter.underline.violation</string>
-	
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#cb4b16</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>SublimeBracketHighlighter</string>
+			<key>scope</key>
+			<string>brackethighlighter.all</string>
+			<key>settings</key>
+			<dict>
+				<key>background</key>
+				<string>#FDF6E3</string>
+				<key>foreground</key>
+				<string>#cb4b16</string>
+			</dict>
+		</dict>
+	</array>
+	<key>u
