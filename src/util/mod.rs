@@ -29,4 +29,19 @@ pub fn inclusive_range(line_range: &LineRange, buffer: &mut Buffer) -> Range {
             Some(line_content) => {
                 // Found the last line's content; use it.
                 Position {
-                    li
+                    line: line_range.end(),
+                    offset: line_content.len(),
+                }
+            }
+            // Couldn't find any content for the last line; use a zero offset.
+            None => {
+                Position {
+                    line: line_range.end(),
+                    offset: 0,
+                }
+            }
+        }
+    };
+
+    Range::new(Position {
+               
