@@ -60,4 +60,15 @@ pub fn add_buffer(buffer: Buffer, app: &mut Application) -> Result<()> {
 
 #[cfg(test)]
 mod tests {
-    us
+    use scribe::Buffer;
+    use scribe::buffer::{LineRange, Position, Range};
+
+    #[test]
+    fn inclusive_range_works_correctly_without_trailing_newline() {
+        let mut buffer = Buffer::new();
+        buffer.insert("amp\neditor");
+        let range = LineRange::new(1, 1);
+
+        assert_eq!(super::inclusive_range(&range, &mut buffer),
+                   Range::new(Position {
+                                  
