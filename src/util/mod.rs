@@ -71,4 +71,16 @@ mod tests {
 
         assert_eq!(super::inclusive_range(&range, &mut buffer),
                    Range::new(Position {
-                                  
+                                  line: 1,
+                                  offset: 0,
+                              },
+                              Position {
+                                  line: 1,
+                                  offset: 6,
+                              }));
+    }
+
+    #[test]
+    fn inclusive_range_works_correctly_with_trailing_newline() {
+        let mut buffer = Buffer::new();
+        buffer.insert("amp\neditor\n")
