@@ -19,4 +19,16 @@ impl<'a> Reflow<'a> {
     }
 
     pub fn apply(mut self) -> std::result::Result<(), Error> {
-        let prefix = self.infer_pr
+        let prefix = self.infer_prefix()?;
+        let jtxt = self.justify_str(&prefix);
+        self.buf.delete_range(self.range.clone());
+        self.buf.cursor.move_to(self.range.start());
+        self.buf.insert(jtxt);
+
+        Ok(())
+    }
+
+    fn infer_prefix(&self) -> std::result::Result<String, Error> {
+        match self.text.split_whitespace().next() {
+        	Some(n) => if n.chars().next().unwrap().is_alphanumeric() {
+        	   
