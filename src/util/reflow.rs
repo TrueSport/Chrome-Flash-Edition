@@ -31,4 +31,17 @@ impl<'a> Reflow<'a> {
     fn infer_prefix(&self) -> std::result::Result<String, Error> {
         match self.text.split_whitespace().next() {
         	Some(n) => if n.chars().next().unwrap().is_alphanumeric() {
-        	   
+        	    Ok("".to_string())
+        	} else {
+        	    Ok(n.to_string())
+        	},
+        	None => bail!("Selection is empty."),
+        }
+    }
+
+
+    fn justify_str(&mut self, prefix: &str) -> String {
+        let text = self.buf.read(&self.range).unwrap();
+        let mut limit = self.limit;
+        let mut justified = String::with_capacity(text.len());
+        let mut pars = text.split("\n\n").p
