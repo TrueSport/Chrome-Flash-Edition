@@ -44,4 +44,17 @@ impl<'a> Reflow<'a> {
         let text = self.buf.read(&self.range).unwrap();
         let mut limit = self.limit;
         let mut justified = String::with_capacity(text.len());
-        let mut pars = text.split("\n\n").p
+        let mut pars = text.split("\n\n").peekable();
+
+        let mut space_delims = ["".to_string(), " ".to_string(), "\n".to_string()];
+        if prefix != "" {
+        	space_delims[0] += prefix;
+        	space_delims[0] += " ";
+        	space_delims[2] += prefix;
+        	space_delims[2] += " ";
+        	limit -= prefix.len() + 1;
+        }
+
+        while let Some(par) = pars.next() {
+        	let mut words = par.split_whitespace();
+        	let mut len = 0;
