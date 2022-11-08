@@ -58,3 +58,20 @@ impl<'a> Reflow<'a> {
         while let Some(par) = pars.next() {
         	let mut words = par.split_whitespace();
         	let mut len = 0;
+        	let mut first = true;
+
+        	while let Some(word) = words.next() {
+        	    if word == prefix {
+        		continue;
+        	    }
+
+        	    len += word.len();
+
+        	    let over = len > limit;
+        	    let u_over = over as usize;
+        	    let idx = (!first as usize) * u_over + !first as usize;
+
+        	    justified += &space_delims[idx];
+        	    justified += word;
+
+        
