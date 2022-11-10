@@ -74,4 +74,13 @@ impl<'a> Reflow<'a> {
         	    justified += &space_delims[idx];
         	    justified += word;
 
-        
+        	    // if we're over, set the length to 0, otherwise increment it
+        	    // properly. This just does that mith multiplication by 0 instead of
+        	    // branching.
+        	    len = (len + 1) * (1 - u_over) + (word.len() + 1) * u_over;
+        	    first = false;
+        	}
+
+        	if pars.peek().is_some() {
+        	    justified += "\n\n"; // add back the paragraph break.
+       
