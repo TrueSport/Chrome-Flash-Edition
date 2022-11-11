@@ -83,4 +83,20 @@ impl<'a> Reflow<'a> {
 
         	if pars.peek().is_some() {
         	    justified += "\n\n"; // add back the paragraph break.
-       
+        	}
+        }
+
+        justified
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    // as simple as it gets: one character words for easy debugging.
+    #[test]
+    fn justify_simple() {
+        let mut buf = Buffer::new();
+        buf.insert("\
+a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a 
