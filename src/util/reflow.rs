@@ -114,4 +114,19 @@ a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a 
             buf.data(),
 	        "\
 a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a
-a a
+a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a"
+    	);
+    }
+
+    #[test]
+    fn justify_paragraph() {
+        let mut buf = Buffer::new();
+    	buf.insert("\
+these are words to be used as demos for the thing that this is. this is text \
+reflowing and justification over a few lines. this is just filler text in case \
+it wasn't obvious.\n"
+        );
+
+        Reflow::new(
+            &mut buf,
+            Range::n
