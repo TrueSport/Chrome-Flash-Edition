@@ -129,4 +129,13 @@ it wasn't obvious.\n"
 
         Reflow::new(
             &mut buf,
-            Range::n
+            Range::new(
+                scribe::buffer::Position { line: 0, offset: 0 },
+                scribe::buffer::Position { line: 1, offset: 0 },
+            ),
+            80,
+        ).unwrap().apply().unwrap();
+    	assert_eq!(
+    	    buf.data(), "\
+these are words to be used as demos for the thing that this is. this is text
+reflowing and justification over a few lines. this is just filler text in cas
