@@ -152,4 +152,10 @@ some lorem ipsum to annoy my latin student friends, but honestly it broke the \
 M-q 'justify' function in emacs, which makes it a bit difficult to work with. \
 Overall, it's just not that great with code!
 
-Fun fact 
+Fun fact of the day number two, writing random paragraphs of text is honestly \
+taking way more effort than I anticipated, and I deeply apologize for the lack \
+of sanity and coherence here!
+
+Fun fact of the day number three is that I spent three hours getting this to not \
+branch. There is no way that that micro-optimization will actually save three \
+hours worth of time, but I did it anyway for no good reas
