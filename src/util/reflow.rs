@@ -158,4 +158,19 @@ of sanity and coherence here!
 
 Fun fact of the day number three is that I spent three hours getting this to not \
 branch. There is no way that that micro-optimization will actually save three \
-hours worth of time, but I did it anyway for no good reas
+hours worth of time, but I did it anyway for no good reason!\n"
+        );
+
+        Reflow::new(
+            &mut buf,
+            Range::new(
+                scribe::buffer::Position { line: 0, offset: 0 },
+                scribe::buffer::Position { line: 5, offset: 0 },
+            ),
+            80,
+        ).unwrap().apply().unwrap();
+
+    	assert_eq!(
+    	    buf.data(), "\
+Here's more filler text! So fun fact of the day, I was trying to just copy paste
+some lorem ips
