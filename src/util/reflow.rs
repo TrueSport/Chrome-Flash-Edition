@@ -173,4 +173,12 @@ hours worth of time, but I did it anyway for no good reason!\n"
     	assert_eq!(
     	    buf.data(), "\
 Here's more filler text! So fun fact of the day, I was trying to just copy paste
-some lorem ips
+some lorem ipsum to annoy my latin student friends, but honestly it broke the
+M-q 'justify' function in emacs, which makes it a bit difficult to work with.
+Overall, it's just not that great with code!
+
+Fun fact of the day number two, writing random paragraphs of text is honestly
+taking way more effort than I anticipated, and I deeply apologize for the lack
+of sanity and coherence here!
+
+Fun fact of the day number 
