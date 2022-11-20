@@ -181,4 +181,14 @@ Fun fact of the day number two, writing random paragraphs of text is honestly
 taking way more effort than I anticipated, and I deeply apologize for the lack
 of sanity and coherence here!
 
-Fun fact of the day number 
+Fun fact of the day number three is that I spent three hours getting this to not
+branch. There is no way that that micro-optimization will actually save three
+hours worth of time, but I did it anyway for no good reason!"
+    	);
+    }
+
+    #[test]
+    fn justify_simple_prefix() {
+        let mut buf = Buffer::new();
+    	buf.insert("\
+# a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a 
