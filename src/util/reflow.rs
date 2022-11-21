@@ -205,4 +205,19 @@ hours worth of time, but I did it anyway for no good reason!"
     	assert_eq!(
     	    buf.data(), "\
 # a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a
-# a a a a a a a a a a a 
+# a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a"
+    	);
+    }
+
+    #[test]
+    fn justify_paragraph_prefix() {
+        let mut buf = Buffer::new();
+        buf.insert("\
+// filler text meant
+// to do stuff and things that  end up with text nicely \
+wrappped around a comment delimiter such as the double slashes in c-style \
+languages.\n"
+        );
+
+        Reflow::new(
+            &mut buf,
