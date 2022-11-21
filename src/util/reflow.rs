@@ -191,4 +191,18 @@ hours worth of time, but I did it anyway for no good reason!"
     fn justify_simple_prefix() {
         let mut buf = Buffer::new();
     	buf.insert("\
-# a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a 
+# a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a\n"
+        );
+        Reflow::new(
+            &mut buf,
+            Range::new(
+                scribe::buffer::Position { line: 0, offset: 0 },
+                scribe::buffer::Position { line: 1, offset: 0 },
+            ),
+            80,
+        ).unwrap().apply().unwrap();
+
+    	assert_eq!(
+    	    buf.data(), "\
+# a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a
+# a a a a a a a a a a a 
