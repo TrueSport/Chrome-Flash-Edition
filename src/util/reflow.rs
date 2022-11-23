@@ -221,3 +221,15 @@ languages.\n"
 
         Reflow::new(
             &mut buf,
+            Range::new(
+                scribe::buffer::Position { line: 0, offset: 0 },
+                scribe::buffer::Position { line: 2, offset: 0 },
+            ),
+            80,
+        ).unwrap().apply().unwrap();
+
+    	assert_eq!(
+    	    buf.data(), "\
+// filler text meant to do stuff and things that end up with text nicely
+// wrappped around a comment delimiter such as the double slashes in c-style
+// languages.",
