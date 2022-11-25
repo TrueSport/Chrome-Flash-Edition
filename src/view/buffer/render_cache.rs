@@ -7,4 +7,19 @@ pub trait RenderCache {
 impl<T> RenderCache for HashMap<usize, T> {
     /// Invalidates cache entries beyond the specified limit.
     fn invalidate_from(&mut self, limit: usize) {
-        self.reta
+        self.retain(|&k, _| k < limit)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use std::collections::HashMap;
+    use super::RenderCache;
+
+    #[test]
+    fn invalidate_from_clears_entries_starting_from_specified_index() {
+        let mut cache = HashMap::new();
+        cache.insert(100, String::new());
+        cache.insert(200, String::new());
+        cache.insert(300, String::new());
+        cache.invalidate_from(200);
