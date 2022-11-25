@@ -7,4 +7,5 @@ pub enum MappedLexeme<'a> {
 }
 
 pub trait LexemeMapper {
-    fn map<'x, 'y>(&'x mut self, lexeme: &'y str, position: 
+    fn map<'x, 'y>(&'x mut self, lexeme: &'y str, position: Position) -> Vec<MappedLexeme<'x>>;
+}
