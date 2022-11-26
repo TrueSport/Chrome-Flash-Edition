@@ -23,3 +23,10 @@ mod tests {
         cache.insert(200, String::new());
         cache.insert(300, String::new());
         cache.invalidate_from(200);
+
+        let mut expected_cache = HashMap::new();
+        expected_cache.insert(100, String::new());
+
+        assert_eq!(cache, expected_cache);
+    }
+}
