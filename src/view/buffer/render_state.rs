@@ -7,4 +7,11 @@ pub struct RenderState {
     pub parse: ParseState
 }
 
-impl RenderSta
+impl RenderState {
+    pub fn new(highlighter: &Highlighter, syntax: &SyntaxDefinition) -> RenderState {
+        RenderState{
+            highlight: HighlightState::new(&highlighter, ScopeStack::new()),
+            parse: ParseState::new(syntax)
+        }
+    }
+}
