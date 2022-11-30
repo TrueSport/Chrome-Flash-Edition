@@ -598,3 +598,168 @@ mod tests {
 
         let cursor_position = BufferRenderer::new(
             workspace.current_buffer().unwrap(),
+            None,
+            0,
+            &**terminal,
+            &theme_set.themes["base16-ocean.dark"],
+            &preferences,
+            &Rc::new(RefCell::new(HashMap::new())),
+            &mut terminal_buffer
+        ).render(lines, None).unwrap();
+
+        assert_eq!(cursor_position, Some(Position{ line: 0, offset: 4 }));
+    }
+
+    #[test]
+    fn render_caches_state_using_correct_frequency_excluding_first_line() {
+        // Set up a workspace and buffer; the workspace will
+        // handle setting up the buffer's syntax definition.
+        let mut workspace = Workspace::new(Path::new(".")).unwrap();
+        let mut buffer = Buffer::new();
+
+        for _ in 0..500 {
+            buffer.insert("line\n");
+        }
+        workspace.add_buffer(buffer);
+
+        let data = workspace.current_buffer().unwrap().data();
+        let lines = LineIterator::new(&data);
+        let terminal = build_terminal().unwrap();
+        let mut terminal_buffer = TerminalBuffer::new(terminal.width(), terminal.height());
+        let theme_set = ThemeSet::load_defaults();
+        let preferences = Preferences::new(None);
+        let render_cache = Rc::new(RefCell::new(HashMap::new()));
+
+        BufferRenderer::new(
+            workspace.current_buffer().unwrap(),
+            None,
+            495,
+            &**terminal,
+            &theme_set.themes["base16-ocean.dark"],
+            &preferences,
+            &render_cache,
+            &mut terminal_buffer
+        ).render(lines, None).unwrap();
+
+        assert_eq!(render_cache.borrow().keys().count(), 5);
+    }
+
+    #[test]
+    fn render_uses_cached_state() {
+        let mut workspace = Workspace::new(Path::new(".")).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.path = Some(PathBuf::from("test.rs"));
+
+        for _ in 0..500 {
+            buffer.insert("line\n");
+        }
+        workspace.add_buffer(buffer);
+
+        let data = workspace.current_buffer().unwrap().data();
+        let lines = LineIterator::new(&data);
+        let terminal = build_terminal().unwrap();
+        let mut terminal_buffer = TerminalBuffer::new(terminal.width(), terminal.height());
+        let theme_set = ThemeSet::load_defaults();
+        let preferences = Preferences::new(None);
+        let render_cache = Rc::new(RefCell::new(HashMap::new()));
+
+        // Do an initial run to prime the cache with
+        // an initial state that'll affect the second run.
+        BufferRenderer::new(
+            workspace.current_buffer().unwrap(),
+            None,
+            95,
+            &**terminal,
+            &theme_set.themes["base16-ocean.dark"],
+            &preferences,
+            &render_cache,
+            &mut terminal_buffer
+        ).render(lines, None).unwrap();
+
+        assert_eq!(render_cache.borrow().keys().count(), 1);
+        let initial_cache = render_cache.borrow().values().nth(0).unwrap().clone();
+
+        // This changes the classification of *all* of the
+        // text in the buffer; it's how we'll confirm that
+        // the cache is being used.
+        workspace.current_buffer().unwrap().insert("\"");
+
+        let data2 = workspace.current_buffer().unwrap().data();
+        let lines2 = LineIterator::new(&data2);
+
+        BufferRenderer::new(
+            workspace.current_buffer().unwrap(),
+            None,
+            495,
+            &**terminal,
+            &theme_set.themes["base16-ocean.dark"],
+            &preferences,
+            &render_cache,
+            &mut terminal_buffer
+        ).render(lines2, None).unwrap();
+
+        assert_eq!(render_cache.borrow().keys().count(), 5);
+        for value in render_cache.borrow().values() {
+            assert_eq!(value, &initial_cache);
+        }
+    }
+
+    #[test]
+    fn render_skips_lines_correctly_when_using_cached_state() {
+        let mut workspace = Workspace::new(Path::new(".")).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.path = Some(PathBuf::from("test.rs"));
+
+        for _ in 0..203 {
+            buffer.insert("line\n");
+        }
+        workspace.add_buffer(buffer);
+
+        let data = workspace.current_buffer().unwrap().data();
+        let lines = LineIterator::new(&data);
+        let terminal = build_terminal().unwrap();
+        let mut terminal_buffer = TerminalBuffer::new(terminal.width(), terminal.height());
+        let theme_set = ThemeSet::load_defaults();
+        let preferences = Preferences::new(None);
+        let render_cache = Rc::new(RefCell::new(HashMap::new()));
+
+        // Do an initial run to prime the cache with
+        // an initial state that'll affect the second run.
+        BufferRenderer::new(
+            workspace.current_buffer().unwrap(),
+            None,
+            95,
+            &**terminal,
+            &theme_set.themes["base16-ocean.dark"],
+            &preferences,
+            &render_cache,
+            &mut terminal_buffer
+        ).render(lines, None).unwrap();
+
+        assert_eq!(render_cache.borrow().keys().count(), 1);
+        terminal.clear();
+
+        // This changes the classification of *all* of the
+        // text in the buffer; it's how we'll confirm that
+        // the cache is being used.
+        workspace.current_buffer().unwrap().insert("\"");
+        let data2 = workspace.current_buffer().unwrap().data();
+        let lines2 = LineIterator::new(&data2);
+
+        BufferRenderer::new(
+            workspace.current_buffer().unwrap(),
+            None,
+            200,
+            &**terminal,
+            &theme_set.themes["base16-ocean.dark"],
+            &preferences,
+            &render_cache,
+            &mut terminal_buffer
+        ).render(lines2, None).unwrap();
+
+        let expected_content = " 201  line\n 202  line\n 203  line\n 204      ";
+        assert_eq!(
+            &terminal_buffer.content()[0..expected_content.len()],
+            expected_content);
+    }
+}
