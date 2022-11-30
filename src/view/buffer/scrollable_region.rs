@@ -241,3 +241,74 @@ mod tests {
             buffer.insert("\n");
         }
         buffer.cursor.move_to(Position{ line: 20, offset: 0 });
+        region.scroll_to_center(&buffer);
+        assert_eq!(region.line_offset(), 16);
+    }
+
+    #[test]
+    fn scroll_to_center_does_not_set_negative_offset() {
+        let terminal = build_terminal().unwrap();
+        let buffer = Buffer::new();
+        let mut region = ScrollableRegion::new(terminal);
+        region.scroll_to_center(&buffer);
+        assert_eq!(region.line_offset(), 0);
+    }
+
+    #[test]
+    fn scroll_to_center_weighs_wrapped_lines_correctly() {
+        let terminal = build_terminal().unwrap();
+        let mut buffer = Buffer::new();
+        let mut region = ScrollableRegion::new(terminal);
+        // Insert wrapped lines at the top.
+        for _ in 0..4 {
+            // Less than ten spaces to confirm that line numbers
+            // are considered, which eat into terminal space.
+            buffer.insert("       \n");
+        }
+        // Insert non-wrapped lines below.
+        buffer.cursor.move_to(Position{ line: 4, offset: 0 });
+        for _ in 0..6 {
+            buffer.insert("\n");
+        }
+        region.scroll_to_center(&buffer);
+        assert_eq!(region.line_offset(), 2);
+    }
+
+    #[test]
+    fn scroll_to_center_considers_space_beyond_end_of_buffer() {
+        let terminal = build_terminal().unwrap();
+        let mut buffer = Buffer::new();
+        for _ in 0..6 {
+            buffer.insert("\n");
+        }
+        buffer.cursor.move_to(Position{ line: 5, offset: 0 });
+        let mut region = ScrollableRegion::new(terminal);
+        region.scroll_to_center(&buffer);
+        assert_eq!(region.line_offset(), 1);
+    }
+
+    #[test]
+    fn scroll_down_increases_line_offset_by_amount() {
+        let terminal = build_terminal().unwrap();
+        let mut region = ScrollableRegion::new(terminal);
+        region.scroll_down(10);
+        assert_eq!(region.line_offset(), 10);
+    }
+
+    #[test]
+    fn scroll_up_decreases_line_offset_by_amount() {
+        let terminal = build_terminal().unwrap();
+        let mut region = ScrollableRegion::new(terminal);
+        region.scroll_down(10);
+        region.scroll_up(5);
+        assert_eq!(region.line_offset(), 5);
+    }
+
+    #[test]
+    fn scroll_up_does_not_scroll_beyond_top_of_region() {
+        let terminal = build_terminal().unwrap();
+        let mut region = ScrollableRegion::new(terminal);
+        region.scroll_up(5);
+        assert_eq!(region.line_offset(), 0);
+    }
+}
