@@ -9,4 +9,21 @@ pub trait ColorMap {
 impl ColorMap for Theme {
     fn map_colors(&self, colors: Colors) -> Colors {
         let fg = self.
-            se
+            settings.
+            foreground.
+            map(to_rgb_color).
+            unwrap_or(RGBColor(255, 255, 255));
+
+        let bg = self.
+            settings.
+            background.
+            map(to_rgb_color).
+            unwrap_or(RGBColor(0, 0, 0));
+
+        let alt_bg = self.
+            settings.
+            line_highlight.
+            map(to_rgb_color).
+            unwrap_or(RGBColor(55, 55, 55));
+
+   
