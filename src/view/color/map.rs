@@ -26,4 +26,10 @@ impl ColorMap for Theme {
             map(to_rgb_color).
             unwrap_or(RGBColor(55, 55, 55));
 
-   
+        match colors {
+            Colors::Default => Colors::Custom(fg, bg),
+            Colors::Focused => Colors::Custom(fg, alt_bg),
+            Colors::Inverted => Colors::Custom(bg, fg),
+            Colors::Insert => Colors::Custom(RGBColor(255, 255, 255), RGBColor(0, 180, 0)),
+            Colors::Warning => Colors::Custom(RGBColor(255, 255, 255), RGBColor(240, 140, 20)),
+            Colors::PathMode => Colors::Cu
