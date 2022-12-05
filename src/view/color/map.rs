@@ -37,4 +37,7 @@ impl ColorMap for Theme {
             Colors::SelectMode => Colors::Custom(RGBColor(255, 255, 255), RGBColor(0, 120, 160)),
             Colors::CustomForeground(custom_fg) => Colors::Custom(custom_fg, bg),
             Colors::CustomFocusedForeground(custom_fg) => Colors::Custom(custom_fg, alt_bg),
-           
+            Colors::Custom(custom_fg, custom_bg) => Colors::Custom(custom_fg, custom_bg),
+        }
+    }
+}
