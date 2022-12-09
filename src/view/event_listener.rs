@@ -31,4 +31,16 @@ impl EventListener {
 }
 
 #[cfg(test)]
-mo
+mod tests {
+    use crate::input::Key;
+    use crate::models::application::Event;
+    use std::sync::mpsc;
+    use super::EventListener;
+    use crate::view::terminal::*;
+
+    #[test]
+    fn start_listens_for_and_sends_key_events_from_terminal() {
+        let terminal = build_terminal().unwrap();
+        let (event_tx, event_rx) = mpsc::channel();
+        let (_, killswitch_rx) = mpsc::sync_channel(0);
+        EventListener
