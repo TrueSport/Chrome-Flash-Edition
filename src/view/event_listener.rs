@@ -43,4 +43,9 @@ mod tests {
         let terminal = build_terminal().unwrap();
         let (event_tx, event_rx) = mpsc::channel();
         let (_, killswitch_rx) = mpsc::sync_channel(0);
-        EventListener
+        EventListener::start(terminal.clone(), event_tx, killswitch_rx);
+        let event = event_rx.recv().unwrap();
+
+        assert_eq!(event, Event::Key(Key::Char('A')));
+    }
+}
