@@ -24,4 +24,17 @@ use self::event_listener::EventListener;
 use scribe::buffer::Buffer;
 use std::cmp;
 use std::collections::HashMap;
-use std::rc::
+use std::rc::Rc;
+use std::cell::RefCell;
+use std::ops::Drop;
+use std::sync::mpsc::{self, Sender, SyncSender};
+use std::sync::Arc;
+use self::theme_loader::ThemeLoader;
+use syntect::highlighting::ThemeSet;
+
+const RENDER_CACHE_FREQUENCY: usize = 100;
+
+pub struct View {
+    terminal: Arc<Box<dyn Terminal + Sync + Send + 'static>>,
+    scrollable_regions: HashMap<usize, ScrollableRegion>,
+    render_caches: HashMap<usize, Rc<RefCell<Ha
