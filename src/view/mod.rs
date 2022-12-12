@@ -37,4 +37,14 @@ const RENDER_CACHE_FREQUENCY: usize = 100;
 pub struct View {
     terminal: Arc<Box<dyn Terminal + Sync + Send + 'static>>,
     scrollable_regions: HashMap<usize, ScrollableRegion>,
-    render_caches: HashMap<usize, Rc<RefCell<Ha
+    render_caches: HashMap<usize, Rc<RefCell<HashMap<usize, RenderState>>>>,
+    pub theme_set: ThemeSet,
+    preferences: Rc<RefCell<Preferences>>,
+    pub last_key: Option<Key>,
+    event_channel: Sender<Event>,
+    event_listener_killswitch: SyncSender<()>
+}
+
+impl View {
+    pub fn new(preferences: Rc<RefCell<Preferences>>, event_channel: Sender<Event>) -> Result<View> {
+        let terminal = build_terminal().chain_err(|| "Fai
