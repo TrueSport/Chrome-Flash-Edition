@@ -47,4 +47,14 @@ pub struct View {
 
 impl View {
     pub fn new(preferences: Rc<RefCell<Preferences>>, event_channel: Sender<Event>) -> Result<View> {
-        let terminal = build_terminal().chain_err(|| "Fai
+        let terminal = build_terminal().chain_err(|| "Failed to initialize terminal")?;
+        let theme_path = preferences.borrow().theme_path()?;
+        let theme_set = ThemeLoader::new(theme_path).load()?;
+
+        let (killswitch_tx, killswitch_rx) = mpsc::sync_channel(0);
+        EventListener::start(terminal.clone(), event_channel.clone(), killswitch_rx);
+
+        Ok(View {
+            terminal,
+            last_key: None,
+            preferenc
