@@ -57,4 +57,21 @@ impl View {
         Ok(View {
             terminal,
             last_key: None,
-            preferenc
+            preferences,
+            scrollable_regions: HashMap::new(),
+            render_caches: HashMap::new(),
+            theme_set,
+            event_channel,
+            event_listener_killswitch: killswitch_tx
+        })
+    }
+
+    pub fn build_presenter<'a>(&'a mut self) -> Result<Presenter<'a>> {
+        Presenter::new(self)
+    }
+
+    ///
+    /// Scrollable region delegation methods.
+    ///
+
+    pub fn scroll_to_cursor(&mut self, buffer: &Buffer
