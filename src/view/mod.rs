@@ -74,4 +74,19 @@ impl View {
     /// Scrollable region delegation methods.
     ///
 
-    pub fn scroll_to_cursor(&mut self, buffer: &Buffer
+    pub fn scroll_to_cursor(&mut self, buffer: &Buffer) -> Result<()> {
+        self.get_region(buffer)?.scroll_into_view(&buffer);
+
+        Ok(())
+    }
+
+    pub fn scroll_to_center(&mut self, buffer: &Buffer) -> Result<()> {
+        self.get_region(buffer)?.scroll_to_center(&buffer);
+
+        Ok(())
+    }
+
+    pub fn scroll_up(&mut self, buffer: &Buffer, amount: usize) -> Result<()> {
+        self.get_region(buffer)?.scroll_up(amount);
+
+        Ok(()
