@@ -89,4 +89,14 @@ impl View {
     pub fn scroll_up(&mut self, buffer: &Buffer, amount: usize) -> Result<()> {
         self.get_region(buffer)?.scroll_up(amount);
 
-        Ok(()
+        Ok(())
+    }
+
+    pub fn scroll_down(&mut self, buffer: &Buffer, amount: usize) -> Result<()> {
+        let current_offset = self.get_region(buffer)?.line_offset();
+        let line_count = buffer.line_count();
+        let half_screen_height = self.terminal.height() / 2;
+
+        // Limit scrolling to 50% of the screen beyond the end of the buffer.
+        let max = if line_count > half_screen_height {
+        
