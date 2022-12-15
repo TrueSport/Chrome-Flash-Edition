@@ -110,4 +110,19 @@ impl View {
         };
 
         self.get_region(buffer)?.scroll_down(
-            cmp::min
+            cmp::min(amount, max)
+        );
+
+        Ok(())
+    }
+
+    /// Cleans up buffer-related view data. This method
+    /// should be called whenever a buffer is closed.
+    pub fn forget_buffer(&mut self, buffer: &Buffer) -> Result<()> {
+        self.scrollable_regions.remove(&buffer_key(buffer)?);
+        self.render_caches.remove(&buffer_key(buffer)?);
+
+        Ok(())
+    }
+
+    // Tries to 
