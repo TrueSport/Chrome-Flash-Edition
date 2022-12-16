@@ -125,4 +125,15 @@ impl View {
         Ok(())
     }
 
-    // Tries to 
+    // Tries to fetch a scrollable region for the specified buffer,
+    // inserting (and returning a reference to) a new one if not.
+    fn get_region(&mut self, buffer: &Buffer) -> Result<&mut ScrollableRegion> {
+        Ok(self.scrollable_regions
+            .entry(buffer_key(buffer)?)
+            .or_insert(
+                ScrollableRegion::new(self.terminal.clone())
+            )
+        )
+    }
+
+    fn get_render
