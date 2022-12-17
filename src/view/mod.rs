@@ -146,4 +146,15 @@ impl View {
 
     pub fn suspend(&mut self) {
         let _ = self.event_listener_killswitch.send(());
-        self.termin
+        self.terminal.suspend();
+        let (killswitch_tx, killswitch_rx) = mpsc::sync_channel(0);
+        EventListener::start(self.terminal.clone(), self.event_channel.clone(), killswitch_rx);
+        self.event_listener_killswitch = killswitch_tx;
+    }
+
+    pub fn last_key(&self) -> &Option<Key> {
+        &self.last_key
+    }
+
+    /// Sets up new buffers with render caches and cache invalidation callbacks.
+    pub fn initialize_buffe
