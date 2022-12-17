@@ -136,4 +136,14 @@ impl View {
         )
     }
 
-    fn get_render
+    fn get_render_cache(&self, buffer: &Buffer) -> Result<&Rc<RefCell<HashMap<usize, RenderState>>>> {
+        let cache = self.render_caches
+            .get(&buffer_key(buffer)?)
+            .ok_or("Buffer not properly initialized (render cache not present).")?;
+
+        Ok(cache)
+    }
+
+    pub fn suspend(&mut self) {
+        let _ = self.event_listener_killswitch.send(());
+        self.termin
