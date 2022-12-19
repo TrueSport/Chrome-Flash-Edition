@@ -157,4 +157,14 @@ impl View {
     }
 
     /// Sets up new buffers with render caches and cache invalidation callbacks.
-    pub fn initialize_buffe
+    pub fn initialize_buffer(&mut self, buffer: &mut Buffer) -> Result<()> {
+        // Build and store a new render cache for the buffer.
+        let render_cache = Rc::new(RefCell::new(HashMap::new()));
+        self.render_caches.insert(
+            buffer_key(buffer)?,
+            render_cache.clone()
+        );
+
+        // Wire up the buffer's change callback to invalidate the render cache.
+        buffer.change_callback = Some(
+            Bo
