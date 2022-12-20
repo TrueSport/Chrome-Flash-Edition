@@ -167,4 +167,21 @@ impl View {
 
         // Wire up the buffer's change callback to invalidate the render cache.
         buffer.change_callback = Some(
-            Bo
+            Box::new(move |change_position| {
+                render_cache.borrow_mut().invalidate_from(change_position.line);
+            })
+        );
+
+        Ok(())
+    }
+}
+
+impl Drop for View {
+    fn drop(&mut self) {
+        let _ = self.event_listener_killswitch.send(());
+    }
+}
+
+fn buffer_key(buffer: &Buffer) -> Result<usize> {
+    buffer.id.ok_or_else(|| Error::from("Buffer ID doesn't exist"))
+}
