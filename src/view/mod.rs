@@ -185,3 +185,19 @@ impl Drop for View {
 fn buffer_key(buffer: &Buffer) -> Result<usize> {
     buffer.id.ok_or_else(|| Error::from("Buffer ID doesn't exist"))
 }
+
+#[cfg(test)]
+mod tests {
+    use scribe::{Buffer, Workspace};
+    use super::View;
+    use crate::models::application::Preferences;
+    use scribe::buffer::Position;
+    use std::cell::RefCell;
+    use std::path::{Path, PathBuf};
+    use std::rc::Rc;
+    use std::sync::mpsc;
+    use syntect::highlighting::{Highlighter, ThemeSet};
+    use crate::view::buffer::RenderState;
+
+    #[test]
+    fn scroll_down
