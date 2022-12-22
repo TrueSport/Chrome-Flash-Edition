@@ -200,4 +200,15 @@ mod tests {
     use crate::view::buffer::RenderState;
 
     #[test]
-    fn scroll_down
+    fn scroll_down_prevents_scrolling_completely_beyond_buffer() {
+        let preferences = Rc::new(RefCell::new(Preferences::new(None)));
+        let (tx, _) = mpsc::channel();
+        let mut view = View::new(preferences, tx).unwrap();
+
+        // Build a 10-line buffer.
+        let mut buffer = Buffer::new();
+        buffer.id = Some(0);
+        buffer.insert("\n\n\n\n\n\n\n\n\n");
+
+        // Do an initial scroll to make sure it considers
+        /
