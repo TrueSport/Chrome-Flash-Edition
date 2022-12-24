@@ -211,4 +211,13 @@ mod tests {
         buffer.insert("\n\n\n\n\n\n\n\n\n");
 
         // Do an initial scroll to make sure it considers
-        /
+        // existing offset when determining maximum.
+        view.scroll_down(&buffer, 3).unwrap();
+        assert_eq!(view.get_region(&buffer).unwrap().line_offset(), 3);
+
+        // Try to scroll completely beyond the buffer.
+        view.scroll_down(&buffer, 20).unwrap();
+
+        // The view should limit the scroll to 50% of the screen height.
+        // The test environment uses a terminal height of 10.
+        assert_e
