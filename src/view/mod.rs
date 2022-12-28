@@ -220,4 +220,15 @@ mod tests {
 
         // The view should limit the scroll to 50% of the screen height.
         // The test environment uses a terminal height of 10.
-        assert_e
+        assert_eq!(view.get_region(&buffer).unwrap().line_offset(), 5);
+    }
+
+    #[test]
+    fn scroll_down_prevents_scrolling_when_buffer_is_smaller_than_top_half() {
+        let preferences = Rc::new(RefCell::new(Preferences::new(None)));
+        let (tx, _) = mpsc::channel();
+        let mut view = View::new(preferences, tx).unwrap();
+
+        // Build a 2-line buffer and try to scroll it.
+        let mut buffer = Buffer::new();
+    
