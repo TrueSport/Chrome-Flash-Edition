@@ -231,4 +231,16 @@ mod tests {
 
         // Build a 2-line buffer and try to scroll it.
         let mut buffer = Buffer::new();
-    
+        buffer.id = Some(0);
+        buffer.insert("\n");
+        view.scroll_down(&buffer, 20).unwrap();
+
+        // The view should not be scrolled.
+        assert_eq!(view.get_region(&buffer).unwrap().line_offset(), 0);
+    }
+
+    #[test]
+    fn initialize_buffer_creates_render_cache_for_buffer() {
+        let preferences = Rc::new(RefCell::new(Preferences::new(None)));
+        let (tx, _) = mpsc::channel();
+        let mut view = View::new(p
