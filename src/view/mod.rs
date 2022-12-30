@@ -243,4 +243,15 @@ mod tests {
     fn initialize_buffer_creates_render_cache_for_buffer() {
         let preferences = Rc::new(RefCell::new(Preferences::new(None)));
         let (tx, _) = mpsc::channel();
-        let mut view = View::new(p
+        let mut view = View::new(preferences, tx).unwrap();
+        let mut buffer = Buffer::new();
+        buffer.id = Some(1);
+
+        assert!(view.render_caches.get(&buffer.id.unwrap()).is_none());
+        view.initialize_buffer(&mut buffer).unwrap();
+        assert!(view.render_caches.get(&buffer.id.unwrap()).is_some());
+    }
+
+    #[test]
+    fn initialize_buffer_sets_change_callback_to_clear_render_cache() {
+        let preferences = Rc::new(RefCell:
