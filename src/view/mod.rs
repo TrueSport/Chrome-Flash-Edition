@@ -254,4 +254,13 @@ mod tests {
 
     #[test]
     fn initialize_buffer_sets_change_callback_to_clear_render_cache() {
-        let preferences = Rc::new(RefCell:
+        let preferences = Rc::new(RefCell::new(Preferences::new(None)));
+        let (tx, _) = mpsc::channel();
+        let mut view = View::new(preferences, tx).unwrap();
+
+        // Set up a buffer with a syntax definition and id.
+        let mut workspace = Workspace::new(Path::new(".")).unwrap();
+        let mut buf = Buffer::new();
+        buf.path = Some(PathBuf::from("rust.rs"));
+        workspace.add_buffer(buf);
+        let mut buffer =
