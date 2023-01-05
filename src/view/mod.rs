@@ -263,4 +263,14 @@ mod tests {
         let mut buf = Buffer::new();
         buf.path = Some(PathBuf::from("rust.rs"));
         workspace.add_buffer(buf);
-        let mut buffer =
+        let mut buffer = workspace.current_buffer().unwrap();
+
+        // Put some initial data in the buffer, and then initialize it.
+        for _ in 0..200 {
+            buffer.insert("line\n");
+        }
+        view.initialize_buffer(&mut buffer).unwrap();
+
+        // Build a render state.
+        let theme_set = ThemeSet::load_defaults();
+        let highlighter = Highlighter::new(&theme_set.themes["base16-ocean.d
