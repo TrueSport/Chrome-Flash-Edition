@@ -55,4 +55,21 @@ impl<'c> TerminalBuffer<'c> {
 mod tests {
     use crate::view::{Colors, Style};
     use crate::view::terminal::Cell;
-   
+    use scribe::buffer::Position;
+    use std::borrow::Cow;
+    use super::TerminalBuffer;
+
+    #[test]
+    fn new_sets_cell_capacity() {
+        let width = 5;
+        let height = 10;
+        let buffer = TerminalBuffer::new(width, height);
+
+        assert_eq!(50, buffer.cells.capacity());
+    }
+
+    #[test]
+    fn new_sets_cell_defaults() {
+        let width = 5;
+        let height = 10;
+        let buffer = Terminal
