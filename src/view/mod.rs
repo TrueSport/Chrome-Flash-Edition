@@ -285,4 +285,17 @@ mod tests {
         view.render_caches
             .get(&buffer.id.unwrap())
             .unwrap()
-            .borrow_mut(
+            .borrow_mut()
+            .insert(100, render_state.clone());
+        view.render_caches
+            .get(&buffer.id.unwrap())
+            .unwrap()
+            .borrow_mut()
+            .insert(200, render_state.clone());
+
+        // Make a change that will invalidate all lines beyond 100.
+        buffer.cursor.move_to(Position{ line: 99, offset: 0 });
+        buffer.insert("\n");
+
+        assert_eq!(
+            view.render_cac
