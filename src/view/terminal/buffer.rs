@@ -35,4 +35,24 @@ impl<'c> TerminalBuffer<'c> {
     #[cfg(test)]
     // For testing purposes, produces a String representation of the
     // terminal buffer that can be used to assert a particular state.
-    pub fn content(&self) -> 
+    pub fn content(&self) -> String {
+        let mut content = String::new();
+        let mut line = 0;
+        for (position, cell) in self.iter() {
+            // Add newline characters to the representation.
+            if position.line > line {
+                content.push('\n');
+                line += 1;
+            }
+            content.push_str(&*cell.content);
+        }
+
+        content
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::view::{Colors, Style};
+    use crate::view::terminal::Cell;
+   
