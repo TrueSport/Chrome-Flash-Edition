@@ -298,4 +298,14 @@ mod tests {
         buffer.insert("\n");
 
         assert_eq!(
-            view.render_cac
+            view.render_caches
+                .get(&buffer.id.unwrap())
+                .unwrap()
+                .borrow()
+                .keys()
+                .collect::<Vec<&usize>>(),
+            vec![&0]
+        );
+    }
+}
+
