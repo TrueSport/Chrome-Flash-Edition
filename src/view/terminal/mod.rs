@@ -36,4 +36,10 @@ pub trait Terminal {
 
 #[cfg(not(any(test, feature = "bench")))]
 pub fn build_terminal() -> Result<Arc<Box<dyn Terminal + Sync + Send + 'static>>> {
-    Ok(Arc::new(Box::new(TermionTerminal::new
+    Ok(Arc::new(Box::new(TermionTerminal::new()?)))
+}
+
+#[cfg(any(test, feature = "bench"))]
+pub fn build_terminal() -> Result<Arc<Box<dyn Terminal + Sync + Send + 'static>>> {
+    Ok(Arc::new(Box::new(TestTerminal::new())))
+}
