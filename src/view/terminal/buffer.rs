@@ -95,4 +95,6 @@ mod tests {
         assert_eq!(buffer.cells[11], cell);
         buffer.clear();
 
-        assert_eq!(buffer.cells[11], Cell::default(
+        assert_eq!(buffer.cells[11], Cell::default());
+    }
+}
