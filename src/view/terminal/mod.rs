@@ -26,3 +26,14 @@ const MIN_HEIGHT: usize = 10;
 pub trait Terminal {
     fn listen(&self) -> Option<Event>;
     fn clear(&self);
+    fn present(&self);
+    fn width(&self) -> usize;
+    fn height(&self) -> usize;
+    fn set_cursor(&self, _: Option<Position>);
+    fn print<'a>(&self, _: &Position, _: Style, _: Colors, _: &str);
+    fn suspend(&self);
+}
+
+#[cfg(not(any(test, feature = "bench")))]
+pub fn build_terminal() -> Result<Arc<Box<dyn Terminal + Sync + Send + 'static>>> {
+    Ok(Arc::new(Box::new(TermionTerminal::new
