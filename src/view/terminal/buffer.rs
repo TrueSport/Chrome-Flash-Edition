@@ -72,4 +72,15 @@ mod tests {
     fn new_sets_cell_defaults() {
         let width = 5;
         let height = 10;
-        let buffer = Terminal
+        let buffer = TerminalBuffer::new(width, height);
+
+        assert_eq!(buffer.cells[0], Cell::default());
+    }
+
+    #[test]
+    fn set_cell_sets_correct_cell() {
+        let mut buffer = TerminalBuffer::new(5, 10);
+        let cell = Cell{ content: Cow::from("a"), colors: Colors::Default, style: Style::Default };
+        buffer.set_cell(Position{ line: 2, offset: 1 }, cell.clone());
+
+        assert_eq!(buffer.cel
