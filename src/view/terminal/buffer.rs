@@ -83,4 +83,16 @@ mod tests {
         let cell = Cell{ content: Cow::from("a"), colors: Colors::Default, style: Style::Default };
         buffer.set_cell(Position{ line: 2, offset: 1 }, cell.clone());
 
-        assert_eq!(buffer.cel
+        assert_eq!(buffer.cells[11], cell);
+    }
+
+    #[test]
+    fn clear_resets_cells_to_default() {
+        let mut buffer = TerminalBuffer::new(5, 10);
+        let cell = Cell{ content: Cow::from(" "), colors: Colors::Default, style: Style::Default };
+        buffer.set_cell(Position{ line: 2, offset: 1 }, cell.clone());
+
+        assert_eq!(buffer.cells[11], cell);
+        buffer.clear();
+
+        assert_eq!(buffer.cells[11], Cell::default(
