@@ -43,4 +43,17 @@ pub struct TermionTerminal {
 impl TermionTerminal {
     #[allow(dead_code)]
     pub fn new() -> Result<TermionTerminal> {
-        let (event_listener, signals) 
+        let (event_listener, signals) = create_event_listener()?;
+
+        Ok(TermionTerminal {
+            event_listener,
+            signals,
+            input: Mutex::new(Some(stdin().keys())),
+            output: Mutex::new(Some(create_output_instance())),
+            current_style: Mutex::new(None),
+            current_colors: Mutex::new(None),
+            current_position: Mutex::new(None),
+        })
+    }
+
+    // Clears 
