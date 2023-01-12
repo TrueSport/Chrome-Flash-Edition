@@ -32,4 +32,15 @@ const RESIZE: Token = Token(1);
 
 pub struct TermionTerminal {
     event_listener: Poll,
-    s
+    signals: Signals,
+    input: Mutex<Option<Keys<Stdin>>>,
+    output: Mutex<Option<BufWriter<RawTerminal<AlternateScreen<Stdout>>>>>,
+    current_style: Mutex<Option<Style>>,
+    current_colors: Mutex<Option<Colors>>,
+    current_position: Mutex<Option<Position>>,
+}
+
+impl TermionTerminal {
+    #[allow(dead_code)]
+    pub fn new() -> Result<TermionTerminal> {
+        let (event_listener, signals) 
