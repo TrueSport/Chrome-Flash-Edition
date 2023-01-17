@@ -64,4 +64,13 @@ impl TermionTerminal {
                 if let Ok(mut style_guard) = self.current_style.lock() {
                     if Some(style) != *style_guard {
                         if let Some(mapped_style) = map_style(style) {
-               
+                            let _ = write!(output, "{}", mapped_style);
+                        } else {
+                            let _ = write!(
+                                output,
+                                "{}",
+                                style::Reset
+                            );
+
+                            // Resetting styles unfortunately clears active colors, too.
+                            if let Ok(col
