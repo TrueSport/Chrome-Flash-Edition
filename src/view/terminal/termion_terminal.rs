@@ -56,4 +56,12 @@ impl TermionTerminal {
         })
     }
 
-    // Clears 
+    // Clears any pre-existing styles.
+    fn update_style(&self, style: Style) {
+        if let Ok(mut guard) = self.output.lock() {
+            if let Some(ref mut output) = *guard {
+                // Check if style has changed.
+                if let Ok(mut style_guard) = self.current_style.lock() {
+                    if Some(style) != *style_guard {
+                        if let Some(mapped_style) = map_style(style) {
+               
