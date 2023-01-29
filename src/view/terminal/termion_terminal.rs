@@ -133,4 +133,11 @@ impl Terminal for TermionTerminal {
     fn listen(&self) -> Option<Event> {
         // Check for events on stdin.
         let mut events = Events::with_capacity(1);
-        self.event_listene
+        self.event_listener.poll(&mut events, Some(Duration::from_millis(100))).ok()?;
+        if let Some(event) = events.iter().next() {
+            match event.token() {
+                STDIN_INPUT => {
+                    let mut guard = self.input.lock().ok()?;
+                    let input_handle = guard.as_mut()?;
+                    let input_data = input_handle.next()?;
+                 
