@@ -152,4 +152,9 @@ impl Terminal for TermionTerminal {
                         TermionKey::End => Some(Event::Key(Key::End)),
                         TermionKey::PageUp => Some(Event::Key(Key::PageUp)),
                         TermionKey::PageDown => Some(Event::Key(Key::PageDown)),
-                        TermionKey::Delete => Some(Event:
+                        TermionKey::Delete => Some(Event::Key(Key::Delete)),
+                        TermionKey::Insert => Some(Event::Key(Key::Insert)),
+                        TermionKey::Esc => Some(Event::Key(Key::Esc)),
+                        TermionKey::Char('\n') => Some(Event::Key(Key::Enter)),
+                        TermionKey::Char('\t') => Some(Event::Key(Key::Tab)),
+                        TermionKey::Char(c) => Some(Event::Key(Key::Char(c)
