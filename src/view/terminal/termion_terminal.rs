@@ -77,4 +77,13 @@ impl TermionTerminal {
                                 if let Some(ref current_colors) = *color_guard {
                                     match *current_colors {
                                         Colors::Default => { let _ = write!(output, "{}{}", Fg(color::Reset), Bg(color::Reset)); }
-                                        Colors::Custom(fg, bg) =>
+                                        Colors::Custom(fg, bg) => { let _ = write!(output, "{}{}", Fg(fg), Bg(bg)); }
+                                        Colors::CustomForeground(fg) => { let _ = write!(output, "{}{}", Fg(fg), Bg(color::Reset)); }
+                                        _ => (),
+                                    };
+                                }
+                            }
+                        }
+
+                        style_guard.replace(style);
+              
