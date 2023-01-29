@@ -147,4 +147,9 @@ impl Terminal for TermionTerminal {
                         TermionKey::Left => Some(Event::Key(Key::Left)),
                         TermionKey::Right => Some(Event::Key(Key::Right)),
                         TermionKey::Up => Some(Event::Key(Key::Up)),
-                        TermionKey::Down => Some(Event::K
+                        TermionKey::Down => Some(Event::Key(Key::Down)),
+                        TermionKey::Home => Some(Event::Key(Key::Home)),
+                        TermionKey::End => Some(Event::Key(Key::End)),
+                        TermionKey::PageUp => Some(Event::Key(Key::PageUp)),
+                        TermionKey::PageDown => Some(Event::Key(Key::PageDown)),
+                        TermionKey::Delete => Some(Event:
