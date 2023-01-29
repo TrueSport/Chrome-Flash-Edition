@@ -140,4 +140,11 @@ impl Terminal for TermionTerminal {
                     let mut guard = self.input.lock().ok()?;
                     let input_handle = guard.as_mut()?;
                     let input_data = input_handle.next()?;
-                 
+                    let key = input_data.ok()?;
+
+                    match key {
+                        TermionKey::Backspace => Some(Event::Key(Key::Backspace)),
+                        TermionKey::Left => Some(Event::Key(Key::Left)),
+                        TermionKey::Right => Some(Event::Key(Key::Right)),
+                        TermionKey::Up => Some(Event::Key(Key::Up)),
+                        TermionKey::Down => Some(Event::K
