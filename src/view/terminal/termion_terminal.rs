@@ -117,4 +117,20 @@ impl TermionTerminal {
         if let Ok(mut guard) = self.output.lock() {
             if let Some(ref mut output) = *guard {
                 let _ = write!(
-              
+                    output,
+                    "{}{}{}",
+                    termion::cursor::Show,
+                    style::Reset,
+                    termion::clear::All,
+                );
+            }
+        }
+        self.present();
+    }
+}
+
+impl Terminal for TermionTerminal {
+    fn listen(&self) -> Option<Event> {
+        // Check for events on stdin.
+        let mut events = Events::with_capacity(1);
+        self.event_listene
