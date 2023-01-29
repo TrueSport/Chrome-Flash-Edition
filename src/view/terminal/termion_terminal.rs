@@ -102,4 +102,19 @@ impl TermionTerminal {
                         match colors {
                             Colors::Default => { let _ = write!(output, "{}{}", Fg(color::Reset), Bg(color::Reset)); }
                             Colors::Custom(fg, bg) => { let _ = write!(output, "{}{}", Fg(fg), Bg(bg)); }
-                            Colors::CustomForeground(fg) => { let _ = write!(output, "{}{}", Fg(fg), Bg
+                            Colors::CustomForeground(fg) => { let _ = write!(output, "{}{}", Fg(fg), Bg(color::Reset)); }
+                            _ => (),
+                        };
+                    }
+
+                    color_guard.replace(colors);
+                }
+            }
+        }
+    }
+
+    fn restore_cursor(&self) {
+        if let Ok(mut guard) = self.output.lock() {
+            if let Some(ref mut output) = *guard {
+                let _ = write!(
+              
