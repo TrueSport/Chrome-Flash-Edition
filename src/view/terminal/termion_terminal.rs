@@ -86,4 +86,15 @@ impl TermionTerminal {
                         }
 
                         style_guard.replace(style);
-              
+                    };
+                }
+            }
+        }
+    }
+
+    // Applies the current colors (as established via print) to the terminal.
+    fn update_colors(&self, colors: Colors) {
+        if let Ok(mut guard) = self.output.lock() {
+            if let Some(ref mut output) = *guard {
+                // Check if colors have changed.
+                if let Ok(mut color_guard) = self.current_c
