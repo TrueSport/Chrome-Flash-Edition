@@ -157,4 +157,15 @@ impl Terminal for TermionTerminal {
                         TermionKey::Esc => Some(Event::Key(Key::Esc)),
                         TermionKey::Char('\n') => Some(Event::Key(Key::Enter)),
                         TermionKey::Char('\t') => Some(Event::Key(Key::Tab)),
-                        TermionKey::Char(c) => Some(Event::Key(Key::Char(c)
+                        TermionKey::Char(c) => Some(Event::Key(Key::Char(c))),
+                        TermionKey::Ctrl(c) => Some(Event::Key(Key::Ctrl(c))),
+                        _ => None,
+                    }
+                },
+                RESIZE => {
+                    // Consume the resize signal so it doesn't trigger again.
+                    self.signals.into_iter().next();
+
+                    Some(Event::Resize)
+                }
+                _ =
