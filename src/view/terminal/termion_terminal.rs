@@ -196,4 +196,24 @@ impl Terminal for TermionTerminal {
 
     fn present(&self) {
         if let Ok(mut output) = self.output.lock() {
-            output.as_mut().map(|t| t.flus
+            output.as_mut().map(|t| t.flush());
+        }
+    }
+
+    fn width(&self) -> usize {
+        let (width, _) = terminal_size();
+
+        width.max(super::MIN_WIDTH)
+    }
+
+    fn height(&self) -> usize {
+        let (_, height) = terminal_size();
+
+        height.max(super::MIN_HEIGHT)
+    }
+
+    fn set_cursor(&self, position: Option<Position>) {
+        if let Ok(mut output) = self.output.lock() {
+            output.as_mut().map(|t| {
+                match position {
+                    Som
