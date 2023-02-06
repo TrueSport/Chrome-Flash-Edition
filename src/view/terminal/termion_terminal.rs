@@ -216,4 +216,18 @@ impl Terminal for TermionTerminal {
         if let Ok(mut output) = self.output.lock() {
             output.as_mut().map(|t| {
                 match position {
-                    Som
+                    Some(ref pos) => {
+                        let _ = write!(
+                            t,
+                            "{}{}",
+                            cursor::Show,
+                            cursor_position(pos)
+                        );
+                    },
+                    None => { let _ = write!(t, "{}", cursor::Hide); },
+                }
+            });
+        }
+    }
+
+    fn print<'a>(&self, target_position
