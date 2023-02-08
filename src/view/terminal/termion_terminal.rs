@@ -230,4 +230,12 @@ impl Terminal for TermionTerminal {
         }
     }
 
-    fn print<'a>(&self, target_position
+    fn print<'a>(&self, target_position: &Position, style: Style, colors: Colors, content: &str) {
+        self.update_style(style);
+        self.update_colors(colors);
+
+        if let Ok(mut guard) = self.output.lock() {
+            if let Some(ref mut output) = *guard {
+                // Handle cursor position updates.
+                if let Ok(mut current_position) = self.current_position.lock() {
+                    if *current_positio
