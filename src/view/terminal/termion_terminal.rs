@@ -261,4 +261,19 @@ impl Terminal for TermionTerminal {
 
     fn suspend(&self) {
         self.restore_cursor();
-        self.set_cursor(Some(Position{ line:
+        self.set_cursor(Some(Position{ line: 0, offset: 0 }));
+        self.present();
+
+        // Clear the current position so we're forced
+        // to move it on the first print after resuming.
+        self.current_position.lock().ok().take();
+
+        // Terminal destructor cleans up for us.
+        if let Ok(mut guard) = self.output.lock() {
+            guard.take();
+        }
+        if let Ok(mut guard) = self.input.lock() {
+            guard.take();
+        }
+
+        // Flush the termin
