@@ -247,4 +247,18 @@ impl Terminal for TermionTerminal {
                     *current_position = Some(
                         *target_position + Distance{
                             lines: 0,
-     
+                            offset: content.graphemes(true).count()
+                        }
+                    );
+                }
+
+                // Now that style, color, and position have been
+                // addressed, print the content.
+                let _ = write!(output, "{}", content);
+            }
+        }
+    }
+
+    fn suspend(&self) {
+        self.restore_cursor();
+        self.set_cursor(Some(Position{ line:
