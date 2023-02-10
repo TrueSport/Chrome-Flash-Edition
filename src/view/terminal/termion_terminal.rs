@@ -238,4 +238,13 @@ impl Terminal for TermionTerminal {
             if let Some(ref mut output) = *guard {
                 // Handle cursor position updates.
                 if let Ok(mut current_position) = self.current_position.lock() {
-                    if *current_positio
+                    if *current_position != Some(*target_position) {
+                        // We need to move the cursor to print here.
+                        let _ = write!(output, "{}", cursor_position(target_position));
+                    }
+
+                    // Track where the cursor is after printing.
+                    *current_position = Some(
+                        *target_position + Distance{
+                            lines: 0,
+     
