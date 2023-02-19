@@ -276,4 +276,17 @@ impl Terminal for TermionTerminal {
             guard.take();
         }
 
-        // Flush the termin
+        // Flush the terminal before suspending to cause the switch from the
+        // alternate screen to main screen to properly restore the terminal.
+        let _ = stdout().flush();
+
+        unsafe {
+            // Stop the amp process.
+            libc::raise(libc::SIGSTOP);
+        }
+
+        if let Ok(mut guard) = self.output.lock() {
+            guard.replace(create_output_instance());
+        }
+        if let Ok(mut guard) = self.input.lock() {
+            guard.replac
