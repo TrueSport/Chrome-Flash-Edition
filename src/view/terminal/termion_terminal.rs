@@ -289,4 +289,23 @@ impl Terminal for TermionTerminal {
             guard.replace(create_output_instance());
         }
         if let Ok(mut guard) = self.input.lock() {
-            guard.replac
+            guard.replace(stdin().keys());
+        }
+    }
+}
+
+impl Drop for TermionTerminal {
+    fn drop(&mut self) {
+        self.restore_cursor();
+        self.set_cursor(Some(Position{ line: 0, offset: 0 }));
+    }
+}
+
+fn cursor_position(position: &Position) -> cursor::Goto {
+    cursor::Goto(
+        (position.offset + 1) as u16,
+        (position.line + 1) as u16
+    )
+}
+
+fn terminal_size() -> (u
