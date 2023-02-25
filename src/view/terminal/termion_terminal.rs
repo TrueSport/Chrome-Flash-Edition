@@ -308,4 +308,15 @@ fn cursor_position(position: &Position) -> cursor::Goto {
     )
 }
 
-fn terminal_size() -> (u
+fn terminal_size() -> (usize, usize) {
+    termion::terminal_size()
+        .map(|(x,y)| (x as usize, y as usize))
+        .unwrap_or((0, 0))
+}
+
+fn create_event_listener() -> Result<(Poll, Signals)> {
+    let signals = Signals::new(&[signal_hook::SIGWINCH])
+        .chain_err(|| "Failed to initialize event listener signal")?;
+    let event_listener = Poll::new().chain_err(|| "Failed to establish polling")?;
+    event_listener.register(
+        &Even
