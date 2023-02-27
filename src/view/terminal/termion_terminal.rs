@@ -319,4 +319,19 @@ fn create_event_listener() -> Result<(Poll, Signals)> {
         .chain_err(|| "Failed to initialize event listener signal")?;
     let event_listener = Poll::new().chain_err(|| "Failed to establish polling")?;
     event_listener.register(
-        &Even
+        &EventedFd(&stdin().as_raw_fd()),
+        STDIN_INPUT,
+        Ready::readable(),
+        PollOpt::level()
+    ).chain_err(|| "Failed to register stdin to event listener")?;
+    event_listener.register(
+        &signals,
+        RESIZE,
+        Ready::readable(),
+        PollOpt::level()
+    ).chain_err(|| "Failed to register resize signal to event listener")?;
+
+    Ok((event_listener, signals))
+}
+
+fn cr
