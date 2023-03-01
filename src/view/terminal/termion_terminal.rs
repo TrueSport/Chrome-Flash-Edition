@@ -334,4 +334,14 @@ fn create_event_listener() -> Result<(Poll, Signals)> {
     Ok((event_listener, signals))
 }
 
-fn cr
+fn create_output_instance() -> BufWriter<RawTerminal<AlternateScreen<Stdout>>> {
+    let screen = stdout().into_alternate_screen().unwrap();
+
+    // Use a 1MB buffered writer for stdout.
+    BufWriter::with_capacity(1_048_576, screen.into_raw_mode().unwrap())
+}
+
+fn map_style(style: Style) -> Option<Box<dyn Display>> {
+    match style {
+        Style::Default => None,
+  
