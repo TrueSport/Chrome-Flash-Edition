@@ -344,4 +344,8 @@ fn create_output_instance() -> BufWriter<RawTerminal<AlternateScreen<Stdout>>> {
 fn map_style(style: Style) -> Option<Box<dyn Display>> {
     match style {
         Style::Default => None,
-  
+        Style::Bold => Some(Box::new(style::Bold)),
+        Style::Inverted => Some(Box::new(style::Invert)),
+        Style::Italic => Some(Box::new(style::Italic)),
+    }
+}
